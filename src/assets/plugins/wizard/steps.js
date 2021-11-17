@@ -4,7 +4,7 @@ $(".tab-wizard").steps({
     , transitionEffect: "fade"
     , titleTemplate: '<span class="step">#index#</span> #title#'
     , labels: {
-        finish: "Submit"
+        finish: "Enviar"
     }
     , onFinished: function (event, currentIndex) {
        swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
@@ -36,7 +36,8 @@ $(".validation-wizard").steps({
     ignore: "input[type=hidden]"
     , errorClass: "text-danger"
     , successClass: "text-success"
-    , highlight: function (element, errorClass) {
+    , highlight: function (element, errorClass) 
+    {
         $(element).removeClass(errorClass)
     }
     , unhighlight: function (element, errorClass) {
@@ -46,8 +47,10 @@ $(".validation-wizard").steps({
         error.insertAfter(element)
     }
     , rules: {
-        email: {
-            email: !0
-        }
+        apellido: {
+            required: true,
+            apellido: true,
+            minlength: 3
+          },
     }
 })

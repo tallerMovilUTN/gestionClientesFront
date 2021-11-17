@@ -459,7 +459,11 @@ html body .text-dark {
   color: #67757c; }
 
 html body .text-themecolor {
-  color: #398bf7; }
+  color: #f0f0f0;
+  background-color: #587bc7;
+  font-family: Arial;
+
+}
 
 /*******************
 Background Colors
@@ -563,11 +567,16 @@ Labels
 *******************/
 .label {
   padding: 3px 10px;
-  line-height: 13px;
-  color: #ffffff;
-  font-weight: 400;
+  line-height: 15px;
+  color: #464141;
+  font-weight: bold;
+  
   border-radius: 4px;
   font-size: 75%; }
+
+  .form label{
+    font-weight:bold;
+  }
 
 .label-rounded {
   border-radius: 60px; }
@@ -728,6 +737,9 @@ Layouts
   height: 100%;
   z-index: 9999;
   overflow: auto; }
+
+
+ 
 
 /*******************/
 /*single column*/
@@ -999,15 +1011,19 @@ File: scss
   padding-bottom: 60px;
   position: relative; }
 
+ 
+
 .container-fluid {
   padding: 25px 25px; }
 
 .card {
-  margin-bottom: 30px; }
+  margin-bottom: 30px; 
+ /** background: #e8ebf1;**/
+}
   .card .card-subtitle {
     font-weight: 300;
     margin-bottom: 15px;
-    color: #99abb4; }
+    color: #3cb3ee; }
   .card .card-title {
     position: relative; }
 
@@ -1267,7 +1283,8 @@ Notify
  Breadcrumb and page title
 *******************/
 .page-titles {
-  background: #f4f6f9;
+  color: #f0f0f0;
+  background-color: #587bc7;
   margin-bottom: 20px;
   padding: 0px; }
   .page-titles h3 {
@@ -2037,8 +2054,8 @@ Buttons
 
 .btn-success,
 .btn-success.disabled {
-  background: #06d79c;
-  border: 1px solid #06d79c;
+  background:rgb(10, 105, 66);
+  border: 1px solid rgb(10, 105, 66);
   -webkit-box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
   -webkit-transition: 0.2s ease-in;
@@ -2046,7 +2063,7 @@ Buttons
   transition: 0.2s ease-in; }
   .btn-success:hover,
   .btn-success.disabled:hover {
-    background: #06d79c;
+    background: rgb(10, 105, 66);
     -webkit-box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     border: 1px solid #06d79c; }
@@ -2054,7 +2071,7 @@ Buttons
   .btn-success.disabled.active,
   .btn-success.disabled:active,
   .btn-success.disabled:focus {
-    background: #04b381;
+    background: rgb(10, 105, 66);
     -webkit-box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     border-color: transparent; }
@@ -5882,4 +5899,33 @@ File: scss
     display: block;
     text-align: center;
     margin-top: 10px;
-    overflow: hidden; } }
+    overflow: hidden; } 
+  
+  
+   /** form {
+      background-color: #ffffff;
+      margin: 100px auto;
+      font-family: Raleway;
+      padding: 20px;
+      width: 70%;
+      min-width: 300px;
+  }
+**/
+  .card {
+    
+    width: 50%;
+    
+}
+
+img{  
+  height: 200px;  
+  width: 800px;  
+  }  
+  #center {  
+  text-align: center;  
+  }  
+
+  .labelHidden { display: none };
+  .labelHDO { font-weight: bold;color: #5c88ca };
+  
+  }
