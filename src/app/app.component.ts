@@ -1000,7 +1000,7 @@ export class AppComponent {
 
 
 
-    /**obtenerFormatoFecha(value:string): any
+    obtenerFormatoFecha(value:string): any
     {
 
           console.log("obtenerFormatoFecha: "+value);
@@ -1040,7 +1040,7 @@ export class AppComponent {
    toInteger(value: any): number {
     return parseInt(`${value}`, 10);
   }
-**/
+
 
 
 
