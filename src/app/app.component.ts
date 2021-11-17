@@ -19,7 +19,7 @@ import { CustomAdapter } from './utils/custom-adapter';
 export class AppComponent {
 
   //fechaNac!: NgbDateStruct;
-  
+
   title = 'newMat';
 
   @ViewChild("fileUpload1", { static: false }) fileUpload1!: ElementRef;
@@ -29,7 +29,7 @@ export class AppComponent {
   selectedFiles2!: FileList;
 
   files  = [];
-  
+
   //fileToUpload: File | null = null;
 
   mostrarDatosPadre: boolean = true;
@@ -57,8 +57,8 @@ export class AppComponent {
 
   tipoRelPadreAbueloMaterno!: Tiporelacion;
   tipoRelMadreAbueloMaterno!: Tiporelacion;
-  
-  
+
+
 
   estadoCivil = [
     {valor:'Soltero', muestraValor:'Soltero'},
@@ -67,8 +67,8 @@ export class AppComponent {
     {valor:'Viudo', muestraValor:'Viudo'}
   ];
   seleccionada: string = this.estadoCivil[0].valor;
-  
-     
+
+
   isLinear = true;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
@@ -81,15 +81,15 @@ export class AppComponent {
   submitted4 = false;
   isChecked:boolean = false;
 
-  
 
 
-  
+
+
   constructor(private _formBuilder: FormBuilder, private clienteService: ClienteService) {}
-  
+
   ngOnInit() {
 
-    
+
     this.tipoRelPadre = new Tiporelacion();
     this.tipoRelPadre.id = 1;
     this.tipoRelPadre.descripcion = "Padre";
@@ -154,7 +154,7 @@ export class AppComponent {
 
       fechaMatrimonioPadre: [''],
       lugarMatrimonioPadre: [''],
-      
+
       fechaDefPadre: [''],
       lugarDefPadre: [''],
 
@@ -168,7 +168,7 @@ export class AppComponent {
       celularNroPadre: [''],
       comentarioPadre: [''],
 
-      
+
       apellidoMadre: ['', Validators.required],
       nombreMadre: ['', Validators.required],
 
@@ -204,7 +204,7 @@ export class AppComponent {
 
       fechaMatrimonioPadreAbueloPaterno: [''],
       lugarMatrimonioPadreAbueloPaterno: [''],
-   
+
 
       emailPadreAbueloPaterno: [''],
       fechaDefPadreAbueloPaterno: [''],
@@ -233,7 +233,7 @@ export class AppComponent {
 
       fechaDefMadreAbueloPaterno: [''],
       lugarDefMadreAbueloPaterno: [''],
-      
+
       calleNombreMadreAbueloPaterno: ['', Validators.required],
       calleNroMadreAbueloPaterno: ['', Validators.required],
       cpMadreAbueloPaterno: ['', Validators.required],
@@ -243,7 +243,7 @@ export class AppComponent {
       celularNroMadreAbueloPaterno: [''],
       comentarioMadreAbueloPaterno: [''],
 
-    
+
     });
 
     this.cuartoFormGroup = this._formBuilder.group({
@@ -269,7 +269,7 @@ export class AppComponent {
       celularNroPadreAbueloMaterno: [''],
       comentarioPadreAbueloMaterno: [''],
 
-      
+
 
       apellidoMadreAbueloMaterno: ['', Validators.required],
       nombreMadreAbueloMaterno: ['', Validators.required],
@@ -283,7 +283,7 @@ export class AppComponent {
 
       fechaDefMadreAbueloMaterno: [''],
       lugarDefMadreAbueloMaterno: [''],
-      
+
       calleNombreMadreAbueloMaterno: ['', Validators.required],
       calleNroMadreAbueloMaterno: ['', Validators.required],
       cpMadreAbueloMaterno: ['', Validators.required],
@@ -293,7 +293,7 @@ export class AppComponent {
       celularNroMadreAbueloMaterno: [''],
       comentarioMadreAbueloMaterno: [''],
 
-    
+
     });
 
    /** this.secondFormGroup.controls.fechaMatrimonioPadre.setValue('');
@@ -305,7 +305,7 @@ export class AppComponent {
 
 
   }
-  
+
 
 
 
@@ -328,15 +328,15 @@ export class AppComponent {
 
 
 
- 
-
-  
 
 
-  
+
+
+
+
   onCheckboxChangeNoConocePadre(value:boolean) {
     console.log("NO CONOCE LOS DATOS DEL PADRE___"+value);
-  
+
     this.mostrarDatosPadre = true;
     if (value)
     {
@@ -345,10 +345,10 @@ export class AppComponent {
   }
 
 
-  
+
   onCheckboxChangeNoConoceMadre(value:boolean) {
     console.log("NO CONOCE LOS DATOS DEL MADRE___"+value);
-  
+
     this.mostrarDatosMadre = true;
     if (value)
     {
@@ -360,7 +360,7 @@ export class AppComponent {
   onCheckboxChangeNoConocePadreAbueloPaterno(value:boolean)
   {
       console.log("NO CONOCE LOS DATOS DEL ABUELO PARTERNO PADRE___"+value);
-    
+
       this.mostrarDatosPadreAbueloPaterno = true;
       if (value)
       {
@@ -373,7 +373,7 @@ export class AppComponent {
   onCheckboxChangeNoConoceMadreAbueloPaterno(value:boolean)
   {
       console.log("NO CONOCE LOS DATOS DE LA ABUELA PARTERNO ___"+value);
-    
+
       this.mostrarDatosMadreAbueloPaterno = true;
       if (value)
       {
@@ -386,7 +386,7 @@ export class AppComponent {
   onCheckboxChangeNoConocePadreAbueloMaterno(value:boolean)
   {
       console.log("NO CONOCE LOS DATOS DEL ABUELO PARTERNO PADRE___"+value);
-    
+
       this.mostrarDatosPadreAbueloMaterno = true;
       if (value)
       {
@@ -399,7 +399,7 @@ export class AppComponent {
   onCheckboxChangeNoConoceMadreAbueloMaterno(value:boolean)
   {
       console.log("NO CONOCE LOS DATOS DE LA ABUELA PARTERNO ___"+value);
-    
+
       this.mostrarDatosMadreAbueloMaterno = true;
       if (value)
       {
@@ -424,13 +424,13 @@ export class AppComponent {
     this.firstFormGroup.get('fechaMatrimonio')?.clearValidators;
     this.firstFormGroup.get('fechaMatrimonio')?.setValidators([]);
     this.firstFormGroup.get('fechaMatrimonio')?.updateValueAndValidity;
-    
-    
+
+
     this.firstFormGroup.get('lugarMatrimonio')?.clearValidators;
     this.firstFormGroup.get('lugarMatrimonio')?.setValidators([]);
     this.firstFormGroup.get('lugarMatrimonio')?.updateValueAndValidity;
-    
-    
+
+
     if (value == "Casado")
     {
         this.mostrarCamposMatrimonio = true;
@@ -438,12 +438,12 @@ export class AppComponent {
         //calleNombreMadre: ['', Validators.required]
        this.firstFormGroup.get('fechaMatrimonio')?.setValidators([Validators.required,Validators.minLength(3)]); // 5.Set Required Validator
        this.firstFormGroup.get('fechaMatrimonio')?.updateValueAndValidity();
-       
+
 
        this.firstFormGroup.get('lugarMatrimonio')?.setValidators([Validators.required,Validators.minLength(3)]); // 5.Set Required Validator
        this.firstFormGroup.get('lugarMatrimonio')?.updateValueAndValidity();
 
-      
+
 
     }
     //this.firstFormGroup.get('fechaMatrimonio').setValue('');
@@ -461,7 +461,7 @@ export class AppComponent {
         if (this.firstFormGroup.invalid) {
           return;
         }
-        
+
   }
 
   onSubmit2(): void {
@@ -474,7 +474,7 @@ export class AppComponent {
       return;
     }
 
-    
+
   }
 
 
@@ -548,27 +548,27 @@ export class AppComponent {
    this.cliente.estadocivil = this.firstFormGroup.controls.estadocivil.value
    //this.cliente.fechaMatrimonio = this.obtenerFormatoFecha(this.firstFormGroup.controls.fechaMatrimonio.value);
    this.cliente.fechaMatrimonio = this.firstFormGroup.controls.fechaMatrimonio.value;
-   
+
    this.cliente.lugarMatrimonio = this.firstFormGroup.controls.lugarMatrimonio.value
-   
+
    //////////////DATOS DEL PADRE//////////////
    this.padre = new Contacto();
    this.padre.apellido = this.secondFormGroup.controls.apellidoPadre.value
    this.padre.nombre = this.secondFormGroup.controls.nombrePadre.value
    this.padre.dni = this.secondFormGroup.controls.dniPadre.value
-   
+
    //this.padre.fechaNac = this.obtenerFormatoFecha(this.secondFormGroup.controls.fechaNacPadre.value);
    this.padre.fechaNac = this.secondFormGroup.controls.fechaNacPadre.value;
-   this.padre.lugarNac = this.secondFormGroup.controls.lugarNacPadre.value        
+   this.padre.lugarNac = this.secondFormGroup.controls.lugarNacPadre.value
 
    //this.padre.fechaDefuncion = this.obtenerFormatoFecha(this.secondFormGroup.controls.fechaDefPadre.value);
    this.padre.fechaDefuncion = this.secondFormGroup.controls.fechaDefPadre.value;
-   this.padre.lugarDefuncion = this.secondFormGroup.controls.lugarDefPadre.value    
-       
+   this.padre.lugarDefuncion = this.secondFormGroup.controls.lugarDefPadre.value
+
    //this.padre.fechaMatrimonio = this.obtenerFormatoFecha(this.secondFormGroup.controls.fechaMatrimonioPadre.value);
    this.padre.fechaMatrimonio = this.secondFormGroup.controls.fechaMatrimonioPadre.value;
-   this.padre.lugarMatrimonio = this.secondFormGroup.controls.lugarMatrimonioPadre.value    
-   
+   this.padre.lugarMatrimonio = this.secondFormGroup.controls.lugarMatrimonioPadre.value
+
    this.padre.email = this.secondFormGroup.controls.emailPadre.value
    this.padre.calleNombre = this.secondFormGroup.controls.calleNombrePadre.value
    this.padre.calleNro = this.secondFormGroup.controls.calleNroPadre.value
@@ -581,24 +581,24 @@ export class AppComponent {
    //this.padre.estadocivil = this.secondFormGroup.controls.comentarioPadre.value
    this.padre.persona = this.cliente;
     this.padre.tipoRelacion = this.tipoRelPadre;
-   
+
    //////////////DATOS DE LA MADRE//////////////
    this.madre = new Contacto();
    this.madre.apellido = this.secondFormGroup.controls.apellidoMadre.value
    this.madre.nombre = this.secondFormGroup.controls.nombreMadre.value
    this.madre.dni = this.secondFormGroup.controls.dniMadre.value
-   
+
    //this.madre.fechaNac = this.obtenerFormatoFecha(this.secondFormGroup.controls.fechaNacMadre.value);
    this.madre.fechaNac = this.secondFormGroup.controls.fechaNacMadre.value;
    this.madre.lugarNac = this.secondFormGroup.controls.lugarNacMadre.value
-       
+
    //this.madre.fechaMatrimonio = this.obtenerFormatoFecha(this.secondFormGroup.controls.fechaMatrimonioMadre.value);
    this.madre.fechaMatrimonio = this.secondFormGroup.controls.fechaMatrimonioMadre.value;
-   this.madre.lugarMatrimonio = this.secondFormGroup.controls.lugarMatrimonioMadre.value    
+   this.madre.lugarMatrimonio = this.secondFormGroup.controls.lugarMatrimonioMadre.value
 
    //this.madre.fechaDefuncion = this.obtenerFormatoFecha(this.secondFormGroup.controls.fechaDefMadre.value);
    this.madre.fechaDefuncion = this.secondFormGroup.controls.fechaDefMadre.value;
-   this.madre.lugarDefuncion = this.secondFormGroup.controls.lugarDefMadre.value 
+   this.madre.lugarDefuncion = this.secondFormGroup.controls.lugarDefMadre.value
    this.madre.email = this.secondFormGroup.controls.lugarDefMadre.value
    this.madre.calleNombre = this.secondFormGroup.controls.calleNombreMadre.value
    this.madre.calleNro = this.secondFormGroup.controls.calleNroMadre.value
@@ -610,26 +610,26 @@ export class AppComponent {
    this.madre.observacion = this.secondFormGroup.controls.observacionMadre.value
    this.madre.persona = this.cliente;
    this.madre.tipoRelacion = this.tipoRelMadre;
-   
+
 
    //////////////DATOS DEL PADRE-MADRE - ABUELOS PATERNOS//////////////
    this.padreAbueloPaterno = new Contacto();
    this.padreAbueloPaterno.apellido = this.tercerFormGroup.controls.apellidoPadreAbueloPaterno.value
    this.padreAbueloPaterno.nombre = this.tercerFormGroup.controls.nombrePadreAbueloPaterno.value
    this.padreAbueloPaterno.dni = this.tercerFormGroup.controls.dniPadreAbueloPaterno.value
-   
-   //this.padreAbueloPaterno.fechaNac = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaNacPadreAbueloPaterno.value); 
-   this.padreAbueloPaterno.fechaNac = this.tercerFormGroup.controls.fechaNacPadreAbueloPaterno.value; 
+
+   //this.padreAbueloPaterno.fechaNac = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaNacPadreAbueloPaterno.value);
+   this.padreAbueloPaterno.fechaNac = this.tercerFormGroup.controls.fechaNacPadreAbueloPaterno.value;
    this.padreAbueloPaterno.lugarNac = this.tercerFormGroup.controls.lugarNacPadreAbueloPaterno.value
 
-   //this.padreAbueloPaterno.fechaMatrimonio = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaMatrimonioPadreAbueloPaterno.value); 
-   this.padreAbueloPaterno.fechaMatrimonio = this.tercerFormGroup.controls.fechaMatrimonioPadreAbueloPaterno.value; 
+   //this.padreAbueloPaterno.fechaMatrimonio = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaMatrimonioPadreAbueloPaterno.value);
+   this.padreAbueloPaterno.fechaMatrimonio = this.tercerFormGroup.controls.fechaMatrimonioPadreAbueloPaterno.value;
    this.padreAbueloPaterno.lugarMatrimonio = this.tercerFormGroup.controls.lugarMatrimonioPadreAbueloPaterno.value
 
 
-   //this.padreAbueloPaterno.fechaDefuncion = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaDefPadreAbueloPaterno.value); 
-   this.padreAbueloPaterno.fechaDefuncion = this.tercerFormGroup.controls.fechaDefPadreAbueloPaterno.value; 
-   this.padreAbueloPaterno.lugarDefuncion = this.tercerFormGroup.controls.lugarDefPadreAbueloPaterno.value    
+   //this.padreAbueloPaterno.fechaDefuncion = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaDefPadreAbueloPaterno.value);
+   this.padreAbueloPaterno.fechaDefuncion = this.tercerFormGroup.controls.fechaDefPadreAbueloPaterno.value;
+   this.padreAbueloPaterno.lugarDefuncion = this.tercerFormGroup.controls.lugarDefPadreAbueloPaterno.value
    this.padreAbueloPaterno.email = this.tercerFormGroup.controls.emailPadreAbueloPaterno.value
    this.padreAbueloPaterno.calleNombre = this.tercerFormGroup.controls.calleNombrePadreAbueloPaterno.value
    this.padreAbueloPaterno.calleNro = this.tercerFormGroup.controls.calleNroPadreAbueloPaterno.value
@@ -642,26 +642,26 @@ export class AppComponent {
    this.padreAbueloPaterno.persona = this.cliente;
    this.padreAbueloPaterno.tipoRelacion = this.tipoRelPadreAbueloPaterno;
 
-   
+
 
    this.madreAbueloPaterno = new Contacto();
    this.madreAbueloPaterno.apellido = this.tercerFormGroup.controls.apellidoMadreAbueloPaterno.value
    this.madreAbueloPaterno.nombre = this.tercerFormGroup.controls.nombreMadreAbueloPaterno.value
-   this.madreAbueloPaterno.dni = this.tercerFormGroup.controls.dniMadreAbueloPaterno.value        
+   this.madreAbueloPaterno.dni = this.tercerFormGroup.controls.dniMadreAbueloPaterno.value
 
-   //this.madreAbueloPaterno.fechaNac = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaNacMadreAbueloPaterno.value); 
-   this.madreAbueloPaterno.fechaNac = this.tercerFormGroup.controls.fechaNacMadreAbueloPaterno.value; 
+   //this.madreAbueloPaterno.fechaNac = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaNacMadreAbueloPaterno.value);
+   this.madreAbueloPaterno.fechaNac = this.tercerFormGroup.controls.fechaNacMadreAbueloPaterno.value;
    this.madreAbueloPaterno.lugarNac = this.tercerFormGroup.controls.lugarNacMadreAbueloPaterno.value
 
-   
-   //this.madreAbueloPaterno.fechaMatrimonio = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaMatrimonioMadreAbueloPaterno.value); 
-   this.madreAbueloPaterno.fechaMatrimonio = this.tercerFormGroup.controls.fechaMatrimonioMadreAbueloPaterno.value; 
+
+   //this.madreAbueloPaterno.fechaMatrimonio = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaMatrimonioMadreAbueloPaterno.value);
+   this.madreAbueloPaterno.fechaMatrimonio = this.tercerFormGroup.controls.fechaMatrimonioMadreAbueloPaterno.value;
    this.madreAbueloPaterno.lugarMatrimonio = this.tercerFormGroup.controls.lugarMatrimonioMadreAbueloPaterno.value
 
-   
-   //this.madreAbueloPaterno.fechaDefuncion = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaDefMadreAbueloPaterno.value); 
-   this.madreAbueloPaterno.fechaDefuncion = this.tercerFormGroup.controls.fechaDefMadreAbueloPaterno.value; 
-   this.madreAbueloPaterno.lugarDefuncion = this.tercerFormGroup.controls.lugarDefMadreAbueloPaterno.value    
+
+   //this.madreAbueloPaterno.fechaDefuncion = this.obtenerFormatoFecha(this.tercerFormGroup.controls.fechaDefMadreAbueloPaterno.value);
+   this.madreAbueloPaterno.fechaDefuncion = this.tercerFormGroup.controls.fechaDefMadreAbueloPaterno.value;
+   this.madreAbueloPaterno.lugarDefuncion = this.tercerFormGroup.controls.lugarDefMadreAbueloPaterno.value
    this.madreAbueloPaterno.email = this.tercerFormGroup.controls.emailMadreAbueloPaterno.value
 
    this.madreAbueloPaterno.calleNombre = this.tercerFormGroup.controls.calleNombreMadreAbueloPaterno.value
@@ -681,19 +681,19 @@ export class AppComponent {
    this.padreAbueloMaterno.apellido = this.cuartoFormGroup.controls.apellidoPadreAbueloMaterno.value
    this.padreAbueloMaterno.nombre = this.cuartoFormGroup.controls.nombrePadreAbueloMaterno.value
    this.padreAbueloMaterno.dni = this.cuartoFormGroup.controls.dniPadreAbueloMaterno.value
-   
-   //this.padreAbueloMaterno.fechaNac = this.obtenerFormatoFecha(this.cuartoFormGroup.controls.fechaNacPadreAbueloMaterno.value); 
-   this.padreAbueloMaterno.fechaNac = this.cuartoFormGroup.controls.fechaNacPadreAbueloMaterno.value; 
+
+   //this.padreAbueloMaterno.fechaNac = this.obtenerFormatoFecha(this.cuartoFormGroup.controls.fechaNacPadreAbueloMaterno.value);
+   this.padreAbueloMaterno.fechaNac = this.cuartoFormGroup.controls.fechaNacPadreAbueloMaterno.value;
    this.padreAbueloMaterno.lugarNac = this.cuartoFormGroup.controls.lugarNacPadreAbueloMaterno.value
 
-   //this.padreAbueloMaterno.fechaMatrimonio = this.obtenerFormatoFecha(this.cuartoFormGroup.controls.fechaMatrimonioPadreAbueloMaterno.value); 
-   this.padreAbueloMaterno.fechaMatrimonio = this.cuartoFormGroup.controls.fechaMatrimonioPadreAbueloMaterno.value; 
+   //this.padreAbueloMaterno.fechaMatrimonio = this.obtenerFormatoFecha(this.cuartoFormGroup.controls.fechaMatrimonioPadreAbueloMaterno.value);
+   this.padreAbueloMaterno.fechaMatrimonio = this.cuartoFormGroup.controls.fechaMatrimonioPadreAbueloMaterno.value;
    this.padreAbueloMaterno.lugarMatrimonio = this.cuartoFormGroup.controls.lugarMatrimonioPadreAbueloMaterno.value
 
-   //this.padreAbueloMaterno.fechaDefuncion = this.obtenerFormatoFecha(this.cuartoFormGroup.controls.fechaDefPadreAbueloMaterno.value); 
-   this.padreAbueloMaterno.fechaDefuncion = this.cuartoFormGroup.controls.fechaDefPadreAbueloMaterno.value; 
+   //this.padreAbueloMaterno.fechaDefuncion = this.obtenerFormatoFecha(this.cuartoFormGroup.controls.fechaDefPadreAbueloMaterno.value);
+   this.padreAbueloMaterno.fechaDefuncion = this.cuartoFormGroup.controls.fechaDefPadreAbueloMaterno.value;
 
-   this.padreAbueloMaterno.lugarDefuncion = this.cuartoFormGroup.controls.lugarDefPadreAbueloMaterno.value    
+   this.padreAbueloMaterno.lugarDefuncion = this.cuartoFormGroup.controls.lugarDefPadreAbueloMaterno.value
    this.padreAbueloMaterno.email = this.cuartoFormGroup.controls.emailPadreAbueloMaterno.value
    this.padreAbueloMaterno.calleNombre = this.cuartoFormGroup.controls.calleNombrePadreAbueloMaterno.value
    this.padreAbueloMaterno.calleNro = this.cuartoFormGroup.controls.calleNroPadreAbueloMaterno.value
@@ -712,16 +712,16 @@ export class AppComponent {
    this.madreAbueloMaterno.nombre = this.cuartoFormGroup.controls.nombreMadreAbueloMaterno.value
    this.madreAbueloMaterno.dni = this.cuartoFormGroup.controls.dniMadreAbueloMaterno.value
 
-   
-   //this.madreAbueloMaterno.fechaNac = this.obtenerFormatoFecha(this.cuartoFormGroup.controls.fechaNacMadreAbueloMaterno.value); 
-   this.madreAbueloMaterno.fechaNac = this.cuartoFormGroup.controls.fechaNacMadreAbueloMaterno.value; 
+
+   //this.madreAbueloMaterno.fechaNac = this.obtenerFormatoFecha(this.cuartoFormGroup.controls.fechaNacMadreAbueloMaterno.value);
+   this.madreAbueloMaterno.fechaNac = this.cuartoFormGroup.controls.fechaNacMadreAbueloMaterno.value;
    this.madreAbueloMaterno.lugarNac = this.cuartoFormGroup.controls.lugarNacMadreAbueloMaterno.value
 
    this.madreAbueloMaterno.fechaMatrimonio = this.cuartoFormGroup.controls.fechaMatrimonioMadreAbueloMaterno.value
    this.madreAbueloMaterno.lugarMatrimonio = this.cuartoFormGroup.controls.lugarMatrimonioMadreAbueloMaterno.value
 
-   this.madreAbueloMaterno.fechaDefuncion = this.cuartoFormGroup.controls.fechaDefMadreAbueloMaterno.value; 
-   this.madreAbueloMaterno.lugarDefuncion = this.cuartoFormGroup.controls.lugarDefMadreAbueloMaterno.value    
+   this.madreAbueloMaterno.fechaDefuncion = this.cuartoFormGroup.controls.fechaDefMadreAbueloMaterno.value;
+   this.madreAbueloMaterno.lugarDefuncion = this.cuartoFormGroup.controls.lugarDefMadreAbueloMaterno.value
    this.madreAbueloMaterno.email = this.cuartoFormGroup.controls.emailMadreAbueloMaterno.value
    this.madreAbueloMaterno.calleNombre = this.cuartoFormGroup.controls.calleNombreMadreAbueloMaterno.value
    this.madreAbueloMaterno.calleNro = this.cuartoFormGroup.controls.calleNroMadreAbueloMaterno.value
@@ -759,24 +759,24 @@ export class AppComponent {
                                 console.log("NO DIO ERROR");
                                 console.log("RESPUESTA SERVIDOR: "+resp);
                                 OK = true;
-                                
+
                                },
-                              error => 
+                              error =>
                               {
                                 OK = false;
                                 console.log(error);
                                 Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
                               });
-              
-              
-              
+
+
+
                 if (OK)
                 {
                     Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
                 }
 
 
-    
+
 
 
     }
@@ -784,21 +784,21 @@ export class AppComponent {
 
 
     selectFiles1(event: any) {
-      
+
       this.selectedFiles1=event.target.files;
-      
+
     }
 
     selectFiles2(event: any) {
       this.selectedFiles2=event.target.files;
-      
+
     }
 
 
-   
 
 
-   /**uploadFile() 
+
+   /**uploadFile()
     {
         this.cliente = new Persona();
         this.cliente.apellido = this.firstFormGroup.controls.apellido.value
@@ -822,10 +822,10 @@ export class AppComponent {
         }, error => {
           console.log(error);
         });
-      
+
     }**/
 
-  
+
 
 
     reset()
@@ -846,7 +846,7 @@ export class AppComponent {
           this.firstFormGroup.controls.estadocivil.value.setValue('');
           this.firstFormGroup.controls.fechaMatrimonio.value.setValue('');
           this.firstFormGroup.controls.lugarMatrimonio.value.setValue('');
-        
+
           this.secondFormGroup.controls.apellidoPadre.value.setValue('');
           this.secondFormGroup.controls.nombrePadre.value.setValue('');
           this.secondFormGroup.controls.dniPadre.value.setValue('');
@@ -854,11 +854,11 @@ export class AppComponent {
           this.secondFormGroup.controls.lugarNacPadre.value.setValue('');
           this.secondFormGroup.controls.fechaDefPadre.value.setValue('');
           this.secondFormGroup.controls.lugarDefPadre.value.setValue('');
-        
+
           this.secondFormGroup.controls.fechaMatrimonioPadre.value.setValue('');
           this.secondFormGroup.controls.lugarMatrimonioPadre.value.setValue('');
-        
-        
+
+
           this.secondFormGroup.controls.emailPadre.value.setValue('');
           this.secondFormGroup.controls.calleNombrePadre.value.setValue('');
           this.secondFormGroup.controls.calleNroPadre.value.setValue('');
@@ -868,18 +868,18 @@ export class AppComponent {
           this.secondFormGroup.controls.telefonoParticularPadre.value.setValue('');
           this.secondFormGroup.controls.celularNroPadre.value.setValue('');
           this.secondFormGroup.controls.comentarioPadre.value.setValue('');
-        
-        
-        
+
+
+
           this.secondFormGroup.controls.apellidoMadre.value.setValue('');
           this.secondFormGroup.controls.nombreMadre.value.setValue('');
           this.secondFormGroup.controls.dniMadre.value.setValue('');
           this.secondFormGroup.controls.fechaNacMadre.value.setValue('');
           this.secondFormGroup.controls.lugarNacMadre.value.setValue('');
-        
+
           this.secondFormGroup.controls.fechaMatrimonioMadre.value.setValue('');
           this.secondFormGroup.controls.lugarMatrimonioMadre.value.setValue('');
-        
+
           this.secondFormGroup.controls.emailMadre.value.setValue('');
           this.secondFormGroup.controls.fechaDefMadre.value.setValue('');
           this.secondFormGroup.controls.lugarDefMadre.value.setValue('');
@@ -891,20 +891,20 @@ export class AppComponent {
           this.secondFormGroup.controls.telefonoParticularMadre.value.setValue('');
           this.secondFormGroup.controls.celularNroMadre.value.setValue('');
           this.secondFormGroup.controls.observacionMadre.value.setValue('');
-        
-        
-        
-        
+
+
+
+
           this.tercerFormGroup.controls.apellidoPadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.nombrePadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.dniPadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.fechaNacPadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.lugarNacPadreAbueloPaterno.value.setValue('');
-        
+
           this.tercerFormGroup.controls.fechaMatrimonioPadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.lugarMatrimonioPadreAbueloPaterno.value.setValue('');
-        
-        
+
+
           this.tercerFormGroup.controls.emailPadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.fechaDefPadreAbueloPaterno.value    .setValue('');
           this.tercerFormGroup.controls.lugarDefPadreAbueloPaterno.value.setValue('');
@@ -916,20 +916,20 @@ export class AppComponent {
           this.tercerFormGroup.controls.telefonoParticularPadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.celularNroPadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.comentarioPadreAbueloPaterno.value.setValue('');
-        
-        
-        
-        
-        
+
+
+
+
+
           this.tercerFormGroup.controls.apellidoMadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.nombreMadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.dniMadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.fechaNacMadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.lugarNacMadreAbueloPaterno.value.setValue('');
-        
+
           this.tercerFormGroup.controls.fechaMatrimonioMadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.lugarMatrimonioMadreAbueloPaterno.value.setValue('');
-        
+
           this.tercerFormGroup.controls.emailMadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.fechaDefMadreAbueloPaterno.value    .setValue('');
           this.tercerFormGroup.controls.lugarDefMadreAbueloPaterno.value.setValue('');
@@ -941,19 +941,19 @@ export class AppComponent {
           this.tercerFormGroup.controls.telefonoParticularMadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.celularNroMadreAbueloPaterno.value.setValue('');
           this.tercerFormGroup.controls.comentarioMadreAbueloPaterno.value.setValue('');
-        
-        
-        
+
+
+
           this.cuartoFormGroup.controls.apellidoPadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.nombrePadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.dniPadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.fechaNacPadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.lugarNacPadreAbueloMaterno.value.setValue('');
-        
+
           this.cuartoFormGroup.controls.fechaMatrimonioPadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.lugarMatrimonioPadreAbueloMaterno.value.setValue('');
-        
-        
+
+
           this.cuartoFormGroup.controls.emailPadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.fechaDefPadreAbueloMaterno.value    .setValue('');
           this.cuartoFormGroup.controls.lugarDefPadreAbueloMaterno.value.setValue('');
@@ -965,19 +965,19 @@ export class AppComponent {
           this.cuartoFormGroup.controls.telefonoParticularPadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.celularNroPadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.comentarioPadreAbueloMaterno.value.setValue('');
-        
-        
-        
-        
+
+
+
+
           this.cuartoFormGroup.controls.apellidoMadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.nombreMadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.dniMadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.fechaNacMadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.lugarNacMadreAbueloMaterno.value.setValue('');
-        
+
           this.cuartoFormGroup.controls.fechaMatrimonioMadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.lugarMatrimonioMadreAbueloMaterno.value.setValue('');
-        
+
           this.cuartoFormGroup.controls.emailMadreAbueloMaterno.value.setValue('');
           this.cuartoFormGroup.controls.fechaDefMadreAbueloMaterno.value    .setValue('');
           this.cuartoFormGroup.controls.lugarDefMadreAbueloMaterno.value.setValue('');
@@ -994,13 +994,13 @@ export class AppComponent {
           this.submitted2 = false;
           this.submitted3 = false;
           this.submitted4 = false;
-      
+
     }
 
 
 
- 
-    obtenerFormatoFecha(value:string): any
+
+    /**obtenerFormatoFecha(value:string): any
     {
 
           console.log("obtenerFormatoFecha: "+value);
@@ -1009,15 +1009,15 @@ export class AppComponent {
             return "";
           } else if (dateParts.length === 2 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1])) {
             return "";
-          } else if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2])) 
+          } else if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2]))
           {
-              console.log("dateParts[0]: "+dateParts[0]); 
-              console.log("dateParts[1]: "+dateParts[1]); 
-              console.log("dateParts[2]: "+dateParts[2]); 
+              console.log("dateParts[0]: "+dateParts[0]);
+              console.log("dateParts[1]: "+dateParts[1]);
+              console.log("dateParts[2]: "+dateParts[2]);
               let day:any   = this.toInteger(dateParts[0]);
               let month:any = this.toInteger(dateParts[1]);
               const year  = this.toInteger(dateParts[2]);
-              
+
               if (day.length==1)
               {
                  day="0"+day;
@@ -1027,12 +1027,12 @@ export class AppComponent {
               {
                 month="0"+month;
               }
-            return year+"-"+month+"-"+day            
+            return year+"-"+month+"-"+day
           };
     }
 
 
-    isNumber(value: any): boolean 
+    isNumber(value: any): boolean
     {
         return !isNaN(this.toInteger(value));
     }
@@ -1040,8 +1040,8 @@ export class AppComponent {
    toInteger(value: any): number {
     return parseInt(`${value}`, 10);
   }
+**/
 
-    
 
 
 
