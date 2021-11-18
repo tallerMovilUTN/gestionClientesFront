@@ -4,6 +4,7 @@ import { Persona } from '../model/persona';
 import { retry, catchError, map } from 'rxjs/operators';
 import { Contacto } from '../model/contacto';
 import { Observable, throwError } from 'rxjs';
+import Swal from 'sweetalert2';
 
 
 const httpOptions = {
@@ -54,20 +55,13 @@ export class ClienteService {
         abuelaPat: Contacto,
         abueloMat: Contacto,
         abuelaMat: Contacto        
-        ): Promise<any>{
+        //): Promise<any>{
+        ): Observable<any>{  
     const formData: FormData = new FormData();
     formData.append('fotoFrente', file1);
     formData.append('fotoDorso', file2);
     var perJson = JSON.stringify(per);
 
-    /**console.log("PERSONA: "+perJson);
-
-    console.log("PADRE: "+JSON.stringify(padre));
-    console.log("MADRE: "+JSON.stringify(madre));
-    console.log("ABUELO PAT: "+JSON.stringify(abueloPat));
-    console.log("ABUELA PAT: "+JSON.stringify(abuelaPat));
-    console.log("ABUELO MAT: "+JSON.stringify(abueloMat));
-    console.log("ABUELA MAT: "+JSON.stringify(abuelaMat));**/
     
 
     formData.append('persona', JSON.stringify(per));
@@ -84,15 +78,27 @@ export class ClienteService {
       reportProgress: true,
       responseType: 'json'
     });
-    return this.http.request(req).toPromise()
+    /**return this.http.request(req).toPromise()
                                           .then(this.extractData)
                                           .catch(this.handleErrorPromise);
+    **/                                      
                                                                       
                   /**..pipe(
                             map(this.extractData),
                             catchError(this.handleErrorObservable)
                           );
                  */
+      return this.http.request(req)
+                      .pipe(
+                        map( (resp: any) => {
+                          //swal('Empleado creado', empleado.nombre, 'success');
+                          Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
+                          //return empleado;
+                         }),
+                         catchError((e: any) => 
+                         
+                         throwError(e))
+                      );    
                 
   }
 

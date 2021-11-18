@@ -7,6 +7,7 @@ import { Tiporelacion } from './model/tiporelacion';
 import { ClienteService } from './service/cliente.service';
 import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { CustomAdapter } from './utils/custom-adapter';
+import { delay } from 'rxjs/operators';
 
 
 
@@ -506,7 +507,7 @@ export class AppComponent {
     console.log(this.tercerFormGroup.value);
     console.log(this.cuartoFormGroup.value);
 
-    console.log("****************DATOS DEL PADRE****************");
+    console.log("****************DATOS DEL CLIENTE****************");
     console.log("apellido: "+this.firstFormGroup.controls.apellido.value);
     console.log("nombre: "+this.firstFormGroup.controls.nombre.value);
     console.log("dni: "+this.firstFormGroup.controls.dni.value);
@@ -746,16 +747,18 @@ export class AppComponent {
                             this.madreAbueloPaterno,
                             this.padreAbueloMaterno,
                             this.madreAbueloMaterno)
-                            /**.subscribe(resp => {
+                            .subscribe(resp => {
                                 console.log("NO DIO ERROR");
                                 console.log("RESPUESTA SERVIDOR: "+resp);
-                                Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
+                                ///Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
 
                               },
                               error => {
                                     console.log(error);
-                              });**/
-                              .then(resp => {
+                                    Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
+                              });
+
+                              /**.then(resp => {
                                 console.log("NO DIO ERROR");
                                 console.log("RESPUESTA SERVIDOR: "+resp);
                                 OK = true;
@@ -766,15 +769,19 @@ export class AppComponent {
                                 OK = false;
                                 console.log(error);
                                 Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
-                              });
+                              }); */
 
-
-
+                              //setTimeout(()=>{ this.display = "" }, 4000)              
+                              delay(1000);
+               
+               /**
+                console.log("OK: "+OK);
                 if (OK)
                 {
                     Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
+                    console.log("debe enviar el swal***");
                 }
-
+                **/
 
 
 
