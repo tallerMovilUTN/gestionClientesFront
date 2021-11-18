@@ -92,13 +92,11 @@ export class ClienteService {
                       .pipe(
                         map( (resp: any) => {
                           //swal('Empleado creado', empleado.nombre, 'success');
-                          Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
-                          //return empleado;
+                          return per;
                          }),
                          catchError((e: any) => 
-                         
-                         throwError(e))
-                      );    
+                                             throwError(e))
+                                    );    
                 
   }
 

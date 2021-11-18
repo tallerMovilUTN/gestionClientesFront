@@ -750,8 +750,7 @@ export class AppComponent {
                             .subscribe(resp => {
                                 console.log("NO DIO ERROR");
                                 console.log("RESPUESTA SERVIDOR: "+resp);
-                                ///Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
-
+                                Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
                               },
                               error => {
                                     console.log(error);
@@ -771,9 +770,9 @@ export class AppComponent {
                                 Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
                               }); */
 
-                              //setTimeout(()=>{ this.display = "" }, 4000)              
-                              delay(1000);
-               
+                              //setTimeout(()=>{ this.display = "" }, 4000)
+                              //delay(1000);
+
                /**
                 console.log("OK: "+OK);
                 if (OK)
