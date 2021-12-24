@@ -7,14 +7,15 @@ import { Tiporelacion } from './model/tiporelacion';
 import { ClienteService } from './service/cliente.service';
 import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { CustomAdapter } from './utils/custom-adapter';
-import { delay } from 'rxjs/operators';
+import {catchError, delay} from 'rxjs/operators';
+import {of, timer} from "rxjs";
+import {HttpResponse} from "@angular/common/http";
 
 
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 
 export class AppComponent {
@@ -42,6 +43,7 @@ export class AppComponent {
   mostrarDatosPadreAbueloMaterno:boolean = true;
   mostrarDatosMadreAbueloMaterno:boolean = true;
 
+  clienteNuevo!: Persona;
   cliente!: Persona;
   padre!: Contacto;
   madre!: Contacto;
@@ -86,7 +88,7 @@ export class AppComponent {
 
 
 
-  constructor(private _formBuilder: FormBuilder, private clienteService: ClienteService) {}
+  constructor(private _formBuilder: FormBuilder, private clienteService: ClienteService ) {}
 
   ngOnInit() {
 
@@ -148,10 +150,12 @@ export class AppComponent {
       nombrePadre: ['', Validators.required],
 
       dniPadre: ['', Validators.required],
+      emailPadre: [''],
+
       fechaNacPadre: ['', Validators.required],
       lugarNacPadre: ['', Validators.required],
 
-      emailPadre: [''],
+
 
       fechaMatrimonioPadre: [''],
       lugarMatrimonioPadre: [''],
@@ -459,6 +463,15 @@ export class AppComponent {
   onSubmit(): void {
         this.submitted = true;
 
+
+
+    console.log("!!!!!!!!!!!ESTOS CAMPOS SON INVALIDOS::::: ");
+    for (let el in this.firstFormGroup.controls) {
+      if (this.firstFormGroup.controls[el].errors) {
+        console.log(el)
+      }
+    }
+
         if (this.firstFormGroup.invalid) {
           return;
         }
@@ -500,6 +513,7 @@ export class AppComponent {
     this.submitted4 = true;
 
     if (this.cuartoFormGroup.invalid) {
+
       return;
     }
     console.log(this.firstFormGroup.value);
@@ -737,7 +751,8 @@ export class AppComponent {
 
 
     //this.clienteService.upload()
-    let OK = false;
+
+    let error = false;
     this.clienteService.upload(this.selectedFiles1[0],
                             this.selectedFiles2[0],
                             this.cliente,
@@ -746,41 +761,117 @@ export class AppComponent {
                             this.padreAbueloPaterno,
                             this.madreAbueloPaterno,
                             this.padreAbueloMaterno,
-                            this.madreAbueloMaterno)
-                            .subscribe(resp => {
-                                console.log("NO DIO ERROR");
-                                console.log("RESPUESTA SERVIDOR: "+resp);
-                                Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
+                            this.madreAbueloMaterno) .subscribe( (err) => {
+                                                            error = true;
+                                                            console.log('Error en el appComponent');
+                                                            console.log('Error en el appComponent: '+err);
+                                                            Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
+                                                            return;
+                                      });
+
+                            if (!error)
+                            {
+
+                                console.log( "NO DIO ERRROR" );
+                                Swal.fire({
+                                  title: 'Se han registrado correctamente todos los datos. Nos comunicaremos a la brevedad',
+                                  icon:'success',
+                                  didOpen: function () {
+                                    Swal.showLoading()
+                                    // AJAX request simulated with setTimeout
+                                    setTimeout(function () {
+                                      Swal.close()
+                                    }, 3000)
+                                  }
+                                });
+
+
+                            }
+
+
+
+                             /** (res: HttpResponse<any>) => {
+                                console.log(res.body);
+                                this.clienteNuevo = res.body;
+                                console.log(this.clienteNuevo.id);
+                                Swal.fire('Se han registrado correctamente todos los datos. Nos comunicaremos a la brevedad', '', 'success');
                               },
-                              error => {
+                                (err: any) => {
+                                  console.log(err);
+                                  Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
+                                  return;
+
+                                }
+                              );**/
+                              /**error =>
+                              {
+
                                     console.log(error);
-                                    Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
+                                    console.log("STATUS: "+error.status);
+                                    switch (error.status)
+                                    {
+                                          case 400: {
+                                            error = true;
+                                            break;
+                                          }
+                                          case 401: {
+                                            error = true;
+
+                                            break;
+                                          }
+                                          case 402:
+                                          {
+                                            error = true;
+                                                    break;
+                                          }
+                                      case 404:
+                                      {
+                                        error = true;
+                                        break;
+                                      }
+                                      case 405:
+                                      {
+                                        error = true;
+                                        break;
+                                      }
+
+                                      case 500:
+                                      {
+                                        error = true;
+                                        break;
+                                      }
+                                    }
                               });
 
-                              /**.then(resp => {
-                                console.log("NO DIO ERROR");
-                                console.log("RESPUESTA SERVIDOR: "+resp);
-                                OK = true;
-
-                               },
-                              error =>
-                              {
-                                OK = false;
-                                console.log(error);
-                                Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
-                              }); */
-
-                              //setTimeout(()=>{ this.display = "" }, 4000)
-                              //delay(1000);
-
-               /**
-                console.log("OK: "+OK);
-                if (OK)
+                if (error)
                 {
-                    Swal.fire('Se han registrado correctamente todos los datos', '', 'success');
-                    console.log("debe enviar el swal***");
+                      Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
+                      return;
                 }
-                **/
+                else
+                {
+                      Swal.fire({
+                        title: 'Se han registrado correctamente todos los datos. Nos comunicaremos a la brevedad',
+                        icon:'success',
+                        didOpen: function () {
+                          Swal.showLoading()
+                          // AJAX request simulated with setTimeout
+                          setTimeout(function () {
+                            Swal.close()
+                          }, 3000)
+                        }
+                      })
+
+
+                      console.log("debe enviar el swal***");
+                  //this.reset();
+                }**/
+
+
+
+
+
+
 
 
 
@@ -836,165 +927,166 @@ export class AppComponent {
 
     reset()
     {
-          this.firstFormGroup.controls.apellido.value.setValue('');
-          this.firstFormGroup.controls.nombre.value.setValue('');
-          this.firstFormGroup.controls.dni.value.setValue('');
-          this.firstFormGroup.controls.lugarNac.value.setValue('');
-          this.firstFormGroup.controls.fechaNac.value.setValue('');
-          this.firstFormGroup.controls.email.value.setValue('');
-          this.firstFormGroup.controls.calleNombre.value.setValue('');
-          this.firstFormGroup.controls.cp.value.setValue('');
-          this.firstFormGroup.controls.localidad.value.setValue('');
-          this.firstFormGroup.controls.provincia.value.setValue('');
-          this.firstFormGroup.controls.telefonoParticular.value.setValue('');
-          this.firstFormGroup.controls.idfotoFrente.value.setValue('');
-          this.firstFormGroup.controls.idfotoDorso.value.setValue('');
-          this.firstFormGroup.controls.estadocivil.value.setValue('');
-          this.firstFormGroup.controls.fechaMatrimonio.value.setValue('');
-          this.firstFormGroup.controls.lugarMatrimonio.value.setValue('');
+          //this.firstFormGroup.controls.fechaMatrimonio.setValue('');
+          this.firstFormGroup.controls.apellido.setValue('');
+          this.firstFormGroup.controls.nombre.setValue('');
+          this.firstFormGroup.controls.dni.setValue('');
+          this.firstFormGroup.controls.lugarNac.setValue('');
+          this.firstFormGroup.controls.fechaNac.setValue('');
+          this.firstFormGroup.controls.email.setValue('');
+          this.firstFormGroup.controls.calleNombre.setValue('');
+          this.firstFormGroup.controls.cp.setValue('');
+          this.firstFormGroup.controls.localidad.setValue('');
+          this.firstFormGroup.controls.provincia.setValue('');
+          this.firstFormGroup.controls.telefonoParticular.setValue('');
+          this.firstFormGroup.controls.idfotoFrente.setValue('');
+          this.firstFormGroup.controls.idfotoDorso.setValue('');
+          this.firstFormGroup.controls.estadocivil.setValue('');
+          this.firstFormGroup.controls.fechaMatrimonio.setValue('');
+          this.firstFormGroup.controls.lugarMatrimonio.setValue('');
 
-          this.secondFormGroup.controls.apellidoPadre.value.setValue('');
-          this.secondFormGroup.controls.nombrePadre.value.setValue('');
-          this.secondFormGroup.controls.dniPadre.value.setValue('');
-          this.secondFormGroup.controls.fechaNacPadre.value.setValue('');
-          this.secondFormGroup.controls.lugarNacPadre.value.setValue('');
-          this.secondFormGroup.controls.fechaDefPadre.value.setValue('');
-          this.secondFormGroup.controls.lugarDefPadre.value.setValue('');
+          this.secondFormGroup.controls.apellidoPadre.setValue('');
+          this.secondFormGroup.controls.nombrePadre.setValue('');
+          this.secondFormGroup.controls.dniPadre.setValue('');
+          this.secondFormGroup.controls.fechaNacPadre.setValue('');
+          this.secondFormGroup.controls.lugarNacPadre.setValue('');
+          this.secondFormGroup.controls.fechaDefPadre.setValue('');
+          this.secondFormGroup.controls.lugarDefPadre.setValue('');
 
-          this.secondFormGroup.controls.fechaMatrimonioPadre.value.setValue('');
-          this.secondFormGroup.controls.lugarMatrimonioPadre.value.setValue('');
-
-
-          this.secondFormGroup.controls.emailPadre.value.setValue('');
-          this.secondFormGroup.controls.calleNombrePadre.value.setValue('');
-          this.secondFormGroup.controls.calleNroPadre.value.setValue('');
-          this.secondFormGroup.controls.cpPadre.value.setValue('');
-          this.secondFormGroup.controls.localidadPadre.value.setValue('');
-          this.secondFormGroup.controls.provinciaPadre.value.setValue('');
-          this.secondFormGroup.controls.telefonoParticularPadre.value.setValue('');
-          this.secondFormGroup.controls.celularNroPadre.value.setValue('');
-          this.secondFormGroup.controls.comentarioPadre.value.setValue('');
+          this.secondFormGroup.controls.fechaMatrimonioPadre.setValue('');
+          this.secondFormGroup.controls.lugarMatrimonioPadre.setValue('');
 
 
-
-          this.secondFormGroup.controls.apellidoMadre.value.setValue('');
-          this.secondFormGroup.controls.nombreMadre.value.setValue('');
-          this.secondFormGroup.controls.dniMadre.value.setValue('');
-          this.secondFormGroup.controls.fechaNacMadre.value.setValue('');
-          this.secondFormGroup.controls.lugarNacMadre.value.setValue('');
-
-          this.secondFormGroup.controls.fechaMatrimonioMadre.value.setValue('');
-          this.secondFormGroup.controls.lugarMatrimonioMadre.value.setValue('');
-
-          this.secondFormGroup.controls.emailMadre.value.setValue('');
-          this.secondFormGroup.controls.fechaDefMadre.value.setValue('');
-          this.secondFormGroup.controls.lugarDefMadre.value.setValue('');
-          this.secondFormGroup.controls.calleNombreMadre.value.setValue('');
-          this.secondFormGroup.controls.calleNroMadre.value.setValue('');
-          this.secondFormGroup.controls.cpMadre.value.setValue('');
-          this.secondFormGroup.controls.localidadMadre.value.setValue('');
-          this.secondFormGroup.controls.provinciaMadre.value.setValue('');
-          this.secondFormGroup.controls.telefonoParticularMadre.value.setValue('');
-          this.secondFormGroup.controls.celularNroMadre.value.setValue('');
-          this.secondFormGroup.controls.observacionMadre.value.setValue('');
+          this.secondFormGroup.controls.emailPadre.setValue('');
+          this.secondFormGroup.controls.calleNombrePadre.setValue('');
+          this.secondFormGroup.controls.calleNroPadre.setValue('');
+          this.secondFormGroup.controls.cpPadre.setValue('');
+          this.secondFormGroup.controls.localidadPadre.setValue('');
+          this.secondFormGroup.controls.provinciaPadre.setValue('');
+          this.secondFormGroup.controls.telefonoParticularPadre.setValue('');
+          this.secondFormGroup.controls.celularNroPadre.setValue('');
+          this.secondFormGroup.controls.comentarioPadre.setValue('');
 
 
 
+          this.secondFormGroup.controls.apellidoMadre.setValue('');
+          this.secondFormGroup.controls.nombreMadre.setValue('');
+          this.secondFormGroup.controls.dniMadre.setValue('');
+          this.secondFormGroup.controls.fechaNacMadre.setValue('');
+          this.secondFormGroup.controls.lugarNacMadre.setValue('');
 
-          this.tercerFormGroup.controls.apellidoPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.nombrePadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.dniPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.fechaNacPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.lugarNacPadreAbueloPaterno.value.setValue('');
+          this.secondFormGroup.controls.fechaMatrimonioMadre.setValue('');
+          this.secondFormGroup.controls.lugarMatrimonioMadre.setValue('');
 
-          this.tercerFormGroup.controls.fechaMatrimonioPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.lugarMatrimonioPadreAbueloPaterno.value.setValue('');
-
-
-          this.tercerFormGroup.controls.emailPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.fechaDefPadreAbueloPaterno.value    .setValue('');
-          this.tercerFormGroup.controls.lugarDefPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.calleNombrePadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.calleNroPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.cpPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.localidadPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.provinciaPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.telefonoParticularPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.celularNroPadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.comentarioPadreAbueloPaterno.value.setValue('');
+          this.secondFormGroup.controls.emailMadre.setValue('');
+          this.secondFormGroup.controls.fechaDefMadre.setValue('');
+          this.secondFormGroup.controls.lugarDefMadre.setValue('');
+          this.secondFormGroup.controls.calleNombreMadre.setValue('');
+          this.secondFormGroup.controls.calleNroMadre.setValue('');
+          this.secondFormGroup.controls.cpMadre.setValue('');
+          this.secondFormGroup.controls.localidadMadre.setValue('');
+          this.secondFormGroup.controls.provinciaMadre.setValue('');
+          this.secondFormGroup.controls.telefonoParticularMadre.setValue('');
+          this.secondFormGroup.controls.celularNroMadre.setValue('');
+          this.secondFormGroup.controls.observacionMadre.setValue('');
 
 
 
 
+          this.tercerFormGroup.controls.apellidoPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.nombrePadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.dniPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.fechaNacPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.lugarNacPadreAbueloPaterno.setValue('');
 
-          this.tercerFormGroup.controls.apellidoMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.nombreMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.dniMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.fechaNacMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.lugarNacMadreAbueloPaterno.value.setValue('');
-
-          this.tercerFormGroup.controls.fechaMatrimonioMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.lugarMatrimonioMadreAbueloPaterno.value.setValue('');
-
-          this.tercerFormGroup.controls.emailMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.fechaDefMadreAbueloPaterno.value    .setValue('');
-          this.tercerFormGroup.controls.lugarDefMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.calleNombreMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.calleNroMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.cpMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.localidadMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.provinciaMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.telefonoParticularMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.celularNroMadreAbueloPaterno.value.setValue('');
-          this.tercerFormGroup.controls.comentarioMadreAbueloPaterno.value.setValue('');
+          this.tercerFormGroup.controls.fechaMatrimonioPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.lugarMatrimonioPadreAbueloPaterno.setValue('');
 
 
-
-          this.cuartoFormGroup.controls.apellidoPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.nombrePadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.dniPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.fechaNacPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.lugarNacPadreAbueloMaterno.value.setValue('');
-
-          this.cuartoFormGroup.controls.fechaMatrimonioPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.lugarMatrimonioPadreAbueloMaterno.value.setValue('');
-
-
-          this.cuartoFormGroup.controls.emailPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.fechaDefPadreAbueloMaterno.value    .setValue('');
-          this.cuartoFormGroup.controls.lugarDefPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.calleNombrePadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.calleNroPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.cpPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.localidadPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.provinciaPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.telefonoParticularPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.celularNroPadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.comentarioPadreAbueloMaterno.value.setValue('');
+          this.tercerFormGroup.controls.emailPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.fechaDefPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.lugarDefPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.calleNombrePadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.calleNroPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.cpPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.localidadPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.provinciaPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.telefonoParticularPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.celularNroPadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.comentarioPadreAbueloPaterno.setValue('');
 
 
 
 
-          this.cuartoFormGroup.controls.apellidoMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.nombreMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.dniMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.fechaNacMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.lugarNacMadreAbueloMaterno.value.setValue('');
 
-          this.cuartoFormGroup.controls.fechaMatrimonioMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.lugarMatrimonioMadreAbueloMaterno.value.setValue('');
+          this.tercerFormGroup.controls.apellidoMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.nombreMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.dniMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.fechaNacMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.lugarNacMadreAbueloPaterno.setValue('');
 
-          this.cuartoFormGroup.controls.emailMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.fechaDefMadreAbueloMaterno.value    .setValue('');
-          this.cuartoFormGroup.controls.lugarDefMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.calleNombreMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.calleNroMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.cpMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.localidadMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.provinciaMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.telefonoParticularMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.celularNroMadreAbueloMaterno.value.setValue('');
-          this.cuartoFormGroup.controls.comentarioMadreAbueloMaterno.value.setValue('');
+          this.tercerFormGroup.controls.fechaMatrimonioMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.lugarMatrimonioMadreAbueloPaterno.setValue('');
+
+          this.tercerFormGroup.controls.emailMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.fechaDefMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.lugarDefMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.calleNombreMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.calleNroMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.cpMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.localidadMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.provinciaMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.telefonoParticularMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.celularNroMadreAbueloPaterno.setValue('');
+          this.tercerFormGroup.controls.comentarioMadreAbueloPaterno.setValue('');
+
+
+
+          this.cuartoFormGroup.controls.apellidoPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.nombrePadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.dniPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.fechaNacPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.lugarNacPadreAbueloMaterno.setValue('');
+
+          this.cuartoFormGroup.controls.fechaMatrimonioPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.lugarMatrimonioPadreAbueloMaterno.setValue('');
+
+
+          this.cuartoFormGroup.controls.emailPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.fechaDefPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.lugarDefPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.calleNombrePadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.calleNroPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.cpPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.localidadPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.provinciaPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.telefonoParticularPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.celularNroPadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.comentarioPadreAbueloMaterno.setValue('');
+
+
+
+
+          this.cuartoFormGroup.controls.apellidoMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.nombreMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.dniMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.fechaNacMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.lugarNacMadreAbueloMaterno.setValue('');
+
+          this.cuartoFormGroup.controls.fechaMatrimonioMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.lugarMatrimonioMadreAbueloMaterno.setValue('');
+
+          this.cuartoFormGroup.controls.emailMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.fechaDefMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.lugarDefMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.calleNombreMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.calleNroMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.cpMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.localidadMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.provinciaMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.telefonoParticularMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.celularNroMadreAbueloMaterno.setValue('');
+          this.cuartoFormGroup.controls.comentarioMadreAbueloMaterno.setValue('');
 
           this.submitted = false;
           this.submitted2 = false;
@@ -1006,49 +1098,94 @@ export class AppComponent {
 
 
 
-    /**obtenerFormatoFecha(value:string): any
-    {
 
-          console.log("obtenerFormatoFecha: "+value);
-          const dateParts = value.trim().split('/');
-          if (dateParts.length === 1 && this.isNumber(dateParts[0])) {
-            return "";
-          } else if (dateParts.length === 2 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1])) {
-            return "";
-          } else if (dateParts.length === 3 && this.isNumber(dateParts[0]) && this.isNumber(dateParts[1]) && this.isNumber(dateParts[2]))
+
+  onCheckboxChangeCopiarDomicilio(value:boolean, tipo:any)
+  {
+          console.log("NO CONOCE LOS DATOS DEL PADRE___"+value);
+
+          switch (tipo)
           {
-              console.log("dateParts[0]: "+dateParts[0]);
-              console.log("dateParts[1]: "+dateParts[1]);
-              console.log("dateParts[2]: "+dateParts[2]);
-              let day:any   = this.toInteger(dateParts[0]);
-              let month:any = this.toInteger(dateParts[1]);
-              const year  = this.toInteger(dateParts[2]);
-
-              if (day.length==1)
-              {
-                 day="0"+day;
-              }
-
-              if (month.length==1)
-              {
-                month="0"+month;
-              }
-            return year+"-"+month+"-"+day
-          };
-    }
+                case "padre":
+                {
+                      this.secondFormGroup.controls.calleNombreMadre.setValue('');
+                      this.secondFormGroup.controls.calleNroMadre.setValue('');
+                      this.secondFormGroup.controls.cpMadre.setValue('');
+                      this.secondFormGroup.controls.localidadMadre.setValue('');
+                      this.secondFormGroup.controls.provinciaMadre.setValue('');
+                      if (value)
+                      {
+                          this.secondFormGroup.controls.calleNombreMadre.setValue(this.secondFormGroup.controls.calleNombrePadre.value);
+                          this.secondFormGroup.controls.calleNroMadre.setValue(this.secondFormGroup.controls.calleNroPadre.value);
+                          this.secondFormGroup.controls.cpMadre.setValue(this.secondFormGroup.controls.cpPadre.value);
+                          this.secondFormGroup.controls.localidadMadre.setValue(this.secondFormGroup.controls.localidadPadre.value);
+                          this.secondFormGroup.controls.provinciaMadre.setValue(this.secondFormGroup.controls.provinciaPadre.value);
+                      }
+                      break;
+                }
 
 
-    isNumber(value: any): boolean
-    {
-        return !isNaN(this.toInteger(value));
-    }
+                case "AbueloPaterno":
+                {
+                      this.tercerFormGroup.controls.calleNombreMadreAbueloPaterno.setValue('');
+                      this.tercerFormGroup.controls.calleNroMadreAbueloPaterno.setValue('');
+                      this.tercerFormGroup.controls.cpMadreAbueloPaterno.setValue('');
+                      this.tercerFormGroup.controls.localidadMadreAbueloPaterno.setValue('');
+                      this.tercerFormGroup.controls.provinciaMadreAbueloPaterno.setValue('');
+                      if (value)
+                      {
+                          this.tercerFormGroup.controls.calleNombreMadreAbueloPaterno.setValue(this.tercerFormGroup.controls.calleNombrePadreAbueloPaterno.value);
+                          this.tercerFormGroup.controls.calleNroMadreAbueloPaterno.setValue(this.tercerFormGroup.controls.calleNroPadreAbueloPaterno.value);
+                          this.tercerFormGroup.controls.cpMadreAbueloPaterno.setValue(this.tercerFormGroup.controls.cpPadreAbueloPaterno.value);
+                          this.tercerFormGroup.controls.localidadMadreAbueloPaterno.setValue(this.tercerFormGroup.controls.localidadPadreAbueloPaterno.value);
+                          this.tercerFormGroup.controls.provinciaMadreAbueloPaterno.setValue(this.tercerFormGroup.controls.provinciaPadreAbueloPaterno.value);
+                      }
+                      break;
+                }
 
-   toInteger(value: any): number {
-    return parseInt(`${value}`, 10);
+
+                case "AbueloMaterno":
+                {
+                        this.cuartoFormGroup.controls.calleNombreMadreAbueloMaterno.setValue('');
+                        this.cuartoFormGroup.controls.calleNroMadreAbueloMaterno.setValue('');
+                        this.cuartoFormGroup.controls.cpMadreAbueloMaterno.setValue('');
+                        this.cuartoFormGroup.controls.localidadMadreAbueloMaterno.setValue('');
+                        this.cuartoFormGroup.controls.provinciaMadreAbueloMaterno.setValue('');
+                        if (value)
+                        {
+                            this.cuartoFormGroup.controls.calleNombreMadreAbueloMaterno.setValue(this.cuartoFormGroup.controls.calleNombrePadreAbueloMaterno.value);
+                            this.cuartoFormGroup.controls.calleNroMadreAbueloMaterno.setValue(this.cuartoFormGroup.controls.calleNroPadreAbueloMaterno.value);
+                            this.cuartoFormGroup.controls.cpMadreAbueloMaterno.setValue(this.cuartoFormGroup.controls.cpPadreAbueloMaterno.value);
+                            this.cuartoFormGroup.controls.localidadMadreAbueloMaterno.setValue(this.cuartoFormGroup.controls.localidadPadreAbueloMaterno.value);
+                            this.cuartoFormGroup.controls.provinciaMadreAbueloMaterno.setValue(this.cuartoFormGroup.controls.provinciaPadreAbueloMaterno.value);
+                        }
+                        break;
+                }
+
+
+          }
+
   }
 
-**/
 
+
+  alerta()
+  {
+
+          Swal.fire({
+            title: 'Se han registrado correctamente todos los datos. Nos comunicaremos a la brevedad',
+            icon:'success',
+            didOpen: function () {
+              Swal.showLoading()
+              // AJAX request simulated with setTimeout
+              setTimeout(function () {
+                Swal.close()
+              }, 3000)
+            }
+          })
+
+          this.reset();
+  }
 
 
 }

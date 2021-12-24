@@ -11,20 +11,22 @@ import {MatListModule} from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomAdapter } from './utils/custom-adapter';
 import { CustomDateParserFormatter } from './utils/custom-date-parser-formatter';
+import {CalendarModule} from "primeng/calendar";
+import {AppInterceptor} from "./service/AppInterceptor";
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-   
-  
 
-   
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -39,12 +41,15 @@ import { CustomDateParserFormatter } from './utils/custom-date-parser-formatter'
     MatNativeDateModule,
     MatSelectModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    CalendarModule
   ],
-  providers: [ 
+  providers: [
     {provide: NgbDateAdapter, useClass: CustomAdapter},
-    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter}
-    
+    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true
+    }
+
   ],
   bootstrap: [AppComponent]
 })

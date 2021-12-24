@@ -45,9 +45,10 @@ File: scss
  *  7. Widgets
  *  8. Custom Templates
  */
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
-/******************* 
-Global Styles 
+@import url("http://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i");
+/**@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");**/
+/*******************
+Global Styles
 *******************/
 @import url(../scss/icons/font-awesome/css/font-awesome.min.css);
 @import url(../scss/icons/simple-line-icons/css/simple-line-icons.css);
@@ -570,7 +571,7 @@ Labels
   line-height: 15px;
   color: #464141;
   font-weight: bold;
-  
+
   border-radius: 4px;
   font-size: 75%; }
 
@@ -739,7 +740,7 @@ Layouts
   overflow: auto; }
 
 
- 
+
 
 /*******************/
 /*single column*/
@@ -986,8 +987,8 @@ File: scss
 /*Light colors*/
 /*Normal Color*/
 /*Extra Variable*/
-/*============================================================== 
- For all pages 
+/*==============================================================
+ For all pages
  ============================================================== */
 #main-wrapper {
   width: 100%;
@@ -1011,13 +1012,13 @@ File: scss
   padding-bottom: 60px;
   position: relative; }
 
- 
+
 
 .container-fluid {
   padding: 25px 25px; }
 
 .card {
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
  /** background: #e8ebf1;**/
 }
   .card .card-subtitle {
@@ -2513,7 +2514,7 @@ Buttons
   color: #ffffff;
   background-color: #171515; }
 
-/*============================================================== 
+/*==============================================================
  Buttons page
  ============================================================== */
 .button-group .btn {
@@ -2664,7 +2665,7 @@ Form summernote
 .label {
   display: inline-block; }
 
-/*============================================================== 
+/*==============================================================
 Form addons page
 ============================================================== */
 /*Bootstrap select*/
@@ -2711,7 +2712,7 @@ Form addons page
 .input-form .btn {
   padding: 8px 12px; }
 
-/*============================================================== 
+/*==============================================================
 Form Material page
  ============================================================== */
 /*Material inputs*/
@@ -2761,13 +2762,13 @@ Form Material page
     border-bottom: 1px solid #398bf7; }
 
 /*******************
-Form validation error 
+Form validation error
 ******************/
 .error .help-block {
   color: #fb3a3a; }
 
 /*******************
-File Upload 
+File Upload
 ******************/
 .fileupload {
   overflow: hidden;
@@ -2784,7 +2785,7 @@ File Upload
     top: 0; }
 
 /*******************
-This is for the checkbox radio button and switch 
+This is for the checkbox radio button and switch
 ******************/
 /* Radio Buttons
    ========================================================================== */
@@ -5668,8 +5669,8 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: scss
 */
-/*============================================================== 
- For Laptop & above all (1650px) 
+/*==============================================================
+ For Laptop & above all (1650px)
  ============================================================== */
 @media (min-width: 1650px) {
   .widget-app-columns {
@@ -5689,8 +5690,8 @@ File: scss
   .auto-height {
     min-height: 240px; } }
 
-/*============================================================== 
- For Laptop & above all (1370px) 
+/*==============================================================
+ For Laptop & above all (1370px)
  ============================================================== */
 @media (max-width: 1370px) {
   .widget-app-columns {
@@ -5702,8 +5703,8 @@ File: scss
   .auto-height {
     min-height: 186px; } }
 
-/*-- ============================================================== 
- Small Desktop & above all (1024px) 
+/*-- ==============================================================
+ Small Desktop & above all (1024px)
  ============================================================== */
 @media (min-width: 1024px) {
   .page-wrapper {
@@ -5737,8 +5738,8 @@ File: scss
       display: -ms-flexbox !important;
       display: flex !important; } }
 
-/*-- ============================================================== 
- Ipad & above all(768px) 
+/*-- ==============================================================
+ Ipad & above all(768px)
  ============================================================== */
 @media (min-width: 768px) {
   .navbar-header {
@@ -5766,8 +5767,8 @@ File: scss
     flex-wrap: nowrap !important;
     -webkit-flex-wrap: nowrap !important; } }
 
-/*-- ============================================================== 
- Phone and below ipad(767px) 
+/*-- ==============================================================
+ Phone and below ipad(767px)
  ============================================================== */
 @media (max-width: 767px) {
   .container-fluid {
@@ -5899,9 +5900,9 @@ File: scss
     display: block;
     text-align: center;
     margin-top: 10px;
-    overflow: hidden; } 
-  
-  
+    overflow: hidden; }
+
+
    /** form {
       background-color: #ffffff;
       margin: 100px auto;
@@ -5912,20 +5913,21 @@ File: scss
   }
 **/
   .card {
-    
+
     width: 50%;
-    
+
 }
 
-img{  
-  height: 200px;  
-  width: 800px;  
-  }  
-  #center {  
-  text-align: center;  
-  }  
-
-  .labelHidden { display: none };
-  .labelHDO { font-weight: bold;color: #5c88ca };
-  
+img{
+  height: 200px;
+  width: 800px;
   }
+  #center {
+  text-align: center;
+  }
+
+  .labelHidden { display: none }
+  .labelHDO { font-weight: bold;color: #5c88ca }
+
+  }
+

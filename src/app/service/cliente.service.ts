@@ -5,6 +5,7 @@ import { retry, catchError, map } from 'rxjs/operators';
 import { Contacto } from '../model/contacto';
 import { Observable, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
+import {environment} from "../../environments/environment";
 
 
 const httpOptions = {
@@ -15,11 +16,25 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ClienteService {
-
   //webApiUr:string="http://localhost:8181/servicioFabrica-RC1/clientes";
-  webApiUr:string="http://localhost:8080/personas";
+  webApiUr:string=environment.base_url+"/personas";
 
-  constructor( private http: HttpClient ) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.token})
+  };
+
+
+  httpOptions1 = {
+    headers: new HttpHeaders({
+      ///'Content-Type': 'multipart/form-data',
+      'Authorization': this.token
+    })
+  };
+
+
+  constructor( private http: HttpClient) { }
 
 
   getClientes()
@@ -28,7 +43,7 @@ export class ClienteService {
   }
 
 
-  saveCliente(cli: Persona) 
+  saveCliente(cli: Persona)
   {
     const body = JSON.stringify(cli);
     console.log(body);
@@ -47,22 +62,25 @@ export class ClienteService {
 
 
   upload(file1: File,
-        file2: File, 
+        file2: File,
         per: Persona,
         padre: Contacto,
         madre: Contacto,
         abueloPat: Contacto,
         abuelaPat: Contacto,
         abueloMat: Contacto,
-        abuelaMat: Contacto        
+        abuelaMat: Contacto
         //): Promise<any>{
-        ): Observable<any>{  
+        ): Observable<any>{
+
+
+
     const formData: FormData = new FormData();
     formData.append('fotoFrente', file1);
     formData.append('fotoDorso', file2);
     var perJson = JSON.stringify(per);
 
-    
+
 
     formData.append('persona', JSON.stringify(per));
     formData.append('padre', JSON.stringify(padre));
@@ -72,32 +90,16 @@ export class ClienteService {
     formData.append('abueloMat', JSON.stringify(abueloMat));
     formData.append('abuelaMat', JSON.stringify(abuelaMat));
 
-   
-    const req = new HttpRequest('POST', `${this.webApiUr}/upload`, formData, 
-    {
-      reportProgress: true,
-      responseType: 'json'
-    });
-    /**return this.http.request(req).toPromise()
-                                          .then(this.extractData)
-                                          .catch(this.handleErrorPromise);
-    **/                                      
-                                                                      
-                  /**..pipe(
-                            map(this.extractData),
-                            catchError(this.handleErrorObservable)
-                          );
-                 */
-      return this.http.request(req)
-                      .pipe(
-                        map( (resp: any) => {
-                          //swal('Empleado creado', empleado.nombre, 'success');
-                          return per;
-                         }),
-                         catchError((e: any) => 
-                                             throwError(e))
-                                    );    
-                
+
+    let headers = new HttpHeaders();
+    //headers=headers.set('content-type','application/json')
+    headers=headers.set('Access-Control-Allow-Origin', '*');
+    headers=headers.set('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
+    headers=headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+
+    const req = new HttpRequest('POST', `${this.webApiUr}/upload`, formData,{'headers':headers});
+    return this.http.request(req);
+
   }
 
 
@@ -111,16 +113,20 @@ export class ClienteService {
   private handleErrorObservable(error: any) {
     console.error(error.message || error);
     return throwError(error);
-  } 
+  }
 
 
   private handleErrorPromise(error: Response | any) {
     console.error(error.message || error);
     return Promise.reject(error.message || error);
-  } 
+  }
 
 
-  
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+
 
 
 }
