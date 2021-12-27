@@ -110,16 +110,8 @@ export class ClienteService {
   }
 
 
-  private handleErrorObservable(error: any) {
-    console.error(error.message || error);
-    return throwError(error);
-  }
 
 
-  private handleErrorPromise(error: Response | any) {
-    console.error(error.message || error);
-    return Promise.reject(error.message || error);
-  }
 
 
   get token(): string {

@@ -11,32 +11,20 @@ export class AppInterceptor implements HttpInterceptor {
   constructor( ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-
-    let request = req;
-
-    return next.handle( request ).pipe(
-      catchError( this.manejarError )
-    );
-    /**return next.handle(request).pipe(
-      catchError((err: HttpErrorResponse) =>
-      {
-        console.log("ERROR CAPTURADOR POR INTERCEPTO::: "+err.status);
-        return throwError( err );
-
-      })
-    );**/
+      let request = req;
+      console.log("INTERCEPTOR-"+req);
+      return next.handle(request).pipe(
+        catchError((err: HttpErrorResponse) =>
+        {
+              if (err.status === 400)
+              {
+                    console.log('INTERCEPTOR-OCURRIO ERROR 400');
+              }
+              return throwError( err );
+        })
+      );
   }
 
-
-
-
-
-  manejarError( error: HttpErrorResponse ) {
-    console.log('Sucedió un error INTERCEPTOR');
-    console.warn(error);
-    return throwError('Ocurrio un error de comunicacion con el Servidor');
-  }
 
 
 

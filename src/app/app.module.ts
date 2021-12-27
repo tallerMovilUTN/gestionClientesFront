@@ -47,8 +47,7 @@ import {AppInterceptor} from "./service/AppInterceptor";
   providers: [
     {provide: NgbDateAdapter, useClass: CustomAdapter},
     {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true}
 
   ],
   bootstrap: [AppComponent]
