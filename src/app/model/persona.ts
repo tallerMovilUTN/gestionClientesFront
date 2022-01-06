@@ -4,7 +4,7 @@ export class Persona {
     apellido: string="";
     nombre: string="";
     email: string="";
-    fechaNac: Date | undefined;
+    fechaNac!: Date;
     lugarNac: string="";
     dni: number=0;
     calleNombre: string="";
@@ -13,12 +13,12 @@ export class Persona {
     localidad: string="";
     provincia : string="";
 
-    
+
     celularNro: number=0;
     telefonoParticular: number=0;
 
     estadocivil : string="";
-    fechaMatrimonio: Date | undefined;
+    fechaMatrimonio!: Date;
     lugarMatrimonio : string="";
 
     idfotoFrente : string="";
@@ -26,4 +26,18 @@ export class Persona {
 
     fechaAlta: Date | undefined;
     estado: number=1;
+
+
+
+    actaNac: number=0;
+    nroFolioNac: number=0;
+    nroTomoNac: number=0;
+
+    ofRegCivilNac: string="";
+    ciudadRegCivilNac: string="";
+    ProvRegCivilNac: string="";
+    PaisRegCivilNac: string="";
+
+
+
 }

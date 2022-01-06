@@ -12,17 +12,30 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { NgbDateAdapter, NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CustomAdapter } from './utils/custom-adapter';
-import { CustomDateParserFormatter } from './utils/custom-date-parser-formatter';
+import {  NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {CalendarModule} from "primeng/calendar";
 import {AppInterceptor} from "./service/AppInterceptor";
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { FamiliarComponent } from './pages/familiar/familiar.component';
+
+import {RouterModule} from "@angular/router";
+import {APP_ROUTING} from "./app-routing.module";
+import {APP_BASE_HREF, HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {DialogModule} from "primeng/dialog";
+import { FormularioComponent } from './pages/formulario/formulario.component';
+
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ClientesComponent,
+    FamiliarComponent,
+    FormularioComponent,
 
 
 
@@ -41,13 +54,19 @@ import {AppInterceptor} from "./service/AppInterceptor";
     MatNativeDateModule,
     MatSelectModule,
     HttpClientModule,
+    TableModule,
+    ButtonModule,
+    DialogModule,
     NgbModule,
-    CalendarModule
+    CalendarModule,
+    APP_ROUTING,
+    RouterModule
   ],
   providers: [
-    {provide: NgbDateAdapter, useClass: CustomAdapter},
-    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true}
+   { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
+    {provide: APP_BASE_HREF, useValue : '/' },
+    //{provide: LocationStrategy, useClass: HashLocationStrategy}
+
 
   ],
   bootstrap: [AppComponent]
