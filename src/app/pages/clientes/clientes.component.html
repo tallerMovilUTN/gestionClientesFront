@@ -1,0 +1,456 @@
+<!--
+ <div class="card-header bg-infoTable">
+                      <div class="row">
+                        <div class="col-8">
+                          <h3 class="m-b-0 text-info">Familiares <span>Cargados</span></h3>
+
+-->
+
+
+
+    <div class="card-body wizard-content">
+      <!--<h1 style="color: rgb(10, 105, 66);font-family: Montserrat, sans-serif;font-size: 36px;">Completar Formulario de Solicitud </h1>-->
+      <!--<div class="labelTitlePage">Completar Formulario de Solicitud</div>-->
+
+      <div class="card-header bg-infoTable">
+        <h3 class="m-b-0 text-blue">Datos del Cliente</h3>
+        <!--<h1>Completar Formulario de Solicitud </h1>-->
+        <!--<h3 class="m-b-0 text-info">Familiares <span>Cargados</span></h3>-->
+      </div>
+
+
+
+
+
+      <br/>
+
+          <form [formGroup]="firstFormGroup" >
+
+            <br/>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Apellido </label>
+                  <input type="text" class="form-control" formControlName="apellido"  required [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }">
+
+                  <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+                    <div *ngIf="f.apellido.errors.required">Debe ingresar el Apellido</div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label  class="control-label">Nombre </label>
+                  <input type="text" class="form-control" formControlName="nombre"  required [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+
+                  <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                    <div *ngIf="f.nombre.errors.required">Debe ingresar el Nombre</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label  class="control-label">Nro Documento </label>
+                  <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="dni" required [ngClass]="{ 'is-invalid': submitted && f.dni.errors }">
+
+                  <div *ngIf="submitted && f.dni.errors" class="invalid-feedback">
+                    <div *ngIf="f.dni.errors.required">Debe ingresar el Nro de Documento</div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label  class="control-label">Email </label>
+                  <input type="email" class="form-control" id="email" formControlName="email"> </div>
+              </div>
+
+
+            </div>
+
+
+            <div class="row">
+              <div class="p-fluid col-md-6">
+                <div class="form-group">
+                  <label for="fechaNac" class="control-label">Fecha Nacimiento </label>
+                  <p-calendar formControlName="fechaNac"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy"  [required]="true" [showIcon]="true" inputId="icon"  [ngClass]="{ 'is-invalid': submitted && f.fechaNac.errors }">
+                  </p-calendar>
+                  <div *ngIf="submitted && f.fechaNac.errors" class="invalid-feedback">
+                    <div *ngIf="f.fechaNac.errors.required">Debe ingresar la fecha de Nacimiento</div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lugarNac" class="control-label">Lugar de Nacimiento</label>
+                  <input type="text" class="form-control" formControlName="lugarNac" required [ngClass]="{ 'is-invalid': submitted && f.lugarNac.errors }">
+
+                  <div *ngIf="submitted && f.lugarNac.errors" class="invalid-feedback">
+                    <div *ngIf="f.lugarNac.errors.required">Debe ingresar el lugar de Nacimiento</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="actaNac" class="control-label">Acta Nacimiento </label>
+                    <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaNac" >
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="nroFolioNac" class="control-label">Nro Folio </label>
+                    <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioNac" >
+
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label  class="control-label">Nro Tomo </label>
+                    <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoNac" >
+                  </div>
+                </div>
+            </div>
+
+            <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="control-label">Oficina del Registro Civil </label>
+                      <input type="text"  class="form-control" formControlName="ofRegCivilNac" >
+                    </div>
+                  </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Ciudad </label>
+                  <input type="text"  class="form-control" formControlName="ciudadRegCivilNac" >
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Provincia </label>
+                  <input type="text"  class="form-control" formControlName="ProvRegCivilNac" >
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Pais </label>
+                  <input type="text"  class="form-control" formControlName="PaisRegCivilNac" >
+                </div>
+              </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <br/>
+            <div class="bg-infoTable">
+              <h3 class="m-b-0 text-blue">Domicilio del Cliente</h3>
+            </div>
+            <br/>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="calleNombre" class="control-label">Nombre Calle </label>
+                  <input type="text" class="form-control" formControlName="calleNombre" required [ngClass]="{ 'is-invalid': submitted && f.calleNombre.errors }">
+
+                  <div *ngIf="submitted && f.calleNombre.errors" class="invalid-feedback">
+                    <div *ngIf="f.calleNombre.errors.required">Debe ingresar el Nombre de Calle</div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="calleNro" class="control-label">Nro Calle </label>
+                  <input type="number" class="form-control" formControlName="calleNro" required [ngClass]="{ 'is-invalid': submitted && f.calleNro.errors }">
+
+                  <div *ngIf="submitted && f.calleNro.errors" class="invalid-feedback">
+                    <div *ngIf="f.calleNro.errors.required">Debe ingresar el Numero de Calle</div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="cp" class="control-label">Codigo Postal</label>
+                  <input type="number" class="form-control" formControlName="cp"  required [ngClass]="{ 'is-invalid': submitted && f.cp.errors }">
+
+                  <div *ngIf="submitted && f.cp.errors" class="invalid-feedback">
+                    <div *ngIf="f.cp.errors.required">Debe ingresar el Codigo Postal</div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="localidad" class="control-label">Localidad</label>
+                  <input type="text" class="form-control" formControlName="localidad" required [ngClass]="{ 'is-invalid': submitted && f.localidad.errors }">
+
+                  <div *ngIf="submitted && f.localidad.errors" class="invalid-feedback">
+                    <div *ngIf="f.localidad.errors.required">Debe ingresar la Localidad</div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="provincia" class="control-label">Provincia</label>
+                  <input type="text" class="form-control" formControlName="provincia" required [ngClass]="{ 'is-invalid': submitted && f.provincia.errors }">
+
+                  <div *ngIf="submitted && f.provincia.errors" class="invalid-feedback">
+                    <div *ngIf="f.provincia.errors.required">Debe ingresar la Provincia</div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="telefonoParticular" class="control-label">Telefono Particular</label>
+                  <input type="number" class="form-control" onKeyPress="if(this.value.length==11) return false;" id="telefonoParticular"  formControlName="telefonoParticular"> </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="celularNro" class="control-label">Celular Nro</label>
+                  <input type="number" onKeyPress="if(this.value.length==11) return false;" class="form-control" id="celularNro"  formControlName="celularNro">
+
+                </div>
+
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="estadocivil" class="control-label">Estado Civil</label>
+                  <select #selecEstCivil (change)='onOptionsSelectedEstadoCivil(selecEstCivil.value)' class="custom-select form-control" formControlName="estadocivil" name="estadocivil" required [ngClass]="{ 'is-invalid': submitted && f.estadocivil.errors }">
+                    <option value="Soltero">Soltero</option>
+                    <option value="Casado">Casado</option>
+                    <option value="Divorciado">Divorciado</option>
+                    <option value="Viudo">Viudo</option>
+                  </select>
+
+                  <div *ngIf="submitted && f.estadocivil.errors" class="invalid-feedback">
+                    <div *ngIf="f.estadocivil.errors.required">Debe indicar su estado civil </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+            </div>
+
+
+            <div *ngIf="mostrarCamposMatrimonio">
+              <div class="row">
+                <div class="p-fluid col-md-6">
+                  <div class="form-group">
+                    <label for="fechaMatrimonio" class="control-label">Fecha Matrimonio</label>
+
+                    <p-calendar formControlName="fechaMatrimonio"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy"  [required]="true" [showIcon]="true" inputId="icon"  [ngClass]="{ 'is-invalid': submitted && f.fechaMatrimonio.errors }">
+                    </p-calendar>
+                    <div *ngIf="submitted && f.fechaMatrimonio.errors" class="invalid-feedback">
+                      <div *ngIf="f.fechaMatrimonio.errors.required">Debe indicar la Fecha de Matrimonio </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="lugarMatrimonio" class="control-label">Lugar Matrimonio </label>
+                    <input type="text" class="form-control" formControlName="lugarMatrimonio" required [ngClass]="{ 'is-invalid': submitted && f.lugarMatrimonio.errors }">
+
+                    <div *ngIf="submitted && f.lugarMatrimonio.errors" class="invalid-feedback">
+                      <div *ngIf="f.lugarMatrimonio.errors.required">Debe indicar el lugar de Matrimonio</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <!---
+            <div class="row">
+              <div class="col-lg-6">
+                  <div class="card-body">
+                    <label class="control-label">Foto Documento Frente</label>
+                    <input type="file" #fileUpload1 (change)="selectFiles1($event)"  data-default-file="fotoFrente" [src]="fotoFrente" formControlName="idfotoFrente"  class="dropify" required [ngClass]="{ 'is-invalid': submitted && f.idfotoFrente.errors }">
+
+                    <div *ngIf="submitted && f.idfotoFrente.errors" class="invalid-feedback">
+                      <div *ngIf="f.idfotoFrente.errors.required">Debe cargar la Foto de Frente del Documento </div>
+                    </div>
+
+                </div>
+              </div>
+              <div class="col-lg-6">
+
+                  <div class="card-body">
+                    <label class="control-label">Foto Documento Reverso</label>
+                    <input type="file" #fileUpload2 (change)="selectFiles2($event)" [src]="fotoPerfil"  data-default-file="fotoPerfil" formControlName="idfotoDorso" class="dropify" required [ngClass]="{ 'is-invalid': submitted && f.idfotoDorso.errors }">
+
+                    <div *ngIf="submitted && f.idfotoDorso.errors" class="invalid-feedback">
+                      <div *ngIf="f.idfotoDorso.errors.required">Debe cargar la Foto Reverso del Documento </div>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+            -->
+            <br/>
+            <div class="bg-infoTable">
+              <h3 class="m-b-0 text-blue">Subir Documentos</h3>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title" class="control-label">Foto Documento Frente</h4>
+
+                      <div class="text-left">
+                        <img id="blah" [src]="fotoFrente" alt="your image" height="200" />
+                      </div>
+
+                      <span class="carga-Foto1">
+                            <input type="file" id="carga-Foto1" formControlName="idfotoFrente"  (change)="readURL($event,1);" >
+                            </span>
+                      <br/>
+                      <label for="carga-Foto1">
+                        <span>Seleccionar Foto</span>
+                      </label>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title" class="control-label">Foto Documento Perfil</h4>
+
+                      <div class="text-left">
+                        <img id="blah" [src]="fotoPerfil"  alt="your image" height="200" />
+                      </div>
+
+                      <span class="carga-Foto2">
+                            <input type="file" id="carga-Foto2" formControlName="idfotoDorso" (change)="readURL($event,2);" >
+                        </span>
+                      <br/>
+                      <label for="carga-Foto2">
+                        <span>Seleccionar Foto</span>
+                      </label>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            <br>
+            <br>
+
+
+            <div class="form-actions" >
+
+
+              <div class="row">
+                <div class="col-8">
+                        <button pButton pRipple label="Guardar"
+                                class="p-button-info p-mr-2" (click)="guardar()" style="margin: 0.3em;">
+                          <i class="fa fa-check"></i>
+
+                        </button>
+
+
+                        <button pButton pRipple label="Regresar"
+                                class="p-button-secondary p-mr-2" (click)="regresar()" style="margin: 0.3em;">
+
+                        </button>
+
+                </div>
+
+
+                    <div class="col">
+                      <div class="text-right">
+
+
+                        <button pButton pRipple label="Eliminar"
+                                icon="pi pi-trash"
+                                class="p-mr-2 p-button-danger"
+                                (click)="eliminar()">
+
+                        </button>
+
+                      </div>
+                    </div>
+              </div>
+
+
+            </div>
+
+
+          </form>
+    </div>
