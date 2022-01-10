@@ -12,23 +12,19 @@ export class Contacto {
     fechaDefuncion!: Date;
     lugarDefuncion: string="";
 
+    tipoDoc: string="";
     dni: number=0;
     calleNombre: string="";
     calleNro: number=0;
     cp: number=0;
     localidad: string="";
     provincia : string="";
-
-
     celularNro: number=0;
     telefonoParticular: number=0;
-
     fechaMatrimonio!: Date;
     lugarMatrimonio : string="";
-
     fechaAlta!: Date;
     estado: number=1;
-
     observacion : string="";
     persona: Persona = new Persona;
     tipoRelacion: Tiporelacion = new Tiporelacion;

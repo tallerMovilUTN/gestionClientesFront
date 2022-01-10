@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
 import {Contacto} from "../../model/contacto";
 import {Persona} from "../../model/persona";
+import {ClienteService} from "../../service/cliente.service";
 
 @Component({
   selector: 'app-formulario',
@@ -9,8 +10,17 @@ import {Persona} from "../../model/persona";
 })
 export class FormularioComponent implements OnInit {
 
+  fotoFrente: any;
+  fotoPerfil: any;
+  imagenFotoFrente!: File;
+  imagenFotoDorso!: File;
+
+
+
+
   cliente!: Persona;
   contacto!: Contacto;
+  contactos: Contacto[]=[];
 
   apellidoCli:string="Cliente";
   nombreCli:string="";
@@ -157,9 +167,9 @@ export class FormularioComponent implements OnInit {
 
 
 
-  public contactos: Contacto[]=[];
 
-  constructor() { }
+
+  constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
       this.cargarDatos()
@@ -183,171 +193,7 @@ export class FormularioComponent implements OnInit {
           if (result.value)
           {
             //localStorage.setItem("key_"+cont, JSON.stringify(this.nuevoContacto));
-            localStorage.removeItem("cliente");
-            this.apellidoCli = "Cliente";
-            this.nombreCli = "";
-            this.styleCli="";
-
-
-            localStorage.removeItem("Padre");
-            this.padreApellido = "Padre";
-            this.padreNombre = "";
-            this.stylePadre="";
-
-            localStorage.removeItem("Madre");
-            this.madreApellido = "Madre";
-            this.madreNombre = "";
-            this.styleMadre="";
-
-
-
-            localStorage.removeItem("AbueloPaterno");
-            this.abueloPatpellido = "Abuelo";
-            this.abueloPatNombre =  "Pat";
-            this.styleabueloPat="";
-
-            localStorage.removeItem("AbuelaPaterna");
-            this.abuelaPatpellido = "Abuela"
-            this.abuelaPatNombre = "Pat"
-            this.styleabuelaPat="";
-
-            localStorage.removeItem("AbueloMaterna");
-            this.abueloMatpellido = "Abuelo";
-            this.abueloMatNombre = "Mat";
-            this.styleabueloMat="";
-
-            localStorage.removeItem("AbuelaMaterna");
-            this.abuelaMatpellido = "Abuela";
-            this.abuelaMatNombre = "Mat";
-            this.styleabuelaMat="";
-
-            localStorage.removeItem("BisabueloPat1");
-            this.bisabueloPat1pellido = "Bisabuelo";
-            this.bisabueloPat1Nombre = "Pat1";
-            this.stylebisabueloPat1="";
-
-            localStorage.removeItem("BisabueloPat2");
-            this.bisabueloPat2pellido = "Bisabuelo";
-            this.bisabueloPat2Nombre = "Pat2";
-            this.stylebisabueloPat2="";
-
-            localStorage.removeItem("BisabueloPat3");
-            this.bisabueloPat3pellido = "Bisabuelo";
-            this.bisabueloPat3Nombre = "Pat3";
-            this.stylebisabueloPat3="";
-
-            localStorage.removeItem("BisabueloPat4");
-            this.bisabueloPat4pellido = "Bisabuelo";
-            this.bisabueloPat4Nombre = "Pat4";
-            this.stylebisabueloPat4="";
-
-            localStorage.removeItem("BisabueloMat1");
-            this.bisabueloMat1pellido = "Bisabuelo";
-            this.bisabueloMat1Nombre = "Mat1";
-            this.stylebisabueloMat1="";
-
-            localStorage.removeItem("BisabueloMat2");
-            this.bisabueloMat2pellido = "Bisabuelo";
-            this.bisabueloMat2Nombre = "Mat2";
-            this.stylebisabueloMat2="";
-
-            localStorage.removeItem("BisabueloMat3");
-            this.bisabueloMat3pellido = "Bisabuelo";
-            this.bisabueloMat3Nombre = "Mat3";
-            this.stylebisabueloMat3="";
-
-            localStorage.removeItem("BisabueloMat4");
-            this.bisabueloMat4pellido = "Bisabuelo";
-            this.bisabueloMat4Nombre = "Mat4";
-            this.stylebisabueloMat4="";
-
-
-            localStorage.removeItem("TatarabueloPat1");
-            this.tatarabueloPat1pellido = "Tatarabuelo";
-            this.tatarabueloPat1Nombre = "Pat1";
-            this.styleTatarabueloPat1="";
-
-            localStorage.removeItem("TatarabueloPat2");
-            this.tatarabueloPat2pellido = "Tatarabuelo";
-            this.tatarabueloPat2Nombre = "Pat2";
-            this.styleTatarabueloPat2="";
-
-            localStorage.removeItem("TatarabueloPat3");
-            this.tatarabueloPat3pellido = "Tatarabuelo";
-            this.tatarabueloPat3Nombre = "Pat3";
-            this.styleTatarabueloPat3="";
-
-
-            localStorage.removeItem("TatarabueloPat4");
-             this.tatarabueloPat4pellido = "Tatarabuelo";
-            this.tatarabueloPat4Nombre = "Pat4";
-            this.styleTatarabueloPat4="";
-
-            localStorage.removeItem("TatarabueloPat5");
-            this.tatarabueloPat5pellido = "Tatarabuelo";
-            this.tatarabueloPat5Nombre = "Pat5";
-            this.styleTatarabueloPat5="";
-
-            localStorage.removeItem("TatarabueloPat6");
-            this.tatarabueloPat6pellido = "Tatarabuelo";
-            this.tatarabueloPat5Nombre = "Pat6";
-            this.styleTatarabueloPat6="";
-
-            localStorage.removeItem("TatarabueloPat7");
-            this.tatarabueloPat7pellido = "Tatarabuelo";
-            this.tatarabueloPat7Nombre = "Pat7";
-            this.styleTatarabueloPat7="";
-
-            localStorage.removeItem("TatarabueloPat8");
-            this.tatarabueloPat8pellido = "Tatarabuelo";
-            this.tatarabueloPat8Nombre = "Pat8";
-            this.styleTatarabueloPat8="";
-
-            ///////TATARABUELOMAT
-            localStorage.removeItem("TatarabueloMat1");
-            this.tatarabueloMat1pellido = "Tatarabuelo";
-            this.tatarabueloMat1Nombre = "Mat1";
-            this.styleTatarabueloMat1="";
-
-            localStorage.removeItem("TatarabueloMat2");
-            this.tatarabueloMat2pellido = "Tatarabuelo";
-            this.tatarabueloMat2Nombre = "Mat2";
-            this.styleTatarabueloMat2="";
-
-            localStorage.removeItem("TatarabueloMat3");
-            this.tatarabueloMat3pellido = "Tatarabuelo";
-            this.tatarabueloMat3Nombre = "Mat3";
-            this.styleTatarabueloMat3="";
-
-
-            localStorage.removeItem("TatarabueloMat4");
-            this.tatarabueloMat4pellido = "Tatarabuelo";
-            this.tatarabueloMat4Nombre = "Mat4";
-            this.styleTatarabueloMat4="";
-
-            localStorage.removeItem("TatarabueloMat5");
-            this.tatarabueloMat5pellido = "Tatarabuelo";
-            this.tatarabueloMat5Nombre = "Mat5";
-            this.styleTatarabueloMat5="";
-
-            localStorage.removeItem("TatarabueloMat6");
-            this.tatarabueloMat6pellido = "Tatarabuelo";
-            this.tatarabueloMat5Nombre = "Mat6";
-            this.styleTatarabueloMat6="";
-
-            localStorage.removeItem("TatarabueloMat7");
-            this.tatarabueloMat7pellido = "Tatarabuelo";
-            this.tatarabueloMat7Nombre = "Mat7";
-            this.styleTatarabueloMat7="";
-
-
-            localStorage.removeItem("TatarabueloMat8");
-            this.tatarabueloMat8pellido = "Tatarabuelo";
-            this.tatarabueloMat8Nombre = "Mat8";
-            this.styleTatarabueloMat8="";
-
-            this.cliente = new Persona();
-            this.contactos=[];///vacio los contactos
+            this.borrarStore();
 
 
 
@@ -359,6 +205,176 @@ export class FormularioComponent implements OnInit {
           }
         })
 
+  }
+
+
+  borrarStore()
+  {
+        localStorage.removeItem("cliente");
+        this.apellidoCli = "Cliente";
+        this.nombreCli = "";
+        this.styleCli="";
+
+
+        localStorage.removeItem("Padre");
+        this.padreApellido = "Padre";
+        this.padreNombre = "";
+        this.stylePadre="";
+
+        localStorage.removeItem("Madre");
+        this.madreApellido = "Madre";
+        this.madreNombre = "";
+        this.styleMadre="";
+
+
+
+        localStorage.removeItem("AbueloPaterno");
+        this.abueloPatpellido = "Abuelo";
+        this.abueloPatNombre =  "Pat";
+        this.styleabueloPat="";
+
+        localStorage.removeItem("AbuelaPaterna");
+        this.abuelaPatpellido = "Abuela"
+        this.abuelaPatNombre = "Pat"
+        this.styleabuelaPat="";
+
+        localStorage.removeItem("AbueloMaterna");
+        this.abueloMatpellido = "Abuelo";
+        this.abueloMatNombre = "Mat";
+        this.styleabueloMat="";
+
+        localStorage.removeItem("AbuelaMaterna");
+        this.abuelaMatpellido = "Abuela";
+        this.abuelaMatNombre = "Mat";
+        this.styleabuelaMat="";
+
+        localStorage.removeItem("BisabueloPat1");
+        this.bisabueloPat1pellido = "Bisabuelo";
+        this.bisabueloPat1Nombre = "Pat1";
+        this.stylebisabueloPat1="";
+
+        localStorage.removeItem("BisabueloPat2");
+        this.bisabueloPat2pellido = "Bisabuelo";
+        this.bisabueloPat2Nombre = "Pat2";
+        this.stylebisabueloPat2="";
+
+        localStorage.removeItem("BisabueloPat3");
+        this.bisabueloPat3pellido = "Bisabuelo";
+        this.bisabueloPat3Nombre = "Pat3";
+        this.stylebisabueloPat3="";
+
+        localStorage.removeItem("BisabueloPat4");
+        this.bisabueloPat4pellido = "Bisabuelo";
+        this.bisabueloPat4Nombre = "Pat4";
+        this.stylebisabueloPat4="";
+
+        localStorage.removeItem("BisabueloMat1");
+        this.bisabueloMat1pellido = "Bisabuelo";
+        this.bisabueloMat1Nombre = "Mat1";
+        this.stylebisabueloMat1="";
+
+        localStorage.removeItem("BisabueloMat2");
+        this.bisabueloMat2pellido = "Bisabuelo";
+        this.bisabueloMat2Nombre = "Mat2";
+        this.stylebisabueloMat2="";
+
+        localStorage.removeItem("BisabueloMat3");
+        this.bisabueloMat3pellido = "Bisabuelo";
+        this.bisabueloMat3Nombre = "Mat3";
+        this.stylebisabueloMat3="";
+
+        localStorage.removeItem("BisabueloMat4");
+        this.bisabueloMat4pellido = "Bisabuelo";
+        this.bisabueloMat4Nombre = "Mat4";
+        this.stylebisabueloMat4="";
+
+
+        localStorage.removeItem("TatarabueloPat1");
+        this.tatarabueloPat1pellido = "Tatarabuelo";
+        this.tatarabueloPat1Nombre = "Pat1";
+        this.styleTatarabueloPat1="";
+
+        localStorage.removeItem("TatarabueloPat2");
+        this.tatarabueloPat2pellido = "Tatarabuelo";
+        this.tatarabueloPat2Nombre = "Pat2";
+        this.styleTatarabueloPat2="";
+
+        localStorage.removeItem("TatarabueloPat3");
+        this.tatarabueloPat3pellido = "Tatarabuelo";
+        this.tatarabueloPat3Nombre = "Pat3";
+        this.styleTatarabueloPat3="";
+
+
+        localStorage.removeItem("TatarabueloPat4");
+        this.tatarabueloPat4pellido = "Tatarabuelo";
+        this.tatarabueloPat4Nombre = "Pat4";
+        this.styleTatarabueloPat4="";
+
+        localStorage.removeItem("TatarabueloPat5");
+        this.tatarabueloPat5pellido = "Tatarabuelo";
+        this.tatarabueloPat5Nombre = "Pat5";
+        this.styleTatarabueloPat5="";
+
+        localStorage.removeItem("TatarabueloPat6");
+        this.tatarabueloPat6pellido = "Tatarabuelo";
+        this.tatarabueloPat5Nombre = "Pat6";
+        this.styleTatarabueloPat6="";
+
+        localStorage.removeItem("TatarabueloPat7");
+        this.tatarabueloPat7pellido = "Tatarabuelo";
+        this.tatarabueloPat7Nombre = "Pat7";
+        this.styleTatarabueloPat7="";
+
+        localStorage.removeItem("TatarabueloPat8");
+        this.tatarabueloPat8pellido = "Tatarabuelo";
+        this.tatarabueloPat8Nombre = "Pat8";
+        this.styleTatarabueloPat8="";
+
+        ///////TATARABUELOMAT
+        localStorage.removeItem("TatarabueloMat1");
+        this.tatarabueloMat1pellido = "Tatarabuelo";
+        this.tatarabueloMat1Nombre = "Mat1";
+        this.styleTatarabueloMat1="";
+
+        localStorage.removeItem("TatarabueloMat2");
+        this.tatarabueloMat2pellido = "Tatarabuelo";
+        this.tatarabueloMat2Nombre = "Mat2";
+        this.styleTatarabueloMat2="";
+
+        localStorage.removeItem("TatarabueloMat3");
+        this.tatarabueloMat3pellido = "Tatarabuelo";
+        this.tatarabueloMat3Nombre = "Mat3";
+        this.styleTatarabueloMat3="";
+
+
+        localStorage.removeItem("TatarabueloMat4");
+        this.tatarabueloMat4pellido = "Tatarabuelo";
+        this.tatarabueloMat4Nombre = "Mat4";
+        this.styleTatarabueloMat4="";
+
+        localStorage.removeItem("TatarabueloMat5");
+        this.tatarabueloMat5pellido = "Tatarabuelo";
+        this.tatarabueloMat5Nombre = "Mat5";
+        this.styleTatarabueloMat5="";
+
+        localStorage.removeItem("TatarabueloMat6");
+        this.tatarabueloMat6pellido = "Tatarabuelo";
+        this.tatarabueloMat5Nombre = "Mat6";
+        this.styleTatarabueloMat6="";
+
+        localStorage.removeItem("TatarabueloMat7");
+        this.tatarabueloMat7pellido = "Tatarabuelo";
+        this.tatarabueloMat7Nombre = "Mat7";
+        this.styleTatarabueloMat7="";
+
+
+        localStorage.removeItem("TatarabueloMat8");
+        this.tatarabueloMat8pellido = "Tatarabuelo";
+        this.tatarabueloMat8Nombre = "Mat8";
+        this.styleTatarabueloMat8="";
+
+        this.cliente = new Persona();
+        this.contactos=[];///vacio los contactos
   }
 
 
@@ -449,6 +465,7 @@ export class FormularioComponent implements OnInit {
         {
           jsonObj = JSON.parse(obj); // string to generic object first
           this.contacto = (<Contacto>jsonObj);
+          this.contactos.push(this.contacto);
           this.padreApellido = this.contacto.apellido;
           this.padreNombre = this.contacto.nombre
           this.stylePadre="background-color:#5AAF63;font-weight: bold;color: #0A0A0A";
@@ -461,6 +478,7 @@ export class FormularioComponent implements OnInit {
         {
           jsonObj = JSON.parse(obj); // string to generic object first
           this.contacto = (<Contacto>jsonObj);
+          this.contactos.push(this.contacto);
           this.madreApellido = this.contacto.apellido;
           this.madreNombre = this.contacto.nombre
           this.styleMadre="background-color:#5AAF63;font-weight: bold;color: #0A0A0A";
@@ -472,6 +490,7 @@ export class FormularioComponent implements OnInit {
         {
           jsonObj = JSON.parse(obj); // string to generic object first
           this.contacto = (<Contacto>jsonObj);
+          this.contactos.push(this.contacto);
           this.abueloPatpellido = this.contacto.apellido;
           this.abueloPatNombre = this.contacto.nombre
           this.styleabueloPat="background-color:#E8B276FF;font-weight: bold;color: #0A0A0A";
@@ -483,6 +502,7 @@ export class FormularioComponent implements OnInit {
         {
           jsonObj = JSON.parse(obj); // string to generic object first
           this.contacto = (<Contacto>jsonObj);
+          this.contactos.push(this.contacto);
           this.abuelaPatpellido = this.contacto.apellido;
           this.abuelaPatNombre = this.contacto.nombre
           this.styleabuelaPat="background-color:#E8B276FF;font-weight: bold;color: #0A0A0A";
@@ -494,6 +514,7 @@ export class FormularioComponent implements OnInit {
         {
           jsonObj = JSON.parse(obj); // string to generic object first
           this.contacto = (<Contacto>jsonObj);
+          this.contactos.push(this.contacto);
           this.abueloMatpellido = this.contacto.apellido;
           this.abueloMatNombre = this.contacto.nombre
           this.styleabueloMat="background-color:#E8B276FF;font-weight: bold;color: #0A0A0A";
@@ -505,6 +526,7 @@ export class FormularioComponent implements OnInit {
       {
           jsonObj = JSON.parse(obj); // string to generic object first
           this.contacto = (<Contacto>jsonObj);
+          this.contactos.push(this.contacto);
           this.abuelaMatpellido = this.contacto.apellido;
           this.abuelaMatNombre = this.contacto.nombre
           this.styleabuelaMat="background-color:#E8B276FF;font-weight: bold;color: #0A0A0A";
@@ -517,6 +539,7 @@ export class FormularioComponent implements OnInit {
       {
               jsonObj = JSON.parse(obj); // string to generic object first
               this.contacto = (<Contacto>jsonObj);
+              this.contactos.push(this.contacto);
               this.bisabueloPat1pellido = this.contacto.apellido;
               this.bisabueloPat1Nombre = this.contacto.nombre
               this.stylebisabueloPat1="background-color:#A8B276CC;font-weight: bold;color: #0A0A0A";
@@ -527,6 +550,7 @@ export class FormularioComponent implements OnInit {
     {
             jsonObj = JSON.parse(obj); // string to generic object first
             this.contacto = (<Contacto>jsonObj);
+            this.contactos.push(this.contacto);
             this.bisabueloPat2pellido = this.contacto.apellido;
             this.bisabueloPat2Nombre = this.contacto.nombre
             this.stylebisabueloPat2="background-color:#A8B276CC;font-weight: bold;color: #0A0A0A";
@@ -537,6 +561,7 @@ export class FormularioComponent implements OnInit {
     {
             jsonObj = JSON.parse(obj); // string to generic object first
             this.contacto = (<Contacto>jsonObj);
+            this.contactos.push(this.contacto);
             this.bisabueloPat3pellido = this.contacto.apellido;
             this.bisabueloPat3Nombre = this.contacto.nombre
             this.stylebisabueloPat3="background-color:#A8B276CC;font-weight: bold;color: #0A0A0A";
@@ -547,6 +572,7 @@ export class FormularioComponent implements OnInit {
     {
             jsonObj = JSON.parse(obj); // string to generic object first
             this.contacto = (<Contacto>jsonObj);
+            this.contactos.push(this.contacto);
             this.bisabueloPat4pellido = this.contacto.apellido;
             this.bisabueloPat4Nombre = this.contacto.nombre
             this.stylebisabueloPat4="background-color:#A8B276CC;font-weight: bold;color: #0A0A0A";
@@ -557,6 +583,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.bisabueloMat1pellido = this.contacto.apellido;
       this.bisabueloMat1Nombre = this.contacto.nombre
       this.stylebisabueloMat1="background-color:#A8B276CC;font-weight: bold;color: #0A0A0A";
@@ -567,6 +594,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.bisabueloMat2pellido = this.contacto.apellido;
       this.bisabueloMat2Nombre = this.contacto.nombre
       this.stylebisabueloMat2="background-color:#A8B276CC;font-weight: bold;color: #0A0A0A";
@@ -577,6 +605,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.bisabueloMat3pellido = this.contacto.apellido;
       this.bisabueloMat3Nombre = this.contacto.nombre
       this.stylebisabueloMat3="background-color:#A8B276CC;font-weight: bold;color: #0A0A0A";
@@ -587,6 +616,7 @@ export class FormularioComponent implements OnInit {
     {
           jsonObj = JSON.parse(obj); // string to generic object first
           this.contacto = (<Contacto>jsonObj);
+          this.contactos.push(this.contacto);
           this.bisabueloMat4pellido = this.contacto.apellido;
           this.bisabueloMat4Nombre = this.contacto.nombre
           this.stylebisabueloMat4="background-color:#A8B276CC;font-weight: bold;color: #0A0A0A";
@@ -602,6 +632,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloPat1pellido = this.contacto.apellido;
       this.tatarabueloPat1Nombre = this.contacto.nombre
       this.styleTatarabueloPat1="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -613,6 +644,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloPat2pellido = this.contacto.apellido;
       this.tatarabueloPat2Nombre = this.contacto.nombre
       this.styleTatarabueloPat2="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -624,6 +656,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloPat3pellido = this.contacto.apellido;
       this.tatarabueloPat3Nombre = this.contacto.nombre
       this.styleTatarabueloPat3="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -636,6 +669,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloPat4pellido = this.contacto.apellido;
       this.tatarabueloPat4Nombre = this.contacto.nombre
       this.styleTatarabueloPat4="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -647,6 +681,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloPat5pellido = this.contacto.apellido;
       this.tatarabueloPat5Nombre = this.contacto.nombre
       this.styleTatarabueloPat5="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -658,6 +693,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloPat6pellido = this.contacto.apellido;
       this.tatarabueloPat5Nombre = this.contacto.nombre
       this.styleTatarabueloPat6="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -669,6 +705,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloPat7pellido = this.contacto.apellido;
       this.tatarabueloPat7Nombre = this.contacto.nombre
       this.styleTatarabueloPat7="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -681,6 +718,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloPat8pellido = this.contacto.apellido;
       this.tatarabueloPat8Nombre = this.contacto.nombre
       this.styleTatarabueloPat8="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -692,6 +730,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloMat1pellido = this.contacto.apellido;
       this.tatarabueloMat1Nombre = this.contacto.nombre
       this.styleTatarabueloMat1="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -703,6 +742,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloMat2pellido = this.contacto.apellido;
       this.tatarabueloMat2Nombre = this.contacto.nombre
       this.styleTatarabueloMat2="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -714,6 +754,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloMat3pellido = this.contacto.apellido;
       this.tatarabueloMat3Nombre = this.contacto.nombre
       this.styleTatarabueloMat3="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -726,6 +767,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloMat4pellido = this.contacto.apellido;
       this.tatarabueloMat4Nombre = this.contacto.nombre
       this.styleTatarabueloMat4="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -737,6 +779,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloMat5pellido = this.contacto.apellido;
       this.tatarabueloMat5Nombre = this.contacto.nombre
       this.styleTatarabueloMat5="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -748,6 +791,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloMat6pellido = this.contacto.apellido;
       this.tatarabueloMat5Nombre = this.contacto.nombre
       this.styleTatarabueloMat6="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -759,6 +803,7 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloMat7pellido = this.contacto.apellido;
       this.tatarabueloMat7Nombre = this.contacto.nombre
       this.styleTatarabueloMat7="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
@@ -771,16 +816,104 @@ export class FormularioComponent implements OnInit {
     {
       jsonObj = JSON.parse(obj); // string to generic object first
       this.contacto = (<Contacto>jsonObj);
+      this.contactos.push(this.contacto);
       this.tatarabueloMat8pellido = this.contacto.apellido;
       this.tatarabueloMat8Nombre = this.contacto.nombre
       this.styleTatarabueloMat8="background-color:#E2C9EFFF;font-weight: bold;color: #0A0A0A";
     }
 
+  }/////limpiar()
 
 
 
+  readURL(event:any, index:number): void
+  {
+        if (event.target.files && event.target.files[0])
+        {
+          const file = event.target.files[0];
+          var reader = new FileReader();
+          if (index == 1)
+          {
+            reader.onload = e => this.fotoFrente = reader.result;
+            this.imagenFotoFrente = event.target.files[0];
 
-
+          }
+          else
+          {
+            reader.onload = e => this.fotoPerfil = reader.result;
+            this.imagenFotoDorso = event.target.files[0];
+          }
+          console.log("file "+JSON.stringify(file));
+          reader.readAsDataURL(file);
+        }
   }
+
+
+  enviarFormulario()
+  {
+
+              var fotoFrente,fotoPerfil;
+              if (localStorage.theImageFotoFrente != null)
+              {
+                var dataImage = localStorage.theImageFotoFrente;
+                const imageBlob = this.dataURItoBlob(dataImage);
+                fotoFrente = new File([imageBlob], 'fotoFrente.png', { type: 'image/png' });
+
+              }
+
+
+
+              if (localStorage.theImageFotoPerfil != null)
+              {
+                var dataImage = localStorage.theImageFotoPerfil;
+                const imageBlob = this.dataURItoBlob(dataImage);
+                fotoPerfil = new File([imageBlob], 'fotoPerfil.png', { type: 'image/png' });
+
+              }
+
+              // @ts-ignore
+              this.clienteService.enviarFormulario(fotoFrente,
+                fotoPerfil,
+              this.cliente,
+              this.contactos).subscribe(
+              data =>
+              {
+                console.log("PASO POR NEXT - NO HAGO NADA");
+
+
+              },
+              err  =>
+              {
+                //this.errorMsg = <any>err
+                console.log('OCURRIO ERROR: '+<any>err);
+                Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
+                return;
+              },
+              ()=>
+              {
+                console.log("COMPLETE SE EJECUTA SI NO DA ERROR");
+                Swal.fire("Arbol Genealogico Familiar", 'Se han registrado correctamente todos los datos', 'success');
+                //this.router.navigateByUrl(`/dashboard/clientes`)
+
+              }
+
+            );
+  }
+
+
+
+
+
+  dataURItoBlob(dataURI:any) {
+        var byteString = atob(dataURI.toString().split(',')[1]);
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const int8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < byteString.length; i++) {
+          int8Array[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([int8Array], { type: 'image/png' });
+        return blob;
+  }
+
 
 }

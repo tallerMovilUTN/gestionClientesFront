@@ -104,6 +104,40 @@ export class ClienteService {
 
 
 
+
+
+
+  enviarFormulario(file1: File,
+         file2: File,
+         cli: Persona,contactos: Contacto[]): Observable<any>{
+        //cli: Persona): Observable<any>{
+
+
+
+    const formData: FormData = new FormData();
+    formData.append('fotoFrente', file1);
+    formData.append('fotoDorso', file2);
+    var perJson = JSON.stringify(cli);
+
+
+
+    formData.append('cliente', JSON.stringify(cli));
+    formData.append('contactos', JSON.stringify(contactos));
+
+
+    let headers = new HttpHeaders();
+    //headers=headers.set('content-type','application/json')
+    headers=headers.set('Access-Control-Allow-Origin', '*');
+    headers=headers.set('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
+    headers=headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+
+    const req = new HttpRequest('POST', `${this.webApiUr}/arbol`, formData,{'headers':headers});
+    return this.http.request(req);
+
+  }
+
+
+
   private extractData(res: any) {
     let body = res;
     return body;

@@ -1,490 +1,508 @@
+<div class="card">
+  <div class="card-body">
 
-<form [formGroup]="secondFormGroup" >
-  <div class="card-body wizard-content">
-        <!--<h1 style="color: rgb(75,179,236);font-family: Montserrat, sans-serif;font-size: 36px;">Datos del Familiar Relacionado </h1>-->
-        <!--<div class="labelTitlePage">Datos del Familiar Relacionado</div>-->
+      <form [formGroup]="secondFormGroup" >
+      <div class="card-body wizard-content">
+            <!--<h1 style="color: rgb(75,179,236);font-family: Montserrat, sans-serif;font-size: 36px;">Datos del Familiar Relacionado </h1>-->
+            <!--<div class="labelTitlePage">Datos del Familiar Relacionado</div>-->
 
-        <div class="card-header bg-infoTable">
-          <h3 class="m-b-0 text-blue">Datos del Familiar Relacionado {{titulo}}</h3>
-          <!--<h1>Completar Formulario de Solicitud </h1>-->
-          <!--<h3 class="m-b-0 text-info">Familiares <span>Cargados</span></h3>-->
-        </div>
-
-        <br>
+            <div class="card-header bg-infoTable">
+              <h3 class="m-b-0 text-blue">Datos del Familiar Relacionado {{titulo}}</h3>
+              <!--<h1>Completar Formulario de Solicitud </h1>-->
+              <!--<h3 class="m-b-0 text-info">Familiares <span>Cargados</span></h3>-->
+            </div>
 
 
-        <br>
 
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="apellidoContacto" class="control-label">Apellido </label>
-              <input type="text" class="form-control" formControlName="apellidoContacto"  required [ngClass]="{ 'is-invalid': submitted2 && f.apellidoContacto.errors }">
-              <div *ngIf="submitted2 && f.apellidoContacto.errors" class="invalid-feedback">
-                <div *ngIf="f.apellidoContacto.errors.required">Debe ingresar el Apellido</div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="apellidoContacto" class="control-label">Apellido </label>
+                  <input type="text" class="form-control" formControlName="apellidoContacto"  required [ngClass]="{ 'is-invalid': submitted2 && f.apellidoContacto.errors }">
+                  <div *ngIf="submitted2 && f.apellidoContacto.errors" class="invalid-feedback">
+                    <div *ngIf="f.apellidoContacto.errors.required">Debe ingresar el Apellido</div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nombreContacto" class="control-label">Nombre </label>
+                  <input type="text" class="form-control" formControlName="nombreContacto" required [ngClass]="{ 'is-invalid': submitted2 && f.nombreContacto.errors }">
+
+                  <div *ngIf="submitted2 && f.nombreContacto.errors" class="invalid-feedback">
+                    <div *ngIf="f.nombreContacto.errors.required">Debe ingresar el Nombre</div>
+                  </div>
+
+                </div>
               </div>
             </div>
 
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="nombreContacto" class="control-label">Nombre </label>
-              <input type="text" class="form-control" formControlName="nombreContacto" required [ngClass]="{ 'is-invalid': submitted2 && f.nombreContacto.errors }">
+            <div class="row">
 
-              <div *ngIf="submitted2 && f.nombreContacto.errors" class="invalid-feedback">
-                <div *ngIf="f.nombreContacto.errors.required">Debe ingresar el Nombre</div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Tipo Documento</label>
+                  <select #selecEstCivil class="custom-select form-control" formControlName="tipoDocContacto" name="tipoDoc">
+                    <option value="LC">LC</option>
+                    <option value="LE">LE</option>
+                    <option value="DNI">DNI</option>
+                  </select>
+
+                </div>
+              </div>
+
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="dniContacto" class="control-label">Nro Documento </label>
+                  <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false" class="form-control" formControlName="dniContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email" class="control-label">Email </label>
+                  <input type="email" class="form-control" id="email" formControlName="emailContacto"> </div>
               </div>
 
             </div>
-          </div>
-        </div>
+
+          <br/>
+          <br/>
+
+            <div class="bg-infoTable">
+              <h3 class="m-b-0 text-blue">Datos de Nacimiento</h3>
+            </div>
+            <br/>
+            <div class="row">
+
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label for="fechaNacContacto" class="control-label">Fecha Nacimiento </label>
+                  <p-calendar formControlName="fechaNacContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" >
+                  </p-calendar>
+                </div>
+              </div>
+
+              <div class="p-fluid col-md-3">
+                <h3>Si no conoce ingrese Fecha Aproximada (Nacimiento Desde - Nacimiento Hasta)</h3>
+              </div>
+
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label class="control-label">Nacimiento Desde </label>
+                  <p-calendar formControlName="fechaNacDesdeContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" >
+                  </p-calendar>
+                </div>
+              </div>
+
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label  class="control-label">Nacimiento Hasta </label>
+                  <p-calendar formControlName="fechaNacHastaContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy"   [showIcon]="true" inputId="icon" >
+                  </p-calendar>
+
+                </div>
+              </div>
+
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="lugarNacContacto" class="control-label">Lugar de Nacimiento</label>
+                  <input type="text" class="form-control" formControlName="lugarNacContacto" >
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label  class="control-label">Acta Nacimiento </label>
+                  <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaNacContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="nroFolioNac" class="control-label">Nro Folio </label>
+                  <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioNacContacto" >
+
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label  class="control-label">Nro Tomo </label>
+                  <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoNacContacto" >
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Oficina del Registro Civil </label>
+                  <input type="text"  class="form-control" formControlName="ofRegCivilNacContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Ciudad </label>
+                  <input type="text"  class="form-control" formControlName="ciudadRegCivilNacContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Provincia </label>
+                  <input type="text"  class="form-control" formControlName="ProvRegCivilNacContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Pais </label>
+                  <input type="text"  class="form-control" formControlName="PaisRegCivilNacContacto" >
+                </div>
+              </div>
+
+
+
+            </div>
+
+            <br/>
+            <br/>
+            <div class="bg-infoTable">
+              <h3 class="m-b-0 text-blue">Datos de Matrimonio</h3>
+            </div>
+            <br/>
+            <div class="row">
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label  class="control-label">Fecha Matrimonio</label>
+                  <p-calendar formControlName="fechaMatrimonioContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" ></p-calendar>
+                </div>
+              </div>
+
+              <div class="p-fluid col-md-3">
+                <h3>Si no conoce ingrese Fecha Aproximada (Matrimonio Desde - Matrimonio Hasta)</h3>
+              </div>
+
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label class="control-label">Matrimonio Desde </label>
+                  <p-calendar formControlName="fechaMatDesdeContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" >
+                  </p-calendar>
+                </div>
+              </div>
+
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label class="control-label">Matrimonio Hasta </label>
+                  <p-calendar formControlName="fechaMatHastaContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy"   [showIcon]="true" inputId="icon" >
+                  </p-calendar>
+
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="lugarMatrimonioContacto" class="control-label">Lugar Matrimonio </label>
+                  <input type="text" class="form-control" formControlName="lugarMatrimonioContacto">
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label  class="control-label">Acta Matrimonio </label>
+                  <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaMatContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="nroFolioNac" class="control-label">Nro Folio </label>
+                  <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioMatContacto" >
+
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label  class="control-label">Nro Tomo </label>
+                  <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoMatContacto" >
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Oficina del Registro Civil </label>
+                  <input type="text"  class="form-control" formControlName="ofRegCivilMatContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Ciudad </label>
+                  <input type="text"  class="form-control" formControlName="ciudadRegCivilMatContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Provincia </label>
+                  <input type="text"  class="form-control" formControlName="ProvRegCivilMatContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Pais </label>
+                  <input type="text"  class="form-control" formControlName="PaisRegCivilMatContacto" >
+                </div>
+              </div>
+
+
+
+            </div>
+
+          <br/>
+          <br/>
+            <div class="bg-infoTable">
+              <h3 class="m-b-0 text-blue">Datos de Defuncion</h3>
+            </div>
+            <br/>
 
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="dniContacto" class="control-label">Nro Documento </label>
-              <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false" class="form-control" formControlName="dniContacto" >
-            </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="email" class="control-label">Email </label>
-              <input type="email" class="form-control" id="email" formControlName="emailContacto"> </div>
-          </div>
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label  class="control-label">Fecha Defuncion </label>
+                  <p-calendar formControlName="fechaDefContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" ></p-calendar>
+                </div>
+              </div>
 
-        </div>
+              <div class="p-fluid col-md-3">
+                <h3>Si no conoce ingrese Fecha Aproximada (Defuncion Desde - Defuncion Hasta)</h3>
+              </div>
 
-      <br/>
-      <br/>
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label class="control-label">Defuncion Desde</label>
+                  <p-calendar formControlName="fechaDefDesdeContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" >
+                  </p-calendar>
+                </div>
+              </div>
 
-        <div class="bg-infoTable">
-          <h3 class="m-b-0 text-blue">Datos de Nacimiento</h3>
-        </div>
-        <br/>
-        <div class="row">
+              <div class="p-fluid col-md-2">
+                <div class="form-group">
+                  <label class="control-label">Defuncion Hasta</label>
+                  <p-calendar formControlName="fechaDefHastaContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy"   [showIcon]="true" inputId="icon" >
+                  </p-calendar>
+                </div>
+              </div>
 
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label for="fechaNacContacto" class="control-label">Fecha Nacimiento </label>
-              <p-calendar formControlName="fechaNacContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" >
-              </p-calendar>
-            </div>
-          </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Lugar de Defuncion</label>
+                  <input type="text" class="form-control" formControlName="lugarDefContacto">
 
-          <div class="p-fluid col-md-3">
-            <h3>Si no conoce ingrese Fecha Aproximada (Nacimiento Desde - Nacimiento Hasta)</h3>
-          </div>
-
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label class="control-label">Nacimiento Desde </label>
-              <p-calendar formControlName="fechaNacDesdeContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" >
-              </p-calendar>
-            </div>
-          </div>
-
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label  class="control-label">Nacimiento Hasta </label>
-              <p-calendar formControlName="fechaNacHastaContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy"   [showIcon]="true" inputId="icon" >
-              </p-calendar>
+                </div>
+              </div>
 
             </div>
-          </div>
 
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="lugarNacContacto" class="control-label">Lugar de Nacimiento</label>
-              <input type="text" class="form-control" formControlName="lugarNacContacto" >
-            </div>
-          </div>
-
-        </div>
-
-
-
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label  class="control-label">Acta Nacimiento </label>
-              <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaNacContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="nroFolioNac" class="control-label">Nro Folio </label>
-              <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioNacContacto" >
-
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-              <label  class="control-label">Nro Tomo </label>
-              <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoNacContacto" >
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Oficina del Registro Civil </label>
-              <input type="text"  class="form-control" formControlName="ofRegCivilNacContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Ciudad </label>
-              <input type="text"  class="form-control" formControlName="ciudadRegCivilNacContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Provincia </label>
-              <input type="text"  class="form-control" formControlName="ProvRegCivilNacContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Pais </label>
-              <input type="text"  class="form-control" formControlName="PaisRegCivilNacContacto" >
-            </div>
-          </div>
-
-
-
-        </div>
-
-        <br/>
-        <br/>
-        <div class="bg-infoTable">
-          <h3 class="m-b-0 text-blue">Datos de Matrimonio</h3>
-        </div>
-        <br/>
-        <div class="row">
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label  class="control-label">Fecha Matrimonio</label>
-              <p-calendar formControlName="fechaMatrimonioContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" ></p-calendar>
-            </div>
-          </div>
-
-          <div class="p-fluid col-md-3">
-            <h3>Si no conoce ingrese Fecha Aproximada (Matrimonio Desde - Matrimonio Hasta)</h3>
-          </div>
-
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label class="control-label">Matrimonio Desde </label>
-              <p-calendar formControlName="fechaMatDesdeContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" >
-              </p-calendar>
-            </div>
-          </div>
-
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label class="control-label">Matrimonio Hasta </label>
-              <p-calendar formControlName="fechaMatHastaContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy"   [showIcon]="true" inputId="icon" >
-              </p-calendar>
-
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="lugarMatrimonioContacto" class="control-label">Lugar Matrimonio </label>
-              <input type="text" class="form-control" formControlName="lugarMatrimonioContacto">
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label  class="control-label">Acta Matrimonio </label>
-              <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaMatContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="nroFolioNac" class="control-label">Nro Folio </label>
-              <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioMatContacto" >
-
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-              <label  class="control-label">Nro Tomo </label>
-              <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoMatContacto" >
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Oficina del Registro Civil </label>
-              <input type="text"  class="form-control" formControlName="ofRegCivilMatContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Ciudad </label>
-              <input type="text"  class="form-control" formControlName="ciudadRegCivilMatContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Provincia </label>
-              <input type="text"  class="form-control" formControlName="ProvRegCivilMatContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Pais </label>
-              <input type="text"  class="form-control" formControlName="PaisRegCivilMatContacto" >
-            </div>
-          </div>
-
-
-
-        </div>
-
-      <br/>
-      <br/>
-        <div class="bg-infoTable">
-          <h3 class="m-b-0 text-blue">Datos de Defuncion</h3>
-        </div>
-        <br/>
-
-    <div class="row">
-
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label  class="control-label">Fecha Defuncion </label>
-              <p-calendar formControlName="fechaDefContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" ></p-calendar>
-            </div>
-          </div>
-
-          <div class="p-fluid col-md-3">
-            <h3>Si no conoce ingrese Fecha Aproximada (Defuncion Desde - Defuncion Hasta)</h3>
-          </div>
-
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label class="control-label">Defuncion Desde</label>
-              <p-calendar formControlName="fechaDefDesdeContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" >
-              </p-calendar>
-            </div>
-          </div>
-
-          <div class="p-fluid col-md-2">
-            <div class="form-group">
-              <label class="control-label">Defuncion Hasta</label>
-              <p-calendar formControlName="fechaDefHastaContacto"  placeholder="dd/mm/yyyy" dateFormat="dd/mm/yy"   [showIcon]="true" inputId="icon" >
-              </p-calendar>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="control-label">Lugar de Defuncion</label>
-              <input type="text" class="form-control" formControlName="lugarDefContacto">
-
-            </div>
-          </div>
-
-        </div>
-
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="control-label">Acta Defuncion </label>
-            <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaDefContacto" >
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="nroFolioNac" class="control-label">Nro Folio </label>
-            <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioDefContacto" >
-
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-group">
-            <label  class="control-label">Nro Tomo </label>
-            <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoDefContacto" >
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="control-label">Oficina del Registro Civil </label>
-            <input type="text"  class="form-control" formControlName="ofRegCivilDefContacto" >
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="control-label">Ciudad </label>
-            <input type="text"  class="form-control" formControlName="ciudadRegCivilDefContacto" >
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="control-label">Provincia </label>
-            <input type="text"  class="form-control" formControlName="ProvRegCivilDefContacto" >
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="control-label">Pais </label>
-            <input type="text"  class="form-control" formControlName="PaisRegCivilDefContacto" >
-          </div>
-        </div>
-
-
-
-      </div>
-
-
-
-
-      <br/>
-      <br/>
-        <div class="bg-infoTable">
-          <h3 class="m-b-0 text-blue">Domicilio del Contacto</h3>
-        </div>
-        <br/>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label">Nombre Calle </label>
-              <input type="text" class="form-control" formControlName="calleNombreContacto">
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="form-group">
-              <label  class="control-label">Nro Calle </label>
-              <input type="number" class="form-control" formControlName="calleNroContacto" >
-            </div>
-
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="cpContacto" class="control-label">Codigo Postal</label>
-              <input type="number" class="form-control" formControlName="cpContacto" >
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="localidadContacto" class="control-label">Localidad</label>
-              <input type="text" class="form-control" formControlName="localidadContacto">
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="provinciaContacto" class="control-label">Provincia</label>
-              <input type="text" class="form-control" formControlName="provinciaContacto">
-
-            </div>
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="telefonoParticular" class="control-label">Telefono Particular</label>
-              <input type="number" onKeyPress="if(this.value.length==11) return false;" class="form-control"  formControlName="telefonoParticularContacto"> </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="celularNro" class="control-label">Celular Nro</label>
-              <input type="number" onKeyPress="if(this.value.length==11) return false;" class="form-control"  formControlName="celularNroContacto">
-            </div>
-
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label class="control-label">Comentario u Observacion (Indicar si existen otros matrimonios. Indicar fechas que no conoce exactamente)</label>
-              <textarea class="form-control" rows="5" formControlName="comentarioContacto"></textarea>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="form-actions" >
 
           <div class="row">
-            <div class="col-8">
-
-                    <button pButton pRipple label="Guardar"
-                            class="p-button-info p-mr-2" (click)="guardar()" style="margin: 0.3em;">
-                      <i class="fa fa-check"></i>
-
-                    </button>
-
-
-                    <button pButton pRipple label="Regresar"
-                            class="p-button-secondary p-mr-2" (click)="regresar()" style="margin: 0.3em;">
-
-                    </button>
-
+            <div class="col-md-4">
+              <div class="form-group">
+                <label  class="control-label">Acta Defuncion </label>
+                <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaDefContacto" >
+              </div>
             </div>
 
-
-            <div class="col">
-              <div class="text-right">
-
-
-                <button pButton pRipple label="Eliminar"
-                        icon="pi pi-trash"
-                        class="p-mr-2 p-button-danger"
-                        (click)="eliminar()">
-
-                </button>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="nroFolioNac" class="control-label">Nro Folio </label>
+                <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioDefContacto" >
 
               </div>
             </div>
 
+            <div class="col-md-4">
+              <div class="form-group">
+                <label  class="control-label">Nro Tomo </label>
+                <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoDefContacto" >
+              </div>
+            </div>
           </div>
-        </div>
 
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Oficina del Registro Civil </label>
+                <input type="text"  class="form-control" formControlName="ofRegCivilDefContacto" >
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Ciudad </label>
+                <input type="text"  class="form-control" formControlName="ciudadRegCivilDefContacto" >
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Provincia </label>
+                <input type="text"  class="form-control" formControlName="ProvRegCivilDefContacto" >
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Pais </label>
+                <input type="text"  class="form-control" formControlName="PaisRegCivilDefContacto" >
+              </div>
+            </div>
+
+
+
+          </div>
+
+
+
+
+          <br/>
+          <br/>
+            <div class="bg-infoTable">
+              <h3 class="m-b-0 text-blue">Domicilio del Contacto</h3>
+            </div>
+            <br/>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Nombre Calle </label>
+                  <input type="text" class="form-control" formControlName="calleNombreContacto">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label  class="control-label">Nro Calle </label>
+                  <input type="number" class="form-control" formControlName="calleNroContacto" >
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="cpContacto" class="control-label">Codigo Postal</label>
+                  <input type="number" class="form-control" formControlName="cpContacto" >
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="localidadContacto" class="control-label">Localidad</label>
+                  <input type="text" class="form-control" formControlName="localidadContacto">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="provinciaContacto" class="control-label">Provincia</label>
+                  <input type="text" class="form-control" formControlName="provinciaContacto">
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="telefonoParticular" class="control-label">Telefono Particular</label>
+                  <input type="number" onKeyPress="if(this.value.length==11) return false;" class="form-control"  formControlName="telefonoParticularContacto"> </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="celularNro" class="control-label">Celular Nro</label>
+                  <input type="number" onKeyPress="if(this.value.length==11) return false;" class="form-control"  formControlName="celularNroContacto">
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="control-label">Comentario u Observacion (Indicar si existen otros matrimonios. Indicar fechas que no conoce exactamente)</label>
+                  <textarea class="form-control" rows="5" formControlName="comentarioContacto"></textarea>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-actions" >
+
+              <div class="row">
+                <div class="col-8">
+
+                        <button pButton pRipple label="Guardar"
+                                class="p-button-info p-mr-2" (click)="guardar()" style="margin: 0.3em;">
+                          <i class="fa fa-check"></i>
+
+                        </button>
+
+
+                        <button pButton pRipple label="Regresar"
+                                class="p-button-secondary p-mr-2" (click)="regresar()" style="margin: 0.3em;">
+
+                        </button>
+
+                </div>
+
+
+                <div class="col">
+                  <div class="text-right">
+
+
+                    <button pButton pRipple label="Eliminar"
+                            icon="pi pi-trash"
+                            class="p-mr-2 p-button-danger"
+                            (click)="eliminar()">
+
+                    </button>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+      </div>
+
+
+    </form>
 
   </div>
-
-
-</form>
-
+</div>

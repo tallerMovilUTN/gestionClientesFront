@@ -40,7 +40,7 @@ export class FamiliarComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
           apellidoContacto: ['', Validators.required],
           nombreContacto: ['', Validators.required],
-
+          tipoDocContacto: [''],
           dniContacto: [''],
           emailContacto: [''],
 
@@ -162,8 +162,11 @@ export class FamiliarComponent implements OnInit {
         this.contacto.apellido = this.secondFormGroup.controls.apellidoContacto.value;
         this.contacto.nombre = this.secondFormGroup.controls.nombreContacto.value;
         this.contacto.dni = this.secondFormGroup.controls.dniContacto.value;
+        this.contacto.tipoDoc = this.secondFormGroup.controls.tipoDocContacto.value;
         this.contacto.email = this.secondFormGroup.controls.emailContacto.value;
         this.contacto.fechaNac = this.secondFormGroup.controls.fechaNacContacto.value;
+        this.contacto.lugarNac = this.secondFormGroup.controls.lugarNacContacto.value;
+
         this.contacto.fechaNacDesde = this.secondFormGroup.controls.fechaNacDesdeContacto.value;
         this.contacto.fechaNacHasta = this.secondFormGroup.controls.fechaNacHastaContacto.value;
 
@@ -505,12 +508,16 @@ export class FamiliarComponent implements OnInit {
             console.log(jsonObj);
             this.secondFormGroup.controls.apellidoContacto.setValue(this.contacto.apellido);
             this.secondFormGroup.controls.nombreContacto.setValue(this.contacto.nombre);
+
+            this.secondFormGroup.controls.tipoDocContacto.setValue(this.contacto.tipoDoc);
             this.secondFormGroup.controls.dniContacto.setValue(this.contacto.dni);
             this.secondFormGroup.controls.emailContacto.setValue(this.contacto.email);
             this.secondFormGroup.controls.lugarNacContacto.setValue(this.contacto.lugarNac);
 
+
             console.log('FECHA NAC: '+this.contacto.fechaNac);
-            if (this.contacto.fechaNac.toString().length > 0)
+            //if (this.contacto.fechaNac != null)
+            if (!this.isUndefinedOrNull(this.contacto.fechaNac))
             {
               anio = this.contacto.fechaNac.toString().substr(0,4);
               mes = this.contacto.fechaNac.toString().substr(5,2);
@@ -522,7 +529,8 @@ export class FamiliarComponent implements OnInit {
             }
 
             console.log('FECHA NAC DESDE: '+this.contacto.fechaNacDesde);
-            if (this.contacto.fechaNacDesde.toString().length > 0)
+            //if ((this.contacto.fechaNacDesde.toString().length > 0) && (this.contacto.fechaNacDesde != null))
+            if (!this.isUndefinedOrNull(this.contacto.fechaNacDesde))
             {
                   anio = this.contacto.fechaNacDesde.toString().substr(0,4);
                   mes = this.contacto.fechaNacDesde.toString().substr(5,2);
@@ -534,7 +542,8 @@ export class FamiliarComponent implements OnInit {
             }
 
             console.log('FECHA NAC HASTA: '+this.contacto.fechaNacHasta);
-            if (this.contacto.fechaNacHasta.toString().length > 0)
+            //if ((this.contacto.fechaNacHasta.toString().length > 0) && (this.contacto.fechaNacHasta != null))
+            if (!this.isUndefinedOrNull(this.contacto.fechaNacHasta))
             {
                   anio = this.contacto.fechaNacHasta.toString().substr(0,4);
                   mes = this.contacto.fechaNacHasta.toString().substr(5,2);
@@ -554,7 +563,8 @@ export class FamiliarComponent implements OnInit {
 
 
 
-            if (this.contacto.fechaMatrimonio.toString().length > 0)
+            //if ((this.contacto.fechaMatrimonio.toString().length > 0) && (this.contacto.fechaMatrimonio != null))
+            if (!this.isUndefinedOrNull(this.contacto.fechaMatrimonio))
             {
                   anio = this.contacto.fechaMatrimonio.toString().substr(0,4);
                   mes = this.contacto.fechaMatrimonio.toString().substr(5,2);
@@ -568,7 +578,8 @@ export class FamiliarComponent implements OnInit {
             }
 
             console.log('FECHA NAC DESDE: '+this.contacto.fechaMatDesde);
-            if (this.contacto.fechaMatDesde.toString().length > 0)
+            //if ((this.contacto.fechaMatDesde.toString().length > 0) && (this.contacto.fechaMatDesde != null))
+            if (!this.isUndefinedOrNull(this.contacto.fechaMatDesde))
             {
               anio = this.contacto.fechaMatDesde.toString().substr(0,4);
               mes = this.contacto.fechaMatDesde.toString().substr(5,2);
@@ -580,7 +591,8 @@ export class FamiliarComponent implements OnInit {
             }
 
             console.log('FECHA NAC HASTA: '+this.contacto.fechaMatHasta);
-            if (this.contacto.fechaMatHasta.toString().length > 0)
+            //if ((this.contacto.fechaMatHasta.toString().length > 0) && (this.contacto.fechaMatHasta != null))
+            if (!this.isUndefinedOrNull(this.contacto.fechaMatHasta))
             {
               anio = this.contacto.fechaMatHasta.toString().substr(0,4);
               mes = this.contacto.fechaMatHasta.toString().substr(5,2);
@@ -600,7 +612,8 @@ export class FamiliarComponent implements OnInit {
 
 
 
-            if (this.contacto.fechaDefuncion.toString().length > 0)
+            //if ((this.contacto.fechaDefuncion.toString().length > 0) && (this.contacto.fechaDefuncion != null))
+            if (!this.isUndefinedOrNull(this.contacto.fechaDefuncion))
             {
                   anio = this.contacto.fechaDefuncion.toString().substr(0,4);
                   mes = this.contacto.fechaDefuncion.toString().substr(5,2);
@@ -616,7 +629,8 @@ export class FamiliarComponent implements OnInit {
 
 
             console.log('FECHA DEFUNCION DESDE: '+this.contacto.fechaDefDesde);
-            if (this.contacto.fechaDefDesde.toString().length > 0)
+            //if ((this.contacto.fechaDefDesde.toString().length > 0) && (this.contacto.fechaDefDesde != null))
+            if (!this.isUndefinedOrNull(this.contacto.fechaDefDesde))
             {
               anio = this.contacto.fechaDefDesde.toString().substr(0,4);
               mes = this.contacto.fechaDefDesde.toString().substr(5,2);
@@ -628,7 +642,8 @@ export class FamiliarComponent implements OnInit {
             }
 
             console.log('FECHA DEFUNCION HASTA: '+this.contacto.fechaDefHasta);
-            if (this.contacto.fechaDefHasta.toString().length > 0)
+            //if ((this.contacto.fechaDefHasta.toString().length > 0) && (this.contacto.fechaDefHasta != null))
+            if (!this.isUndefinedOrNull(this.contacto.fechaDefHasta))
             {
               anio = this.contacto.fechaDefHasta.toString().substr(0,4);
               mes = this.contacto.fechaDefHasta.toString().substr(5,2);
@@ -694,6 +709,16 @@ export class FamiliarComponent implements OnInit {
     })
   }
 
+
+  // @ts-ignore
+  isUndefinedOrNull(val:any):boolean | undefined
+  {
+    console.log("isUndefinedOrNull: "+val);
+    if (val === "" || val == 'null' || val === null || val === "undefined") {
+      console.log("entro");
+      return true;
+    }
+  }
 
 
 

@@ -15,16 +15,17 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {  NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {CalendarModule} from "primeng/calendar";
 import {AppInterceptor} from "./service/AppInterceptor";
-import { ClientesComponent } from './pages/clientes/clientes.component';
-import { FamiliarComponent } from './pages/familiar/familiar.component';
 
 import {RouterModule} from "@angular/router";
-import {APP_ROUTING} from "./app-routing.module";
+
 import {APP_BASE_HREF, HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
 import { FormularioComponent } from './pages/formulario/formulario.component';
+import {ClientesComponent} from "./pages/clientes/clientes.component";
+import {FamiliarComponent} from "./pages/familiar/familiar.component";
+import {APP_ROUTING} from "./app-routing.module";
 
 
 
@@ -33,15 +34,13 @@ import { FormularioComponent } from './pages/formulario/formulario.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ClientesComponent,
-    FamiliarComponent,
     FormularioComponent,
-
-
-
+    ClientesComponent,
+    FamiliarComponent
 
   ],
   imports: [
+    APP_ROUTING,
     BrowserModule,
     BrowserAnimationsModule,
     MatStepperModule,
@@ -58,13 +57,10 @@ import { FormularioComponent } from './pages/formulario/formulario.component';
     ButtonModule,
     DialogModule,
     NgbModule,
-    CalendarModule,
-    APP_ROUTING,
-    RouterModule
+    CalendarModule
   ],
   providers: [
-   { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
-    {provide: APP_BASE_HREF, useValue : '/' },
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
     //{provide: LocationStrategy, useClass: HashLocationStrategy}
 
 

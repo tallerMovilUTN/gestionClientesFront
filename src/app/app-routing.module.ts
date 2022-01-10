@@ -6,13 +6,10 @@ import {FamiliarComponent} from "./pages/familiar/familiar.component";
 import {FormularioComponent} from "./pages/formulario/formulario.component";
 
 const APP_ROUTES: Routes = [
-  {path: '',redirectTo:'/Formulario',pathMatch:'full'},
+  {path: '',component: FormularioComponent},
   {path:'Formulario',component: FormularioComponent},
   {path:'Cliente',component: ClientesComponent},
-  {path: 'Familiar/:id',component: FamiliarComponent},
-  {path: '**',component: FormularioComponent},
-
-
+  {path: 'Familiar/:id',component: FamiliarComponent}
 ];
 
 

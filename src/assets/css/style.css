@@ -6100,6 +6100,16 @@ label[for="carga-Foto2"] {
 }
 **/
 
+
+
+.text-blue {
+  color: #1058bb !important;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-size: 14px;
+
+}
+
+
 .card1 {
   background-color: #c4daf1 !important;
   font-weight: bold;
@@ -6120,6 +6130,7 @@ input:read-only {
 .control-label {
   color: #2d2d2d !important;
   font-weight: bold;
+  font-size: 13px;
 }
 
 
@@ -6130,18 +6141,13 @@ input:read-only {
 
 
 
-.text-blue {
-  color: #1058bb !important;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-
-}
 
 
 
 
 h3 {
   line-height: 30px;
-  font-size: 22px;
+  font-size: 13px;
   font-weight: bold;
   color: #808388 !important;
 }
@@ -6168,30 +6174,11 @@ h2 {
 
   display: flex;
   align-items: center;
-  height: 100px;
+  /**height: 160px;**/
   /**height: 60px;
   background-color: #1976d2;**/
   color: white;
   font-weight: 600;
-}
-
-.toolbar img {
-  margin: 0 16px;
-}
-
-.toolbar #twitter-logo {
-  height: 40px;
-  margin: 0 8px;
-}
-
-.toolbar #youtube-logo {
-  height: 40px;
-  margin: 0 16px;
-}
-
-.toolbar #twitter-logo:hover,
-.toolbar #youtube-logo:hover {
-  opacity: 0.8;
 }
 
 
@@ -6281,7 +6268,6 @@ body {
 
 .tree ul {
   padding-top: 10px; position: relative;
-
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -6347,7 +6333,7 @@ right connector from last child*/
 }
 
 .tree li a{
-
+  padding: 5px 0px;
   border: 1px solid #ccc;
   text-decoration: none;
   color: #666;
@@ -6375,4 +6361,15 @@ right connector from last child*/
 .tree li a:hover+ul::before,
 .tree li a:hover+ul ul::before{
   border-color:  #94a0b4;
+}
+
+
+
+
+
+.cuadrado{
+  padding:5px;
+  margin:5px;
+
+
 }

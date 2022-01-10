@@ -94,14 +94,13 @@ export class ClientesComponent  {
 
   ngOnInit() {
 
-          this.loadScript('./assets/plugins/dropify/dist/js/dropify.min.js');
-          //this.loadScript('../assets/js/my-library.js');
-
+          /**this.loadScript('./assets/plugins/dropify/dist/js/dropify.min.js');
           const dragAndDrop = $('.dropify').dropify({
             messages: {
               'default': 'Drag and drop a CSV file here or click'
             }
           });
+           **/
 
 
 
@@ -114,6 +113,8 @@ export class ClientesComponent  {
                 apellido: ['', Validators.required],
                 nombre: ['', Validators.required],
                 dni: ['', Validators.required],
+                tipoDoc: ['', Validators.required],
+
                 lugarNac: ['', Validators.required],
                 fechaNac: ['', Validators.required],
 
@@ -338,6 +339,7 @@ export class ClientesComponent  {
           console.log("apellido: "+this.firstFormGroup.controls.apellido.value);
           console.log("nombre: "+this.firstFormGroup.controls.nombre.value);
           console.log("dni: "+this.firstFormGroup.controls.dni.value);
+          console.log("tipoDoc: "+this.firstFormGroup.controls.tipoDoc.value);
           console.log("lugarNac: "+this.firstFormGroup.controls.lugarNac.value);
           console.log("fechaNac: "+this.firstFormGroup.controls.fechaNac.value);
           console.log("email: "+this.firstFormGroup.controls.email.value);
@@ -452,6 +454,7 @@ export class ClientesComponent  {
     this.firstFormGroup.controls.apellido.setValue('');
     this.firstFormGroup.controls.nombre.setValue('');
     this.firstFormGroup.controls.dni.setValue('');
+    this.firstFormGroup.controls.tipoDoc.setValue('');
     this.firstFormGroup.controls.lugarNac.setValue('');
     this.firstFormGroup.controls.fechaNac.setValue('');
     this.firstFormGroup.controls.email.setValue('');
@@ -647,6 +650,9 @@ export class ClientesComponent  {
         console.log("nombre: "+this.cliente.nombre);
         this.firstFormGroup.controls.nombre.setValue(this.cliente.nombre);
 
+        console.log("tipoDoc: "+this.cliente.tipoDoc);
+        this.firstFormGroup.controls.tipoDoc.setValue(this.cliente.tipoDoc);
+
         console.log("dni: "+this.cliente.dni);
         this.firstFormGroup.controls.dni.setValue(this.cliente.dni);
 
@@ -677,8 +683,8 @@ export class ClientesComponent  {
         this.firstFormGroup.controls.nroTomoNac.setValue(this.cliente.nroTomoNac);
         this.firstFormGroup.controls.ofRegCivilNac.setValue(this.cliente.ofRegCivilNac);
         this.firstFormGroup.controls.ciudadRegCivilNac.setValue(this.cliente.ciudadRegCivilNac);
-        this.firstFormGroup.controls.ProvRegCivilNac.setValue(this.cliente.ProvRegCivilNac);
-        this.firstFormGroup.controls.PaisRegCivilNac.setValue(this.cliente.PaisRegCivilNac);
+        this.firstFormGroup.controls.ProvRegCivilNac.setValue(this.cliente.provRegCivilNac);
+        this.firstFormGroup.controls.PaisRegCivilNac.setValue(this.cliente.paisRegCivilNac);
 
         this.firstFormGroup.controls.calleNombre.setValue(this.cliente.calleNombre);
         this.firstFormGroup.controls.calleNro.setValue(this.cliente.calleNro);
@@ -692,6 +698,7 @@ export class ClientesComponent  {
         console.log('FECHA MATRIMONIO: '+this.cliente.fechaMatrimonio);
         if (!this.isUndefinedOrNull(this.cliente.fechaMatrimonio))
         {
+          this.mostrarCamposMatrimonio = true;
           anio = this.cliente.fechaNac.toString().substr(0,4);
           mes = this.cliente.fechaNac.toString().substr(5,2);
           dia  = this.cliente.fechaNac.toString().substr(8,2);
@@ -699,47 +706,23 @@ export class ClientesComponent  {
         }
         this.firstFormGroup.controls.lugarMatrimonio.setValue(this.cliente.lugarMatrimonio);
 
-        //localStorage.imageFrente(event.target.files[0]);
-        //localStorage.imageDorso(event.target.files[0]);
-
-        //localStorage.setItem("rutaImgFotoFrente",JSON.stringify(file));
-        //localStorage.setItem("rutaImgFotoDorso",JSON.stringify(file))
-
-        //localStorage.setItem("imgFotoFrente",JSON.stringify(this.imagenFotoFrente));
-        //localStorage.setItem("imgFotoDorso",JSON.stringify(this.imagenFotoDorso));
 
 
-        //let imageB64 = JSON.parse(localStorage.getItem("image"));
-        //let imgFotoFrente:any = localStorage.getItem("image");
-/**
-        console.log("imgFotoFrente:::: "+imgFotoFrente);
-        if (imgFotoFrente != "null")
+        if (localStorage.theImageFotoFrente != null)
         {
-              jsonObj = JSON.parse(imgFotoFrente); // string to generic object first
-              this.imagenFotoFrente = jsonObj;
-              this.fotoFrente =  JSON.parse(imgFotoFrente);
-              console.log("entro igual ");
-
+              var dataImage = localStorage.theImageFotoFrente;
+              this.fotoFrente =dataImage;
         }
 
 
-        let rutaImgFotoDorso:any = localStorage.getItem("imgFotoDorso");
-        if (rutaImgFotoDorso != null)
+
+        if (localStorage.theImageFotoPerfil != null)
         {
-
+              var dataImage = localStorage.theImageFotoPerfil;
+              this.fotoPerfil =dataImage;
         }
-**/
 
 
-    //localStorage.setItem('wallpaper', base64String);
-    //let imageB64 = localStorage.getItem("base64String");
-     //console.log("imageB64:::: "+imageB64);
-     //if (imageB64 != "null")
-     {
-
-       //this.fotoFrente= url("image/png;base64",`${imageB64}`);
-
-     }
   }
 
 
@@ -777,6 +760,7 @@ export class ClientesComponent  {
         this.cliente = new Persona();
         this.cliente.apellido = this.firstFormGroup.controls.apellido.value
         this.cliente.nombre = this.firstFormGroup.controls.nombre.value
+        this.cliente.tipoDoc = this.firstFormGroup.controls.tipoDoc.value
         this.cliente.dni = this.firstFormGroup.controls.dni.value
         this.cliente.lugarNac = this.firstFormGroup.controls.lugarNac.value
         //this.cliente.fechaNac = this.obtenerFormatoFecha(this.clienteForm.controls.fechaNac.value);
@@ -802,8 +786,8 @@ export class ClientesComponent  {
         this.cliente.nroTomoNac = this.firstFormGroup.controls.nroTomoNac.value
         this.cliente.ofRegCivilNac = this.firstFormGroup.controls.ofRegCivilNac.value
         this.cliente.ciudadRegCivilNac = this.firstFormGroup.controls.ciudadRegCivilNac.value
-        this.cliente.ProvRegCivilNac = this.firstFormGroup.controls.ProvRegCivilNac.value
-        this.cliente.PaisRegCivilNac = this.firstFormGroup.controls.PaisRegCivilNac.value
+        this.cliente.provRegCivilNac = this.firstFormGroup.controls.ProvRegCivilNac.value
+        this.cliente.paisRegCivilNac = this.firstFormGroup.controls.PaisRegCivilNac.value
         localStorage.setItem("cliente", JSON.stringify(this.cliente));
 
 
@@ -889,20 +873,11 @@ export class ClientesComponent  {
         if (event.target.files && event.target.files[0])
         {
               const file = event.target.files[0];
-              const reader = new FileReader();
+              var reader = new FileReader();
               if (index == 1)
               {
                 reader.onload = e => this.fotoFrente = reader.result;
                 this.imagenFotoFrente = event.target.files[0];
-                /**let object = {
-                  image: reader.result
-                }
-                localStorage.setItem("image",JSON.stringify(object))**/
-                //localStorage.theImage = reader.result;
-
-                // @ts-ignore
-                //const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-                //localStorage.setItem('wallpaper', base64String);
 
               }
               else
@@ -914,6 +889,11 @@ export class ClientesComponent  {
               reader.readAsDataURL(file);
         }
   }
+
+
+
+
+
 
 
 
