@@ -491,12 +491,6 @@ export class FamiliarComponent implements OnInit {
               this.titulo = " - TatarabueloMat8";
               break;
 
-
-
-
-
-
-
     }
 
     let anio,mes,dia;

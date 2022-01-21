@@ -26,6 +26,7 @@ import { FormularioComponent } from './pages/formulario/formulario.component';
 import {ClientesComponent} from "./pages/clientes/clientes.component";
 import {FamiliarComponent} from "./pages/familiar/familiar.component";
 import {APP_ROUTING} from "./app-routing.module";
+import { OtrofamiliarComponent } from './pages/otrofamiliar/otrofamiliar.component';
 
 
 
@@ -36,7 +37,8 @@ import {APP_ROUTING} from "./app-routing.module";
     AppComponent,
     FormularioComponent,
     ClientesComponent,
-    FamiliarComponent
+    FamiliarComponent,
+    OtrofamiliarComponent
 
   ],
   imports: [

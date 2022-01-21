@@ -36,7 +36,7 @@ export class ClientesComponent  {
   selectedFiles2!: FileList;
 
   files  = [];
-
+  cols: any[]=[];
 
 
 
@@ -65,6 +65,12 @@ export class ClientesComponent  {
   madreAbueloMaterno!: Contacto;
 
 
+  tipoRelacionLista = ['Hermano1',    'Hermano2',    'Hermano3',    'Hermano4',    'Hermano5',    'Hermano6',    'Hermano7',    'Hermano8',
+                      'Primo1',    'Primo2',    'Primo3',    'Primo4',    'Primo5',    'Primo6',    'Primo7',    'Primo8',
+                      'Tio1',    'Tio2',    'Tio3',    'Tio4',    'Tio5',    'Tio6',    'Tio7',    'Tio8'];
+
+
+
 
 
   estadoCivil = [
@@ -89,6 +95,11 @@ export class ClientesComponent  {
   isChecked:boolean = false;
 
 
+  public familiar!: Contacto[];
+  selectedFamiliar: Contacto[]=[];
+
+
+
 
   constructor(private router: Router,private activatedRoute: ActivatedRoute,private _formBuilder: FormBuilder, private clienteService: ClienteService ) {}
 
@@ -102,6 +113,14 @@ export class ClientesComponent  {
           });
            **/
 
+
+        this.cols = [
+          //{ field: 'id', header: 'id' },
+          { field: 'apellido', header: 'Apellido' },
+          { field: 'nombre', header: 'Nombre' },
+          { field: 'dni', header: 'Dni' },
+          { field: 'tipoRel', header: 'Tipo Relacion' }
+        ];
 
 
           console.log("estoy en init CLIENTE");
@@ -722,12 +741,33 @@ export class ClientesComponent  {
               this.fotoPerfil =dataImage;
         }
 
+        this.cargarTabla();
+
 
   }
 
 
 
+   cargarTabla()
+   {
+         let obj: any;
+         let jsonObj: any;
+         this.familiar=[];
 
+         console.log("ESTOY EN CARGAR TABLA");
+         for (let i = 0; i < this.tipoRelacionLista.length; i++)
+         {
+                 console.log("RELACION: "+this.tipoRelacionLista[i]);
+                 obj = localStorage.getItem(this.tipoRelacionLista[i]);
+                 if (obj != null)
+                 {
+                        jsonObj = JSON.parse(obj); // string to generic object first
+                        let contacto = (<Contacto>jsonObj);
+                        this.familiar.push(contacto);
+                 }
+         }
+
+   }
 
 
 
@@ -791,10 +831,11 @@ export class ClientesComponent  {
         localStorage.setItem("cliente", JSON.stringify(this.cliente));
 
 
-        //localStorage.setItem("imgFrente", this.fileUpload1);
-        //localStorage.setItem("imgFrente", this.fileUpload1);
+        var dataImageFrente = this.fotoFrente;
+        localStorage.theImageFotoFrente = dataImageFrente;
 
-
+        var dataImagePerfil = this.fotoPerfil;
+        localStorage.theImageFotoPerfil = dataImagePerfil;
 
 
         this.router.navigateByUrl('Formulario');
@@ -845,8 +886,8 @@ export class ClientesComponent  {
       if (result.value) {
         //localStorage.setItem("key_"+cont, JSON.stringify(this.nuevoContacto));
         localStorage.removeItem("cliente");
-
-
+        localStorage.removeItem("theImageFotoFrente");
+        localStorage.removeItem("theImageFotoPerfil");
 
         Swal.fire(
           'Cliente borrado',
@@ -892,6 +933,47 @@ export class ClientesComponent  {
 
 
 
+
+
+
+
+  nuevoFamiliar()
+  {
+    this.router.navigateByUrl('OtroFamiliar/Nuevo');
+  }
+
+  editarFamiliar(familiar:Contacto)
+  {
+        this.router.navigateByUrl('OtroFamiliar/'+familiar.tipoRelacion.descripcion);
+  }
+
+
+  borrarFamiliar(familiar:Contacto)
+  {
+                let apellido= familiar.apellido+" "+familiar.nombre;
+                console.log("estoy en borrar Contacto "+familiar.id);
+                Swal.fire({
+                  title: '¿Borrar Familiar?',
+                  text: `Esta a punto de borrar a ${ apellido }`,
+                  icon: 'question',
+                  showCancelButton: true,
+                  confirmButtonText: 'Si, borrarlo'
+                }).then((result) => {
+                  if (result.value)
+                  {
+                    //localStorage.setItem("key_"+cont, JSON.stringify(this.nuevoContacto));
+                    localStorage.removeItem(familiar.tipoRelacion.descripcion);
+                    this.cargarTabla();
+
+
+                    Swal.fire(
+                      'Familiar borrado',
+                      `${ apellido } fue eliminado correctamente`,
+                      'success'
+                    );
+                  }
+                })
+  }
 
 
 

@@ -71,5 +71,7 @@ export class Contacto {
   provRegCivilDef: string="";
   paisRegCivilDef: string="";
 
+  apellidoNombrePadre: string="";
+  apellidoNombreMadre: string="";
 
 }

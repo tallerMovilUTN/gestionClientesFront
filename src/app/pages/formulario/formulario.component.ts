@@ -16,6 +16,14 @@ export class FormularioComponent implements OnInit {
   imagenFotoDorso!: File;
 
 
+  agregoFamiliar:boolean = false;
+
+  tipoRelacionLista = ['Hermano1',    'Hermano2',    'Hermano3',    'Hermano4',    'Hermano5',    'Hermano6',    'Hermano7',    'Hermano8',
+    'Primo1',    'Primo2',    'Primo3',    'Primo4',    'Primo5',    'Primo6',    'Primo7',    'Primo8',
+    'Tio1',    'Tio2',    'Tio3',    'Tio4',    'Tio5',    'Tio6',    'Tio7',    'Tio8'];
+
+
+
 
 
   cliente!: Persona;
@@ -210,6 +218,9 @@ export class FormularioComponent implements OnInit {
 
   borrarStore()
   {
+
+        localStorage.removeItem("theImageFotoFrente");
+        localStorage.removeItem("theImageFotoPerfil");
         localStorage.removeItem("cliente");
         this.apellidoCli = "Cliente";
         this.nombreCli = "";
@@ -372,6 +383,11 @@ export class FormularioComponent implements OnInit {
         this.tatarabueloMat8pellido = "Tatarabuelo";
         this.tatarabueloMat8Nombre = "Mat8";
         this.styleTatarabueloMat8="";
+
+        for (let i = 0; i < this.tipoRelacionLista.length; i++)
+        {
+          localStorage.removeItem(this.tipoRelacionLista[i]);
+        }
 
         this.cliente = new Persona();
         this.contactos=[];///vacio los contactos
@@ -849,8 +865,35 @@ export class FormularioComponent implements OnInit {
   }
 
 
+
+  agregarListaFamiliares()
+  {
+        let obj: any;
+        let jsonObj: any;
+        console.log("ESTOY EN CARGAR TABLA");
+        for (let i = 0; i < this.tipoRelacionLista.length; i++)
+        {
+          console.log("RELACION: "+this.tipoRelacionLista[i]);
+          obj = localStorage.getItem(this.tipoRelacionLista[i]);
+          if (obj != null)
+          {
+            jsonObj = JSON.parse(obj); // string to generic object first
+            let contacto = (<Contacto>jsonObj);
+            this.contactos.push(contacto);
+          }
+        }
+        this.agregoFamiliar = true;
+
+  }
+
+
   enviarFormulario()
   {
+
+              if (!this.agregoFamiliar)
+              {
+                    this.agregarListaFamiliares();
+              }
 
               var fotoFrente,fotoPerfil;
               if (localStorage.theImageFotoFrente != null)
@@ -893,6 +936,7 @@ export class FormularioComponent implements OnInit {
               {
                 console.log("COMPLETE SE EJECUTA SI NO DA ERROR");
                 Swal.fire("Arbol Genealogico Familiar", 'Se han registrado correctamente todos los datos', 'success');
+                this.borrarStore();
                 //this.router.navigateByUrl(`/dashboard/clientes`)
 
               }
