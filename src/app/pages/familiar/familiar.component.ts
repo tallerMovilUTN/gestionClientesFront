@@ -76,7 +76,9 @@ export class FamiliarComponent implements OnInit {
 
           actaNacContacto: [''],
           nroFolioNacContacto: [''],
+          cmbFolioNacContacto: [''],
           nroTomoNacContacto: [''],
+          cmbTomoNacContacto: [''],
           ofRegCivilNacContacto: [''],
           ciudadRegCivilNacContacto: [''],
           ProvRegCivilNacContacto: [''],
@@ -85,7 +87,9 @@ export class FamiliarComponent implements OnInit {
 
           actaMatContacto: [''],
           nroFolioMatContacto: [''],
+          cmbFolioMatContacto: [''],
           nroTomoMatContacto: [''],
+          cmbTomoMatContacto: [''],
           ofRegCivilMatContacto: [''],
           ciudadRegCivilMatContacto: [''],
           ProvRegCivilMatContacto: [''],
@@ -93,7 +97,9 @@ export class FamiliarComponent implements OnInit {
 
           actaDefContacto: [''],
           nroFolioDefContacto: [''],
+          cmbFolioDefContacto: [''],
           nroTomoDefContacto: [''],
+          cmbTomoDefContacto: [''],
           ofRegCivilDefContacto: [''],
           ciudadRegCivilDefContacto: [''],
           ProvRegCivilDefContacto: [''],
@@ -172,7 +178,9 @@ export class FamiliarComponent implements OnInit {
 
         this.contacto.actaNac = this.secondFormGroup.controls.actaNacContacto.value;
         this.contacto.nroFolioNac = this.secondFormGroup.controls.nroFolioNacContacto.value;
+         this.contacto.cmbFolioNac = this.secondFormGroup.controls.cmbFolioNacContacto.value;
         this.contacto.nroTomoNac = this.secondFormGroup.controls.nroTomoNacContacto.value;
+    this.contacto.cmbTomoNac = this.secondFormGroup.controls.cmbTomoNacContacto.value;
         this.contacto.ofRegCivilNac = this.secondFormGroup.controls.ofRegCivilNacContacto.value;
         this.contacto.ciudadRegCivilNac = this.secondFormGroup.controls.ciudadRegCivilNacContacto.value;
         this.contacto.provRegCivilNac = this.secondFormGroup.controls.ProvRegCivilNacContacto.value;
@@ -186,7 +194,9 @@ export class FamiliarComponent implements OnInit {
         this.contacto.fechaMatHasta = this.secondFormGroup.controls.fechaMatHastaContacto.value;
         this.contacto.actaMat = this.secondFormGroup.controls.actaMatContacto.value;
         this.contacto.nroFolioMat = this.secondFormGroup.controls.nroFolioMatContacto.value;
+        this.contacto.cmbFolioMat = this.secondFormGroup.controls.cmbFolioMatContacto.value;
         this.contacto.nroTomoMat = this.secondFormGroup.controls.nroTomoMatContacto.value;
+    this.contacto.cmbTomoMat = this.secondFormGroup.controls.cmbTomoMatContacto.value;
         this.contacto.ofRegCivilMat = this.secondFormGroup.controls.ofRegCivilMatContacto.value;
         this.contacto.ciudadRegCivilMat = this.secondFormGroup.controls.ciudadRegCivilMatContacto.value;
         this.contacto.provRegCivilMat = this.secondFormGroup.controls.ProvRegCivilMatContacto.value;
@@ -204,7 +214,9 @@ export class FamiliarComponent implements OnInit {
         this.contacto.fechaDefHasta = this.secondFormGroup.controls.fechaDefHastaContacto.value;
         this.contacto.actaDef = this.secondFormGroup.controls.actaDefContacto.value;
         this.contacto.nroFolioDef = this.secondFormGroup.controls.nroFolioDefContacto.value;
+        this.contacto.cmbFolioDef = this.secondFormGroup.controls.cmbFolioDefContacto.value;
         this.contacto.nroTomoDef = this.secondFormGroup.controls.nroTomoDefContacto.value;
+    this.contacto.cmbTomoDef = this.secondFormGroup.controls.cmbTomoDefContacto.value;
         this.contacto.ofRegCivilDef = this.secondFormGroup.controls.ofRegCivilDefContacto.value;
         this.contacto.ciudadRegCivilDef = this.secondFormGroup.controls.ciudadRegCivilDefContacto.value;
         this.contacto.provRegCivilDef = this.secondFormGroup.controls.ProvRegCivilDefContacto.value;
@@ -549,7 +561,9 @@ export class FamiliarComponent implements OnInit {
             }
             this.secondFormGroup.controls.actaNacContacto.setValue(this.contacto.actaNac);
             this.secondFormGroup.controls.nroFolioNacContacto.setValue(this.contacto.nroFolioNac);
+            this.secondFormGroup.controls.cmbFolioNacContacto.setValue(this.contacto.cmbFolioNac);
             this.secondFormGroup.controls.nroTomoNacContacto.setValue(this.contacto.nroTomoNac);
+      this.secondFormGroup.controls.cmbTomoNacContacto.setValue(this.contacto.cmbTomoNac);
             this.secondFormGroup.controls.ofRegCivilNacContacto.setValue(this.contacto.ofRegCivilNac);
             this.secondFormGroup.controls.ciudadRegCivilNacContacto.setValue(this.contacto.ciudadRegCivilNac);
             this.secondFormGroup.controls.ProvRegCivilNacContacto.setValue(this.contacto.provRegCivilNac);
@@ -598,7 +612,9 @@ export class FamiliarComponent implements OnInit {
             }
             this.secondFormGroup.controls.actaMatContacto.setValue(this.contacto.actaMat);
             this.secondFormGroup.controls.nroFolioMatContacto.setValue(this.contacto.nroFolioMat);
+            this.secondFormGroup.controls.cmbFolioMatContacto.setValue(this.contacto.cmbFolioMat);
             this.secondFormGroup.controls.nroTomoMatContacto.setValue(this.contacto.nroTomoMat);
+      this.secondFormGroup.controls.cmbTomoMatContacto.setValue(this.contacto.cmbTomoMat);
             this.secondFormGroup.controls.ofRegCivilMatContacto.setValue(this.contacto.ofRegCivilMat);
             this.secondFormGroup.controls.ciudadRegCivilMatContacto.setValue(this.contacto.ciudadRegCivilMat);
             this.secondFormGroup.controls.ProvRegCivilMatContacto.setValue(this.contacto.provRegCivilMat);
@@ -650,7 +666,9 @@ export class FamiliarComponent implements OnInit {
 
             this.secondFormGroup.controls.actaDefContacto.setValue(this.contacto.actaDef);
             this.secondFormGroup.controls.nroFolioDefContacto.setValue(this.contacto.nroFolioDef);
+            this.secondFormGroup.controls.cmbFolioDefContacto.setValue(this.contacto.cmbFolioDef);
             this.secondFormGroup.controls.nroTomoDefContacto.setValue(this.contacto.nroTomoDef);
+            this.secondFormGroup.controls.cmbTomoDefContacto.setValue(this.contacto.cmbTomoDef);
             this.secondFormGroup.controls.ofRegCivilDefContacto.setValue(this.contacto.ofRegCivilDef);
             this.secondFormGroup.controls.ciudadRegCivilDefContacto.setValue(this.contacto.ciudadRegCivilDef);
             this.secondFormGroup.controls.ProvRegCivilDefContacto.setValue(this.contacto.provRegCivilDef);

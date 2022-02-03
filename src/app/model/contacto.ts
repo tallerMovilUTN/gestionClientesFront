@@ -46,7 +46,9 @@ export class Contacto {
 
   actaNac: number=0;
   nroFolioNac: number=0;
+  cmbFolioNac: string="";
   nroTomoNac: number=0;
+  cmbTomoNac: string="";
 
   ofRegCivilNac: string="";
   ciudadRegCivilNac: string="";
@@ -56,7 +58,9 @@ export class Contacto {
 
   actaMat: number=0;
   nroFolioMat: number=0;
+  cmbFolioMat:string="";
   nroTomoMat: number=0;
+  cmbTomoMat:string="";
   ofRegCivilMat: string="";
   ciudadRegCivilMat: string="";
   provRegCivilMat: string="";
@@ -65,7 +69,9 @@ export class Contacto {
 
   actaDef: number=0;
   nroFolioDef: number=0;
+  cmbFolioDef:string="";
   nroTomoDef: number=0;
+  cmbTomoDef:string="";
   ofRegCivilDef: string="";
   ciudadRegCivilDef: string="";
   provRegCivilDef: string="";

@@ -140,7 +140,9 @@ export class ClientesComponent  {
 
                 actaNac: [''],
                 nroFolioNac: [''],
+                cmbFolioNac:[''],
                 nroTomoNac: [''],
+                cmbTomoNac:[''],
                 ofRegCivilNac: [''],
 
                 ciudadRegCivilNac: [''],
@@ -492,8 +494,9 @@ export class ClientesComponent  {
     this.firstFormGroup.controls.fechaNacHasta.setValue('');
     this.firstFormGroup.controls.actaNac.setValue('');
     this.firstFormGroup.controls.nroFolioNac.setValue('');
-    this.firstFormGroup.controls.nroFolioNac.setValue('');
+    this.firstFormGroup.controls.cmbFolioNac.setValue('');
     this.firstFormGroup.controls.nroTomoNac.setValue('');
+    this.firstFormGroup.controls.cmbTomoNac.setValue('');
     this.firstFormGroup.controls.ofRegCivilNac.setValue('');
     this.firstFormGroup.controls.ciudadRegCivilNac.setValue('');
     this.firstFormGroup.controls.ProvRegCivilNac.setValue('');
@@ -699,7 +702,9 @@ export class ClientesComponent  {
 
         this.firstFormGroup.controls.actaNac.setValue(this.cliente.actaNac);
         this.firstFormGroup.controls.nroFolioNac.setValue(this.cliente.nroFolioNac);
+         this.firstFormGroup.controls.cmbFolioNac.setValue(this.cliente.cmbFolioNac);
         this.firstFormGroup.controls.nroTomoNac.setValue(this.cliente.nroTomoNac);
+        this.firstFormGroup.controls.cmbTomoNac.setValue(this.cliente.cmbTomoNac);
         this.firstFormGroup.controls.ofRegCivilNac.setValue(this.cliente.ofRegCivilNac);
         this.firstFormGroup.controls.ciudadRegCivilNac.setValue(this.cliente.ciudadRegCivilNac);
         this.firstFormGroup.controls.ProvRegCivilNac.setValue(this.cliente.provRegCivilNac);
@@ -823,7 +828,9 @@ export class ClientesComponent  {
 
         this.cliente.actaNac = this.firstFormGroup.controls.actaNac.value
         this.cliente.nroFolioNac = this.firstFormGroup.controls.nroFolioNac.value
+        this.cliente.cmbFolioNac = this.firstFormGroup.controls.cmbFolioNac.value
         this.cliente.nroTomoNac = this.firstFormGroup.controls.nroTomoNac.value
+        this.cliente.cmbTomoNac = this.firstFormGroup.controls.cmbTomoNac.value
         this.cliente.ofRegCivilNac = this.firstFormGroup.controls.ofRegCivilNac.value
         this.cliente.ciudadRegCivilNac = this.firstFormGroup.controls.ciudadRegCivilNac.value
         this.cliente.provRegCivilNac = this.firstFormGroup.controls.ProvRegCivilNac.value

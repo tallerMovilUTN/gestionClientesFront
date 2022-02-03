@@ -17,6 +17,7 @@ export class OtrofamiliarComponent implements OnInit {
 
 
   titulo:string="";
+  familiarPreCargado:string="";
   tipoRelacion!: Tiporelacion;
 
 
@@ -33,7 +34,7 @@ export class OtrofamiliarComponent implements OnInit {
 
 
   tipoRelacionLista = [
-    {valor:'0', muestraValor:''},
+    //{valor:'0', muestraValor:''},
     {valor:'100', muestraValor:'Hermano1'},
     {valor:'101', muestraValor:'Hermano2'},
     {valor:'102', muestraValor:'Hermano3'},
@@ -64,13 +65,12 @@ export class OtrofamiliarComponent implements OnInit {
 
   ];
 
-  seleccionTipoRel: string = this.tipoRelacionLista[0].valor;
+  //seleccionTipoRel: string = this.tipoRelacionLista[0].valor;
 
   public tipoRelSeleccionado:any;
 
   onOptionsSelectedTipoRelacion(seleccionTipoRel: string){
     this.tipoRelSeleccionado=(seleccionTipoRel);
-
 
     console.log("estoy en onOptionsSelectedEstadoTramite=> "+this.tipoRelSeleccionado.muestraValor+"("+this.tipoRelSeleccionado.valor+")");
   }
@@ -83,7 +83,7 @@ export class OtrofamiliarComponent implements OnInit {
       apellidoContacto: ['', Validators.required],
       nombreContacto: ['', Validators.required],
 
-      tipoRelacion: ['', Validators.required],
+      tipoRelacionContacto: ['', Validators.required],
 
 
 
@@ -126,7 +126,9 @@ export class OtrofamiliarComponent implements OnInit {
 
       actaNacContacto: [''],
       nroFolioNacContacto: [''],
+      cmbFolioNacContacto: [''],
       nroTomoNacContacto: [''],
+      cmbTomoNacContacto: [''],
       ofRegCivilNacContacto: [''],
       ciudadRegCivilNacContacto: [''],
       ProvRegCivilNacContacto: [''],
@@ -135,7 +137,9 @@ export class OtrofamiliarComponent implements OnInit {
 
       actaMatContacto: [''],
       nroFolioMatContacto: [''],
+      cmbFolioMatContacto: [''],
       nroTomoMatContacto: [''],
+      cmbTomoMatContacto: [''],
       ofRegCivilMatContacto: [''],
       ciudadRegCivilMatContacto: [''],
       ProvRegCivilMatContacto: [''],
@@ -143,7 +147,9 @@ export class OtrofamiliarComponent implements OnInit {
 
       actaDefContacto: [''],
       nroFolioDefContacto: [''],
+      cmbFolioDefContacto: [''],
       nroTomoDefContacto: [''],
+      cmbTomoDefContacto: [''],
       ofRegCivilDefContacto: [''],
       ciudadRegCivilDefContacto: [''],
       ProvRegCivilDefContacto: [''],
@@ -176,15 +182,23 @@ export class OtrofamiliarComponent implements OnInit {
 
   guardar()
   {
+    console.log("PRESIONO GUARDAR::: ");
     this.submitted2 = true;
-
+    console.log("PRESIONO GUARDAR::: TIPORELSELECCIONADO"+this.tipoRelSeleccionado)
+    console.log("PRESIONO GUARDAR::: TIPORELSELECCIONADO"+this.tipoRelSeleccionado.valor)
     if (this.secondFormGroup.invalid) {
+
+      console.log("PRESIONO GUARDAR::: FORM INVALID ");
       return;
     }
 
-    console.log("PRESIONO GUARDAR::: ");
-    console.log("PRESIONO GUARDAR::: ");
-    console.log("PRESIONO GUARDAR::: ");
+    if (this.tipoRelSeleccionado==undefined)
+    {console.log("PRESIONO GUARDAR::: TIPORELSELECCIONADO 0 ");
+      return;
+    }
+
+
+
 
 
 
@@ -207,7 +221,9 @@ export class OtrofamiliarComponent implements OnInit {
 
     this.contacto.actaNac = this.secondFormGroup.controls.actaNacContacto.value;
     this.contacto.nroFolioNac = this.secondFormGroup.controls.nroFolioNacContacto.value;
+    this.contacto.cmbFolioNac = this.secondFormGroup.controls.cmbFolioNacContacto.value;
     this.contacto.nroTomoNac = this.secondFormGroup.controls.nroTomoNacContacto.value;
+    this.contacto.cmbTomoNac = this.secondFormGroup.controls.cmbTomoNacContacto.value;
     this.contacto.ofRegCivilNac = this.secondFormGroup.controls.ofRegCivilNacContacto.value;
     this.contacto.ciudadRegCivilNac = this.secondFormGroup.controls.ciudadRegCivilNacContacto.value;
     this.contacto.provRegCivilNac = this.secondFormGroup.controls.ProvRegCivilNacContacto.value;
@@ -219,7 +235,9 @@ export class OtrofamiliarComponent implements OnInit {
     this.contacto.fechaMatHasta = this.secondFormGroup.controls.fechaMatHastaContacto.value;
     this.contacto.actaMat = this.secondFormGroup.controls.actaMatContacto.value;
     this.contacto.nroFolioMat = this.secondFormGroup.controls.nroFolioMatContacto.value;
+    this.contacto.cmbFolioMat = this.secondFormGroup.controls.cmbFolioMatContacto.value;
     this.contacto.nroTomoMat = this.secondFormGroup.controls.nroTomoMatContacto.value;
+    this.contacto.cmbTomoMat = this.secondFormGroup.controls.cmbTomoMatContacto.value;
     this.contacto.ofRegCivilMat = this.secondFormGroup.controls.ofRegCivilMatContacto.value;
     this.contacto.ciudadRegCivilMat = this.secondFormGroup.controls.ciudadRegCivilMatContacto.value;
     this.contacto.provRegCivilMat = this.secondFormGroup.controls.ProvRegCivilMatContacto.value;
@@ -233,7 +251,9 @@ export class OtrofamiliarComponent implements OnInit {
     this.contacto.fechaDefHasta = this.secondFormGroup.controls.fechaDefHastaContacto.value;
     this.contacto.actaDef = this.secondFormGroup.controls.actaDefContacto.value;
     this.contacto.nroFolioDef = this.secondFormGroup.controls.nroFolioDefContacto.value;
+    this.contacto.cmbFolioDef = this.secondFormGroup.controls.cmbFolioDefContacto.value;
     this.contacto.nroTomoDef = this.secondFormGroup.controls.nroTomoDefContacto.value;
+    this.contacto.cmbTomoDef = this.secondFormGroup.controls.cmbTomoDefContacto.value;
     this.contacto.ofRegCivilDef = this.secondFormGroup.controls.ofRegCivilDefContacto.value;
     this.contacto.ciudadRegCivilDef = this.secondFormGroup.controls.ciudadRegCivilDefContacto.value;
     this.contacto.provRegCivilDef = this.secondFormGroup.controls.ProvRegCivilDefContacto.value;
@@ -258,6 +278,11 @@ export class OtrofamiliarComponent implements OnInit {
     tipoRel.id = this.tipoRelSeleccionado.valor;
     tipoRel.descripcion = this.tipoRelSeleccionado.muestraValor;
     this.contacto.tipoRelacion = tipoRel;
+
+    if (this.familiarPreCargado.length>0)
+    {
+    localStorage.removeItem(this.familiarPreCargado);
+    }
     localStorage.setItem(tipoRel.descripcion, JSON.stringify(this.contacto));
     //this.router.navigate(['formulario'], {queryParams: {contacto: this.contacto}});
     this.router.navigateByUrl('Cliente');
@@ -272,14 +297,79 @@ export class OtrofamiliarComponent implements OnInit {
   cargarDatos(id: any)
   {
         console.log("ESTOY EN cargarDatos:: " + id);
+        let x=0;
+        if (id=='Nuevo'){
+
+          let obj: any;
+          let jsonObj: any;
+
+          let tipoRelListaAux: any=[{valor:"0",muestraValor:""}];
+
+          //tipoRelListaAux=this.tipoRelacionLista;
+
+          console.log("ESTOY EN CARGAR TABLA");
+          for (let i = 0; i < this.tipoRelacionLista.length; i++)
+          {
+            //console.log("RELACION: "+this.tipoRelacionLista[i].muestraValor);
+            obj = localStorage.getItem(this.tipoRelacionLista[i].muestraValor);
+            if (obj != null)
+            {
+              jsonObj = JSON.parse(obj); // string to generic object first
+              let contacto = (<Contacto>jsonObj);
+
+              /*if (this.tipoRelacionLista[i].muestraValor!=contacto.tipoRelacion.descripcion)
+              {
+
+
+
+              }*/
+
+
+
+            }
+            //es null
+            else{
+              console.log("ESTOY EN CARGAR TABLA ES DISTINTOOO");
+              console.log("ESTOY EN CARGAR TABLA "+this.tipoRelacionLista[i].muestraValor);
+
+              tipoRelListaAux[x]=this.tipoRelacionLista[i];
+              //tipoRelListaAux[x].muestraValor=this.tipoRelacionLista[i].muestraValor;
+
+            /*  tipoRelListaAux=[{
+                valor:this.tipoRelacionLista[i].valor,
+                muestraValor:this.tipoRelacionLista[i].muestraValor
+              }]*/
+              x=x+1;
+            }
+
+          }
+          this.tipoRelacionLista=tipoRelListaAux;
+
+/*
+          for (var item of this.tipoRelacionLista)
+        {
+          if (id==item.muestraValor)
+          {
+            console.log("ESTOY EN item.muestraValor:: " + item.muestraValor);
+
+            this.tipoRelacionLista[(Number(item.valor)-100+1)]={valor:'0',muestraValor: ''};
+          }
+        }
+        */
+        }
         if (id != 'Nuevo')
         {
+
+
+
+
                 let obj: any;
                 let jsonObj: any;
 
 
                 obj = localStorage.getItem(id);
                 this.titulo = " - "+id;
+                this.familiarPreCargado=id;
 
 
 
@@ -298,9 +388,38 @@ export class OtrofamiliarComponent implements OnInit {
                   this.secondFormGroup.controls.emailContacto.setValue(this.contacto.email);
                   this.secondFormGroup.controls.lugarNacContacto.setValue(this.contacto.lugarNac);
 
-                  console.log("TIPO RELACION: "+this.contacto.tipoRelacion.id+"- "+this.contacto.tipoRelacion.descripcion);
+                  console.log("TIPO RELACION: "+this.contacto.tipoRelacion.id+"-"+this.contacto.tipoRelacion.descripcion);
+                  console.log("TIPO RELACION: "+id);
 
-                  this.tipoRelSeleccionado = this.tipoRelacionLista[this.contacto.tipoRelacion.id];
+                  //this.tipoRelSeleccionado.valor=this.contacto.tipoRelacion.id;
+                  //this.tipoRelSeleccionado.muestraValor=this.contacto.tipoRelacion.descripcion;
+
+                  //this.secondFormGroup.controls.tipoRelacionContacto.setValue(this.contacto.tipoRelacion);
+                  console.log("this.tipoRelacionLista: "+JSON.stringify(this.tipoRelacionLista));
+
+                  this.tipoRelSeleccionado=this.tipoRelacionLista[this.contacto.tipoRelacion.id-100];
+
+                  /*this.tipoRelSeleccionado={
+                    valor:this.contacto.tipoRelacion.id,
+                    muestraValor:this.contacto.tipoRelacion.descripcion,
+                  }*/
+                  //console.log("this.tipoRelacionLista: "+this.tipoRelacionLista[1]);
+
+
+
+                  //this.tipoRelSeleccionado=this.tipoRelacionLista[this.contacto.tipoRelacion.id];
+
+                  //this.tipoRelSeleccionado = this.tipoRelacionLista[this.contacto.tipoRelacion.id];
+                  console.log(JSON.stringify(this.tipoRelSeleccionado));
+                  this.secondFormGroup.controls.tipoRelacionContacto.setValue(this.tipoRelSeleccionado);
+                  this.secondFormGroup.controls.tipoRelacionContacto.setValue(this.tipoRelSeleccionado);
+
+
+                  //this.secondFormGroup.controls.tipoRelSeleccionado.setValue(this.tipoRelacionLista[this.contacto.tipoRelacion.id]);
+
+
+                  //this.tipoRelSeleccionado = this.contacto.tipoRelacion.descripcion;
+                  console.log("tipoRelSeleccionado: "+this.tipoRelSeleccionado);
                   //this.estadoSeleccionado=this.estadoGestionTramite[this.gestiontramite.estado];
 
                   //let tipoRelacionLista:any = [ {valor:this.contacto.tipoRelacion.id, muestraValor:this.contacto.tipoRelacion.descripcion}];
@@ -347,7 +466,9 @@ export class OtrofamiliarComponent implements OnInit {
                   }
                   this.secondFormGroup.controls.actaNacContacto.setValue(this.contacto.actaNac);
                   this.secondFormGroup.controls.nroFolioNacContacto.setValue(this.contacto.nroFolioNac);
+                  this.secondFormGroup.controls.cmbFolioNacContacto.setValue(this.contacto.cmbFolioNac);
                   this.secondFormGroup.controls.nroTomoNacContacto.setValue(this.contacto.nroTomoNac);
+                  this.secondFormGroup.controls.cmbTomoNacContacto.setValue(this.contacto.cmbTomoNac);
                   this.secondFormGroup.controls.ofRegCivilNacContacto.setValue(this.contacto.ofRegCivilNac);
                   this.secondFormGroup.controls.ciudadRegCivilNacContacto.setValue(this.contacto.ciudadRegCivilNac);
                   this.secondFormGroup.controls.ProvRegCivilNacContacto.setValue(this.contacto.provRegCivilNac);
@@ -396,7 +517,9 @@ export class OtrofamiliarComponent implements OnInit {
                   }
                   this.secondFormGroup.controls.actaMatContacto.setValue(this.contacto.actaMat);
                   this.secondFormGroup.controls.nroFolioMatContacto.setValue(this.contacto.nroFolioMat);
+                  this.secondFormGroup.controls.cmbFolioMatContacto.setValue(this.contacto.cmbFolioMat);
                   this.secondFormGroup.controls.nroTomoMatContacto.setValue(this.contacto.nroTomoMat);
+                  this.secondFormGroup.controls.cmbTomoMatContacto.setValue(this.contacto.cmbTomoMat);
                   this.secondFormGroup.controls.ofRegCivilMatContacto.setValue(this.contacto.ofRegCivilMat);
                   this.secondFormGroup.controls.ciudadRegCivilMatContacto.setValue(this.contacto.ciudadRegCivilMat);
                   this.secondFormGroup.controls.ProvRegCivilMatContacto.setValue(this.contacto.provRegCivilMat);
@@ -448,7 +571,9 @@ export class OtrofamiliarComponent implements OnInit {
 
                   this.secondFormGroup.controls.actaDefContacto.setValue(this.contacto.actaDef);
                   this.secondFormGroup.controls.nroFolioDefContacto.setValue(this.contacto.nroFolioDef);
+                  this.secondFormGroup.controls.cmbFolioDefContacto.setValue(this.contacto.cmbFolioDef);
                   this.secondFormGroup.controls.nroTomoDefContacto.setValue(this.contacto.nroTomoDef);
+                  this.secondFormGroup.controls.cmbTomoDefContacto.setValue(this.contacto.cmbTomoDef);
                   this.secondFormGroup.controls.ofRegCivilDefContacto.setValue(this.contacto.ofRegCivilDef);
                   this.secondFormGroup.controls.ciudadRegCivilDefContacto.setValue(this.contacto.ciudadRegCivilDef);
                   this.secondFormGroup.controls.ProvRegCivilDefContacto.setValue(this.contacto.provRegCivilDef);

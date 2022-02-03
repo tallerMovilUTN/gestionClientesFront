@@ -29,7 +29,9 @@ export class Persona {
 
     actaNac: number=0;
     nroFolioNac: number=0;
+    cmbFolioNac: string="";
     nroTomoNac: number=0;
+    cmbTomoNac: string="";
     ofRegCivilNac: string="";
     ciudadRegCivilNac: string="";
     provRegCivilNac: string="";

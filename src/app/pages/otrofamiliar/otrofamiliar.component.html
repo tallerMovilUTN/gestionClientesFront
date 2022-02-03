@@ -21,15 +21,19 @@
 
           <div class="col-md-6">
             <div class="form-group">
-              <label class="control-label">Indique Tipo de Relacion</label>
-              <select class="form-control"  formControlName="tipoRelacion" #selectipoRel (select)="tipoRelSeleccionado"  [(ngModel)]="tipoRelSeleccionado" (change)="onOptionsSelectedTipoRelacion(tipoRelSeleccionado)"
-                      required [ngClass]="{ 'is-invalid': submitted2 && f.tipoRelacion.errors }">
-                    <option  [value]="item" [ngValue]="item" *ngFor="let item of tipoRelacionLista">{{item.muestraValor}}</option>
+              <label for="tipoRelacionContacto"  class="control-label">Indique Tipo de Relacion</label>
+              <select class="form-control" name="tipoRelacionContacto" formControlName="tipoRelacionContacto" #selectipoRel (select)="tipoRelSeleccionado" [(ngModel)]="tipoRelSeleccionado" (change)="onOptionsSelectedTipoRelacion(tipoRelSeleccionado)"
+                      required [ngClass]="{ 'is-invalid': submitted2 && f.tipoRelacionContacto.errors }">
+                    <option [value]="item" [ngValue]="item" *ngFor="let item of tipoRelacionLista">{{item.muestraValor}}</option>
 
-                    <div *ngIf="submitted2 && f.tipoRelacion.errors" class="invalid-feedback">
-                      <div *ngIf="f.tipoRelacion.errors.required">Debe seleccionar el Tipo Relacion</div>
-                    </div>
+                   <!-- <div *ngIf="submitted2 && f.tipoRelacionContacto.errors" class="invalid-feedback">
+                      <div *ngIf="f.tipoRelacionContacto.errors.required">Debe seleccionar el Tipo Relacion</div>
+                    </div>-->
               </select>
+              <div *ngIf="submitted2 && (tipoRelSeleccionado==undefined  || this.tipoRelSeleccionado.valor==0 )"
+                   style="margin-top: .25rem;font-size: .875rem;color: #dc3545;"  >
+                <div> Debe seleccionar el Tipo Relacion </div>
+              </div>
 
             </div>
           </div>
@@ -161,14 +165,14 @@
 
 
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label  class="control-label">Acta Nacimiento </label>
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaNacContacto" >
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label for="nroFolioNac" class="control-label">Nro Folio </label>
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioNacContacto" >
@@ -176,12 +180,61 @@
             </div>
           </div>
 
+          <div class="col-md-1 " style="top: 30px" >
+            <div class="form-group">
+
+              <select #selecFolioNac class="custom-select form-control" formControlName="cmbFolioNacContacto" name="cmbFolioNacContacto" >
+                <option value="Vuelto">Vuelto</option>
+              </select>
+
+            </div>
+          </div>
+
+
+
           <div class="col-md-4">
             <div class="form-group">
               <label  class="control-label">Nro Tomo </label>
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoNacContacto" >
             </div>
           </div>
+
+          <div class="col-md-1 " style="top:30px">
+            <div class="form-group">
+
+              <select  #selecTomoNac class="custom-select form-control" formControlName="cmbTomoNacContacto" name="cmbTomoNacContacto" >
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="H">H</option>
+                <option value="I">I</option>
+                <option value="J">J</option>
+                <option value="K">K</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="N">N</option>
+                <option value="Ñ">Ñ</option>
+                <option value="O">O</option>
+                <option value="P">P</option>
+                <option value="Q">Q</option>
+                <option value="R">R</option>
+                <option value="S">S</option>
+                <option value="T">T</option>
+                <option value="U">U</option>
+                <option value="V">V</option>
+                <option value="W">W</option>
+                <option value="X">X</option>
+                <option value="Y">Y</option>
+                <option value="Z">Z</option>
+              </select>
+
+            </div>
+          </div>
+
         </div>
 
         <div class="row">
@@ -262,17 +315,27 @@
         </div>
 
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label  class="control-label">Acta Matrimonio </label>
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaMatContacto" >
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label for="nroFolioNac" class="control-label">Nro Folio </label>
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioMatContacto" >
+
+            </div>
+          </div>
+
+          <div class="col-md-1 " style="top: 30px" >
+            <div class="form-group">
+
+              <select #selecFolioMat class="custom-select form-control" formControlName="cmbFolioMatContacto" name="cmbFolioMatContacto" >
+                <option value="Vuelto">Vuelto</option>
+              </select>
 
             </div>
           </div>
@@ -283,6 +346,43 @@
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoMatContacto" >
             </div>
           </div>
+
+          <div class="col-md-1 " style="top:30px">
+            <div class="form-group">
+
+              <select  #selecTomoMat class="custom-select form-control" formControlName="cmbTomoMatContacto" name="cmbTomoMatContacto" >
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="H">H</option>
+                <option value="I">I</option>
+                <option value="J">J</option>
+                <option value="K">K</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="N">N</option>
+                <option value="Ñ">Ñ</option>
+                <option value="O">O</option>
+                <option value="P">P</option>
+                <option value="Q">Q</option>
+                <option value="R">R</option>
+                <option value="S">S</option>
+                <option value="T">T</option>
+                <option value="U">U</option>
+                <option value="V">V</option>
+                <option value="W">W</option>
+                <option value="X">X</option>
+                <option value="Y">Y</option>
+                <option value="Z">Z</option>
+              </select>
+
+            </div>
+          </div>
+
         </div>
 
         <div class="row">
@@ -366,14 +466,14 @@
 
 
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label  class="control-label">Acta Defuncion </label>
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="actaDefContacto" >
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label for="nroFolioNac" class="control-label">Nro Folio </label>
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroFolioDefContacto" >
@@ -381,12 +481,60 @@
             </div>
           </div>
 
+          <div class="col-md-1 " style="top: 30px" >
+            <div class="form-group">
+
+              <select #selecFolioDef class="custom-select form-control" formControlName="cmbFolioDefContacto" name="cmbFolioDefContacto" >
+                <option value="Vuelto">Vuelto</option>
+              </select>
+
+            </div>
+          </div>
+
+
           <div class="col-md-4">
             <div class="form-group">
               <label  class="control-label">Nro Tomo </label>
               <input type="number" onKeyPress="if(this.value.length==8) return false;" oninput="value == '' ? value = '' : value < 0 ? value = value * -1 : false"  class="form-control" formControlName="nroTomoDefContacto" >
             </div>
           </div>
+
+          <div class="col-md-1 " style="top:30px">
+            <div class="form-group">
+
+              <select  #selecTomoDef class="custom-select form-control" formControlName="cmbTomoDefContacto" name="cmbTomoDefContacto" >
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="H">H</option>
+                <option value="I">I</option>
+                <option value="J">J</option>
+                <option value="K">K</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="N">N</option>
+                <option value="Ñ">Ñ</option>
+                <option value="O">O</option>
+                <option value="P">P</option>
+                <option value="Q">Q</option>
+                <option value="R">R</option>
+                <option value="S">S</option>
+                <option value="T">T</option>
+                <option value="U">U</option>
+                <option value="V">V</option>
+                <option value="W">W</option>
+                <option value="X">X</option>
+                <option value="Y">Y</option>
+                <option value="Z">Z</option>
+              </select>
+
+            </div>
+          </div>
+
         </div>
 
         <div class="row">
