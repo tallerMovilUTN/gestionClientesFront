@@ -6,6 +6,7 @@ import { Contacto } from '../model/contacto';
 import { Observable, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
 import {environment} from "../../environments/environment";
+import {ConfigService} from "./config.service";
 
 
 const httpOptions = {
@@ -17,7 +18,7 @@ const httpOptions = {
 })
 export class ClienteService {
   //webApiUr:string="http://localhost:8181/servicioFabrica-RC1/clientes";
-  webApiUr:string=environment.base_url+"/personas";
+  webApiUr:string=ConfigService.settings.apiUrl+"/personas";
 
   httpOptions = {
     headers: new HttpHeaders({

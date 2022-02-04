@@ -66,8 +66,8 @@ export class ClientesComponent  {
 
 
   tipoRelacionLista = ['Hermano1',    'Hermano2',    'Hermano3',    'Hermano4',    'Hermano5',    'Hermano6',    'Hermano7',    'Hermano8',
-                      'Primo1',    'Primo2',    'Primo3',    'Primo4',    'Primo5',    'Primo6',    'Primo7',    'Primo8',
-                      'Tio1',    'Tio2',    'Tio3',    'Tio4',    'Tio5',    'Tio6',    'Tio7',    'Tio8'];
+    'Primo1',    'Primo2',    'Primo3',    'Primo4',    'Primo5',    'Primo6',    'Primo7',    'Primo8',
+    'Tio1',    'Tio2',    'Tio3',    'Tio4',    'Tio5',    'Tio6',    'Tio7',    'Tio8'];
 
 
 
@@ -105,80 +105,82 @@ export class ClientesComponent  {
 
   ngOnInit() {
 
-          /**this.loadScript('./assets/plugins/dropify/dist/js/dropify.min.js');
-          const dragAndDrop = $('.dropify').dropify({
+    /**this.loadScript('./assets/plugins/dropify/dist/js/dropify.min.js');
+     const dragAndDrop = $('.dropify').dropify({
             messages: {
               'default': 'Drag and drop a CSV file here or click'
             }
           });
-           **/
+     **/
 
 
-        this.cols = [
-          //{ field: 'id', header: 'id' },
-          { field: 'apellido', header: 'Apellido' },
-          { field: 'nombre', header: 'Nombre' },
-          { field: 'dni', header: 'Dni' },
-          { field: 'tipoRel', header: 'Tipo Relacion' }
-        ];
+    this.cols = [
+      //{ field: 'id', header: 'id' },
+      { field: 'apellido', header: 'Apellido' },
+      { field: 'nombre', header: 'Nombre' },
+      { field: 'dni', header: 'Dni' },
+      { field: 'tipoRel', header: 'Tipo Relacion' }
+    ];
 
 
-          console.log("estoy en init CLIENTE");
-
-
-
-          this.firstFormGroup = this._formBuilder.group(
-            {
-                apellido: ['', Validators.required],
-                nombre: ['', Validators.required],
-                dni: ['', Validators.required],
-                tipoDoc: ['', Validators.required],
-
-                lugarNac: ['', Validators.required],
-                fechaNac: ['', Validators.required],
-
-
-                actaNac: [''],
-                nroFolioNac: [''],
-                cmbFolioNac:[''],
-                nroTomoNac: [''],
-                cmbTomoNac:[''],
-                ofRegCivilNac: [''],
-
-                ciudadRegCivilNac: [''],
-                ProvRegCivilNac: [''],
-                PaisRegCivilNac: [''],
+    console.log("estoy en init CLIENTE");
 
 
 
-                email: [''],
+    this.firstFormGroup = this._formBuilder.group(
+      {
+        apellido: ['', Validators.required],
+        nombre: ['', Validators.required],
+        dni: ['', Validators.required],
+        tipoDoc: ['', Validators.required],
 
-                calleNombre: ['', Validators.required],
-                calleNro: ['', Validators.required],
-
-                cp: ['', Validators.required],
-                localidad: ['', Validators.required],
-                provincia: ['', Validators.required],
-
-                telefonoParticular: [''],
-                celularNro: [''],
-                estadocivil: ['', Validators.required],
-                fechaMatrimonio: [''],
-                lugarMatrimonio: [''],
-                idfotoFrente: ['', Validators.compose([Validators.required])],
-                idfotoDorso: ['', Validators.compose([Validators.required])],
-          });
+        lugarNac: ['', Validators.required],
+        fechaNac: ['', Validators.required],
 
 
-          this.fotoFrente="./assets/images/no-pictures.png"
-          this.fotoPerfil="./assets/images/no-pictures.png"
-          ////AGREGO LOS DATOS DEL CLIENTE
-          let obj: any;
-          obj = localStorage.getItem("cliente");
-          if (obj != null)
-          {
-            this.cargarCliente(obj);
-          }
+        actaNac: [''],
+        nroFolioNac: [''],
+        cmbFolioNac:[''],
+        nroTomoNac: [''],
+        cmbTomoNac:[''],
+        ofRegCivilNac: [''],
+
+        ciudadRegCivilNac: [''],
+        ProvRegCivilNac: [''],
+        PaisRegCivilNac: [''],
+
+
+
+        email: [''],
+
+        calleNombre: ['', Validators.required],
+        calleNro: ['', Validators.required],
+
+        cp: ['', Validators.required],
+        localidad: ['', Validators.required],
+        provincia: ['', Validators.required],
+
+        telefonoParticular: [''],
+        celularNro: [''],
+        estadocivil: ['', Validators.required],
+        fechaMatrimonio: [''],
+        lugarMatrimonio: [''],
+        idfotoFrente: ['', Validators.compose([Validators.required])],
+        idfotoDorso: ['', Validators.compose([Validators.required])],
+      });
+
+
+    this.fotoFrente="./assets/images/no-pictures.png"
+    this.fotoPerfil="./assets/images/no-pictures.png"
+    ////AGREGO LOS DATOS DEL CLIENTE
+    let obj: any;
+    obj = localStorage.getItem("cliente");
+    if (obj != null)
+    {
+      this.cargarCliente(obj);
+    }
+
+    this.cargarTabla();
 
 
 
@@ -345,83 +347,83 @@ export class ClientesComponent  {
   submit()
   {
 
-          this.submitted4 = true;
+    this.submitted4 = true;
 
-          /** if (this.cuartoFormGroup.invalid) {
+    /** if (this.cuartoFormGroup.invalid) {
 
             return;
           }**/
-          console.log(this.firstFormGroup.value);
-          console.log(this.secondFormGroup.value);
-          console.log(this.tercerFormGroup.value);
-          console.log(this.cuartoFormGroup.value);
+    console.log(this.firstFormGroup.value);
+    console.log(this.secondFormGroup.value);
+    console.log(this.tercerFormGroup.value);
+    console.log(this.cuartoFormGroup.value);
 
-          console.log("****************DATOS DEL CLIENTE****************");
-          console.log("apellido: "+this.firstFormGroup.controls.apellido.value);
-          console.log("nombre: "+this.firstFormGroup.controls.nombre.value);
-          console.log("dni: "+this.firstFormGroup.controls.dni.value);
-          console.log("tipoDoc: "+this.firstFormGroup.controls.tipoDoc.value);
-          console.log("lugarNac: "+this.firstFormGroup.controls.lugarNac.value);
-          console.log("fechaNac: "+this.firstFormGroup.controls.fechaNac.value);
-          console.log("email: "+this.firstFormGroup.controls.email.value);
-          console.log("calleNombre: "+this.firstFormGroup.controls.calleNombre.value);
-          console.log("calleNro: "+this.firstFormGroup.controls.calleNro.value);
-          console.log("cp: "+this.firstFormGroup.controls.cp.value);
-          console.log("localidad: "+this.firstFormGroup.controls.localidad.value);
-          console.log("provincia: "+this.firstFormGroup.controls.provincia.value);
-          console.log("telefonoParticular: "+this.firstFormGroup.controls.telefonoParticular.value);
-          console.log("celularNro: "+this.firstFormGroup.controls.celularNro.value);
-          console.log("idfotoFrente: "+this.firstFormGroup.controls.idfotoFrente.value);
-          console.log("idfotoDorso: "+this.firstFormGroup.controls.idfotoDorso.value);
-          console.log("estadocivil: "+this.firstFormGroup.controls.estadocivil.value);
-          console.log("fechaMatrimonio: "+this.firstFormGroup.controls.fechaMatrimonio.value);
-          console.log("lugarMatrimonio: "+this.firstFormGroup.controls.lugarMatrimonio.value);
+    console.log("****************DATOS DEL CLIENTE****************");
+    console.log("apellido: "+this.firstFormGroup.controls.apellido.value);
+    console.log("nombre: "+this.firstFormGroup.controls.nombre.value);
+    console.log("dni: "+this.firstFormGroup.controls.dni.value);
+    console.log("tipoDoc: "+this.firstFormGroup.controls.tipoDoc.value);
+    console.log("lugarNac: "+this.firstFormGroup.controls.lugarNac.value);
+    console.log("fechaNac: "+this.firstFormGroup.controls.fechaNac.value);
+    console.log("email: "+this.firstFormGroup.controls.email.value);
+    console.log("calleNombre: "+this.firstFormGroup.controls.calleNombre.value);
+    console.log("calleNro: "+this.firstFormGroup.controls.calleNro.value);
+    console.log("cp: "+this.firstFormGroup.controls.cp.value);
+    console.log("localidad: "+this.firstFormGroup.controls.localidad.value);
+    console.log("provincia: "+this.firstFormGroup.controls.provincia.value);
+    console.log("telefonoParticular: "+this.firstFormGroup.controls.telefonoParticular.value);
+    console.log("celularNro: "+this.firstFormGroup.controls.celularNro.value);
+    console.log("idfotoFrente: "+this.firstFormGroup.controls.idfotoFrente.value);
+    console.log("idfotoDorso: "+this.firstFormGroup.controls.idfotoDorso.value);
+    console.log("estadocivil: "+this.firstFormGroup.controls.estadocivil.value);
+    console.log("fechaMatrimonio: "+this.firstFormGroup.controls.fechaMatrimonio.value);
+    console.log("lugarMatrimonio: "+this.firstFormGroup.controls.lugarMatrimonio.value);
 
-          //////////////DATOS DEL SOLICITANTE//////////////
-
-
-          let dioError = false;
-          this.clienteService.upload(this.selectedFiles1[0],
-            this.selectedFiles2[0],
-            this.cliente,
-            this.padre,
-            this.madre,
-            this.padreAbueloPaterno,
-            this.madreAbueloPaterno,
-            this.padreAbueloMaterno,
-            this.madreAbueloMaterno) .subscribe(
-            data =>
-            {
-              console.log("PASO POR NEXT - NO HAGO NADA");
+    //////////////DATOS DEL SOLICITANTE//////////////
 
 
-            },
-            err  =>
-            {
-              //this.errorMsg = <any>err
-              console.log('OCURRIO ERROR: '+<any>err);
-              Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
-              return;
-            },
-            ()=>
-            {
-              console.log("COMPLETE SE EJECUTA SI NO DA ERROR");
-              Swal.fire({
-                title: 'Se han registrado correctamente todos los datos. Nos comunicaremos a la brevedad',
-                icon:'success',
-                didOpen: function () {
-                  Swal.showLoading()
-                  // AJAX request simulated with setTimeout
-                  setTimeout(function () {
-                    Swal.close()
-                  }, 3000)
-                }
-              });
-              this.reset();
+    let dioError = false;
+    this.clienteService.upload(this.selectedFiles1[0],
+      this.selectedFiles2[0],
+      this.cliente,
+      this.padre,
+      this.madre,
+      this.padreAbueloPaterno,
+      this.madreAbueloPaterno,
+      this.padreAbueloMaterno,
+      this.madreAbueloMaterno) .subscribe(
+      data =>
+      {
+        console.log("PASO POR NEXT - NO HAGO NADA");
 
-            }
 
-          );
+      },
+      err  =>
+      {
+        //this.errorMsg = <any>err
+        console.log('OCURRIO ERROR: '+<any>err);
+        Swal.fire("Error enviado desde el Servidor", "Por favor verifique los datos cargados!", "error");
+        return;
+      },
+      ()=>
+      {
+        console.log("COMPLETE SE EJECUTA SI NO DA ERROR");
+        Swal.fire({
+          title: 'Se han registrado correctamente todos los datos. Nos comunicaremos a la brevedad',
+          icon:'success',
+          didOpen: function () {
+            Swal.showLoading()
+            // AJAX request simulated with setTimeout
+            setTimeout(function () {
+              Swal.close()
+            }, 3000)
+          }
+        });
+        this.reset();
+
+      }
+
+    );
 
   }
 
@@ -448,8 +450,8 @@ export class ClientesComponent  {
     const file = e.target.files[0];
 
     /**const reader = new FileReader();
-    reader.onload = e => this.fotoFrente = reader.result;
-    reader.readAsDataURL(file);**/
+     reader.onload = e => this.fotoFrente = reader.result;
+     reader.readAsDataURL(file);**/
 
     //localStorage.imageDorso(event.target.files[0]);
 
@@ -605,9 +607,9 @@ export class ClientesComponent  {
   }
 
 
-/**
-  nuevoFamiliar()
-  {
+  /**
+   nuevoFamiliar()
+   {
 
 
     this.cliente = new Persona();
@@ -652,127 +654,127 @@ export class ClientesComponent  {
     this.router.navigateByUrl('familiar/nuevo');
   }
 
-**/
+   **/
 
 
 
   cargarCliente(obj:any)
   {
-        let anio,mes,dia;
-        let jsonObj: any;
-        jsonObj = JSON.parse(obj); // string to generic object first
-        this.cliente = (<Persona>jsonObj);
-        console.log("%%%%%%%%%% CARGO LOS DATOS DEL TITULAR%%%%%%%%");
+    let anio,mes,dia;
+    let jsonObj: any;
+    jsonObj = JSON.parse(obj); // string to generic object first
+    this.cliente = (<Persona>jsonObj);
+    console.log("%%%%%%%%%% CARGO LOS DATOS DEL TITULAR%%%%%%%%");
 
 
-        console.log("apellidoooo clienteeeeeee "+this.cliente.apellido);
+    console.log("apellidoooo clienteeeeeee "+this.cliente.apellido);
 
-        this.firstFormGroup.controls.apellido.setValue(this.cliente.apellido);
+    this.firstFormGroup.controls.apellido.setValue(this.cliente.apellido);
 
-        console.log("nombre: "+this.cliente.nombre);
-        this.firstFormGroup.controls.nombre.setValue(this.cliente.nombre);
+    console.log("nombre: "+this.cliente.nombre);
+    this.firstFormGroup.controls.nombre.setValue(this.cliente.nombre);
 
-        console.log("tipoDoc: "+this.cliente.tipoDoc);
-        this.firstFormGroup.controls.tipoDoc.setValue(this.cliente.tipoDoc);
+    console.log("tipoDoc: "+this.cliente.tipoDoc);
+    this.firstFormGroup.controls.tipoDoc.setValue(this.cliente.tipoDoc);
 
-        console.log("dni: "+this.cliente.dni);
-        this.firstFormGroup.controls.dni.setValue(this.cliente.dni);
+    console.log("dni: "+this.cliente.dni);
+    this.firstFormGroup.controls.dni.setValue(this.cliente.dni);
 
-        console.log("email: "+this.cliente.email);
-        this.firstFormGroup.controls.email.setValue(this.cliente.email);
-
-
-        console.log('FECHA NAC: '+this.cliente.fechaNac);
-
-        if (this.cliente.fechaNac != null)
-        {
-                anio = this.cliente.fechaNac.toString().substr(0,4);
-                mes = this.cliente.fechaNac.toString().substr(5,2);
-
-                dia  = this.cliente.fechaNac.toString().substr(8,2);
-
-                console.log('ANIO: '+anio);
-                console.log('MES: '+mes);
-                console.log('DIA: '+dia);
-
-                //new Date()
-                this.firstFormGroup.controls.fechaNac.setValue(new Date(Number(anio),Number(mes)-1, Number(dia)));
-        }
-         this.firstFormGroup.controls.lugarNac.setValue(this.cliente.lugarNac);
-
-        this.firstFormGroup.controls.actaNac.setValue(this.cliente.actaNac);
-        this.firstFormGroup.controls.nroFolioNac.setValue(this.cliente.nroFolioNac);
-         this.firstFormGroup.controls.cmbFolioNac.setValue(this.cliente.cmbFolioNac);
-        this.firstFormGroup.controls.nroTomoNac.setValue(this.cliente.nroTomoNac);
-        this.firstFormGroup.controls.cmbTomoNac.setValue(this.cliente.cmbTomoNac);
-        this.firstFormGroup.controls.ofRegCivilNac.setValue(this.cliente.ofRegCivilNac);
-        this.firstFormGroup.controls.ciudadRegCivilNac.setValue(this.cliente.ciudadRegCivilNac);
-        this.firstFormGroup.controls.ProvRegCivilNac.setValue(this.cliente.provRegCivilNac);
-        this.firstFormGroup.controls.PaisRegCivilNac.setValue(this.cliente.paisRegCivilNac);
-
-        this.firstFormGroup.controls.calleNombre.setValue(this.cliente.calleNombre);
-        this.firstFormGroup.controls.calleNro.setValue(this.cliente.calleNro);
-        this.firstFormGroup.controls.cp.setValue(this.cliente.cp);
-        this.firstFormGroup.controls.localidad.setValue(this.cliente.localidad);
-        this.firstFormGroup.controls.provincia.setValue(this.cliente.provincia);
-        this.firstFormGroup.controls.telefonoParticular.setValue(this.cliente.telefonoParticular);
-        this.firstFormGroup.controls.celularNro.setValue(this.cliente.celularNro);
-        this.firstFormGroup.controls.estadocivil.setValue(this.cliente.estadocivil);
-
-        console.log('FECHA MATRIMONIO: '+this.cliente.fechaMatrimonio);
-        if (!this.isUndefinedOrNull(this.cliente.fechaMatrimonio))
-        {
-          this.mostrarCamposMatrimonio = true;
-          anio = this.cliente.fechaNac.toString().substr(0,4);
-          mes = this.cliente.fechaNac.toString().substr(5,2);
-          dia  = this.cliente.fechaNac.toString().substr(8,2);
-          this.firstFormGroup.controls.fechaMatrimonio.setValue(new Date(Number(anio),Number(mes)-1, Number(dia)));
-        }
-        this.firstFormGroup.controls.lugarMatrimonio.setValue(this.cliente.lugarMatrimonio);
+    console.log("email: "+this.cliente.email);
+    this.firstFormGroup.controls.email.setValue(this.cliente.email);
 
 
+    console.log('FECHA NAC: '+this.cliente.fechaNac);
 
-        if (localStorage.theImageFotoFrente != null)
-        {
-              var dataImage = localStorage.theImageFotoFrente;
-              this.fotoFrente =dataImage;
-        }
+    if (this.cliente.fechaNac != null)
+    {
+      anio = this.cliente.fechaNac.toString().substr(0,4);
+      mes = this.cliente.fechaNac.toString().substr(5,2);
+
+      dia  = this.cliente.fechaNac.toString().substr(8,2);
+
+      console.log('ANIO: '+anio);
+      console.log('MES: '+mes);
+      console.log('DIA: '+dia);
+
+      //new Date()
+      this.firstFormGroup.controls.fechaNac.setValue(new Date(Number(anio),Number(mes)-1, Number(dia)));
+    }
+    this.firstFormGroup.controls.lugarNac.setValue(this.cliente.lugarNac);
+
+    this.firstFormGroup.controls.actaNac.setValue(this.cliente.actaNac);
+    this.firstFormGroup.controls.nroFolioNac.setValue(this.cliente.nroFolioNac);
+    this.firstFormGroup.controls.cmbFolioNac.setValue(this.cliente.cmbFolioNac);
+    this.firstFormGroup.controls.nroTomoNac.setValue(this.cliente.nroTomoNac);
+    this.firstFormGroup.controls.cmbTomoNac.setValue(this.cliente.cmbTomoNac);
+    this.firstFormGroup.controls.ofRegCivilNac.setValue(this.cliente.ofRegCivilNac);
+    this.firstFormGroup.controls.ciudadRegCivilNac.setValue(this.cliente.ciudadRegCivilNac);
+    this.firstFormGroup.controls.ProvRegCivilNac.setValue(this.cliente.provRegCivilNac);
+    this.firstFormGroup.controls.PaisRegCivilNac.setValue(this.cliente.paisRegCivilNac);
+
+    this.firstFormGroup.controls.calleNombre.setValue(this.cliente.calleNombre);
+    this.firstFormGroup.controls.calleNro.setValue(this.cliente.calleNro);
+    this.firstFormGroup.controls.cp.setValue(this.cliente.cp);
+    this.firstFormGroup.controls.localidad.setValue(this.cliente.localidad);
+    this.firstFormGroup.controls.provincia.setValue(this.cliente.provincia);
+    this.firstFormGroup.controls.telefonoParticular.setValue(this.cliente.telefonoParticular);
+    this.firstFormGroup.controls.celularNro.setValue(this.cliente.celularNro);
+    this.firstFormGroup.controls.estadocivil.setValue(this.cliente.estadocivil);
+
+    console.log('FECHA MATRIMONIO: '+this.cliente.fechaMatrimonio);
+    if (!this.isUndefinedOrNull(this.cliente.fechaMatrimonio))
+    {
+      this.mostrarCamposMatrimonio = true;
+      anio = this.cliente.fechaNac.toString().substr(0,4);
+      mes = this.cliente.fechaNac.toString().substr(5,2);
+      dia  = this.cliente.fechaNac.toString().substr(8,2);
+      this.firstFormGroup.controls.fechaMatrimonio.setValue(new Date(Number(anio),Number(mes)-1, Number(dia)));
+    }
+    this.firstFormGroup.controls.lugarMatrimonio.setValue(this.cliente.lugarMatrimonio);
 
 
 
-        if (localStorage.theImageFotoPerfil != null)
-        {
-              var dataImage = localStorage.theImageFotoPerfil;
-              this.fotoPerfil =dataImage;
-        }
+    if (localStorage.theImageFotoFrente != null)
+    {
+      var dataImage = localStorage.theImageFotoFrente;
+      this.fotoFrente =dataImage;
+    }
 
-        this.cargarTabla();
+
+
+    if (localStorage.theImageFotoPerfil != null)
+    {
+      var dataImage = localStorage.theImageFotoPerfil;
+      this.fotoPerfil =dataImage;
+    }
+
+
 
 
   }
 
 
 
-   cargarTabla()
-   {
-         let obj: any;
-         let jsonObj: any;
-         this.familiar=[];
+  cargarTabla()
+  {
+    let obj: any;
+    let jsonObj: any;
+    this.familiar=[];
 
-         console.log("ESTOY EN CARGAR TABLA");
-         for (let i = 0; i < this.tipoRelacionLista.length; i++)
-         {
-                 console.log("RELACION: "+this.tipoRelacionLista[i]);
-                 obj = localStorage.getItem(this.tipoRelacionLista[i]);
-                 if (obj != null)
-                 {
-                        jsonObj = JSON.parse(obj); // string to generic object first
-                        let contacto = (<Contacto>jsonObj);
-                        this.familiar.push(contacto);
-                 }
-         }
+    console.log("ESTOY EN CARGAR TABLA");
+    for (let i = 0; i < this.tipoRelacionLista.length; i++)
+    {
+      console.log("RELACION: "+this.tipoRelacionLista[i]);
+      obj = localStorage.getItem(this.tipoRelacionLista[i]);
+      if (obj != null)
+      {
+        jsonObj = JSON.parse(obj); // string to generic object first
+        let contacto = (<Contacto>jsonObj);
+        this.familiar.push(contacto);
+      }
+    }
 
-   }
+  }
 
 
 
@@ -802,50 +804,50 @@ export class ClientesComponent  {
 
   guardar()
   {
-        this.cliente = new Persona();
-        this.cliente.apellido = this.firstFormGroup.controls.apellido.value
-        this.cliente.nombre = this.firstFormGroup.controls.nombre.value
-        this.cliente.tipoDoc = this.firstFormGroup.controls.tipoDoc.value
-        this.cliente.dni = this.firstFormGroup.controls.dni.value
-        this.cliente.lugarNac = this.firstFormGroup.controls.lugarNac.value
-        //this.cliente.fechaNac = this.obtenerFormatoFecha(this.clienteForm.controls.fechaNac.value);
-        this.cliente.fechaNac = this.firstFormGroup.controls.fechaNac.value;
-        this.cliente.email = this.firstFormGroup.controls.email.value
-        this.cliente.calleNombre = this.firstFormGroup.controls.calleNombre.value
-        this.cliente.calleNro = this.firstFormGroup.controls.calleNro.value
-        this.cliente.cp = this.firstFormGroup.controls.cp.value
-        this.cliente.localidad = this.firstFormGroup.controls.localidad.value
-        this.cliente.provincia = this.firstFormGroup.controls.provincia.value
-        this.cliente.telefonoParticular = this.firstFormGroup.controls.telefonoParticular.value
-        this.cliente.celularNro = this.firstFormGroup.controls.celularNro.value
+    this.cliente = new Persona();
+    this.cliente.apellido = this.firstFormGroup.controls.apellido.value
+    this.cliente.nombre = this.firstFormGroup.controls.nombre.value
+    this.cliente.tipoDoc = this.firstFormGroup.controls.tipoDoc.value
+    this.cliente.dni = this.firstFormGroup.controls.dni.value
+    this.cliente.lugarNac = this.firstFormGroup.controls.lugarNac.value
+    //this.cliente.fechaNac = this.obtenerFormatoFecha(this.clienteForm.controls.fechaNac.value);
+    this.cliente.fechaNac = this.firstFormGroup.controls.fechaNac.value;
+    this.cliente.email = this.firstFormGroup.controls.email.value
+    this.cliente.calleNombre = this.firstFormGroup.controls.calleNombre.value
+    this.cliente.calleNro = this.firstFormGroup.controls.calleNro.value
+    this.cliente.cp = this.firstFormGroup.controls.cp.value
+    this.cliente.localidad = this.firstFormGroup.controls.localidad.value
+    this.cliente.provincia = this.firstFormGroup.controls.provincia.value
+    this.cliente.telefonoParticular = this.firstFormGroup.controls.telefonoParticular.value
+    this.cliente.celularNro = this.firstFormGroup.controls.celularNro.value
 
-        this.cliente.idfotoFrente = this.firstFormGroup.controls.idfotoFrente.value
-        this.cliente.idfotoDorso = this.firstFormGroup.controls.idfotoDorso.value
-        this.cliente.estadocivil = this.firstFormGroup.controls.estadocivil.value
-        //this.cliente.fechaMatrimonio = this.obtenerFormatoFecha(this.clienteForm.controls.fechaMatrimonio.value);
-        this.cliente.fechaMatrimonio = this.firstFormGroup.controls.fechaMatrimonio.value;
-        this.cliente.lugarMatrimonio = this.firstFormGroup.controls.lugarMatrimonio.value
+    this.cliente.idfotoFrente = this.firstFormGroup.controls.idfotoFrente.value
+    this.cliente.idfotoDorso = this.firstFormGroup.controls.idfotoDorso.value
+    this.cliente.estadocivil = this.firstFormGroup.controls.estadocivil.value
+    //this.cliente.fechaMatrimonio = this.obtenerFormatoFecha(this.clienteForm.controls.fechaMatrimonio.value);
+    this.cliente.fechaMatrimonio = this.firstFormGroup.controls.fechaMatrimonio.value;
+    this.cliente.lugarMatrimonio = this.firstFormGroup.controls.lugarMatrimonio.value
 
-        this.cliente.actaNac = this.firstFormGroup.controls.actaNac.value
-        this.cliente.nroFolioNac = this.firstFormGroup.controls.nroFolioNac.value
-        this.cliente.cmbFolioNac = this.firstFormGroup.controls.cmbFolioNac.value
-        this.cliente.nroTomoNac = this.firstFormGroup.controls.nroTomoNac.value
-        this.cliente.cmbTomoNac = this.firstFormGroup.controls.cmbTomoNac.value
-        this.cliente.ofRegCivilNac = this.firstFormGroup.controls.ofRegCivilNac.value
-        this.cliente.ciudadRegCivilNac = this.firstFormGroup.controls.ciudadRegCivilNac.value
-        this.cliente.provRegCivilNac = this.firstFormGroup.controls.ProvRegCivilNac.value
-        this.cliente.paisRegCivilNac = this.firstFormGroup.controls.PaisRegCivilNac.value
-        localStorage.setItem("cliente", JSON.stringify(this.cliente));
-
-
-        var dataImageFrente = this.fotoFrente;
-        localStorage.theImageFotoFrente = dataImageFrente;
-
-        var dataImagePerfil = this.fotoPerfil;
-        localStorage.theImageFotoPerfil = dataImagePerfil;
+    this.cliente.actaNac = this.firstFormGroup.controls.actaNac.value
+    this.cliente.nroFolioNac = this.firstFormGroup.controls.nroFolioNac.value
+    this.cliente.cmbFolioNac = this.firstFormGroup.controls.cmbFolioNac.value
+    this.cliente.nroTomoNac = this.firstFormGroup.controls.nroTomoNac.value
+    this.cliente.cmbTomoNac = this.firstFormGroup.controls.cmbTomoNac.value
+    this.cliente.ofRegCivilNac = this.firstFormGroup.controls.ofRegCivilNac.value
+    this.cliente.ciudadRegCivilNac = this.firstFormGroup.controls.ciudadRegCivilNac.value
+    this.cliente.provRegCivilNac = this.firstFormGroup.controls.ProvRegCivilNac.value
+    this.cliente.paisRegCivilNac = this.firstFormGroup.controls.PaisRegCivilNac.value
+    localStorage.setItem("cliente", JSON.stringify(this.cliente));
 
 
-        this.router.navigateByUrl('Formulario');
+    var dataImageFrente = this.fotoFrente;
+    localStorage.theImageFotoFrente = dataImageFrente;
+
+    var dataImagePerfil = this.fotoPerfil;
+    localStorage.theImageFotoPerfil = dataImagePerfil;
+
+
+    this.router.navigateByUrl('Formulario');
 
 
 
@@ -918,24 +920,24 @@ export class ClientesComponent  {
 
   readURL(event:any, index:number): void
   {
-        if (event.target.files && event.target.files[0])
-        {
-              const file = event.target.files[0];
-              var reader = new FileReader();
-              if (index == 1)
-              {
-                reader.onload = e => this.fotoFrente = reader.result;
-                this.imagenFotoFrente = event.target.files[0];
+    if (event.target.files && event.target.files[0])
+    {
+      const file = event.target.files[0];
+      var reader = new FileReader();
+      if (index == 1)
+      {
+        reader.onload = e => this.fotoFrente = reader.result;
+        this.imagenFotoFrente = event.target.files[0];
 
-              }
-              else
-              {
-                reader.onload = e => this.fotoPerfil = reader.result;
-                this.imagenFotoDorso = event.target.files[0];
-             }
-              console.log("file "+JSON.stringify(file));
-              reader.readAsDataURL(file);
-        }
+      }
+      else
+      {
+        reader.onload = e => this.fotoPerfil = reader.result;
+        this.imagenFotoDorso = event.target.files[0];
+      }
+      console.log("file "+JSON.stringify(file));
+      reader.readAsDataURL(file);
+    }
   }
 
 
@@ -951,35 +953,35 @@ export class ClientesComponent  {
 
   editarFamiliar(familiar:Contacto)
   {
-        this.router.navigateByUrl('OtroFamiliar/'+familiar.tipoRelacion.descripcion);
+    this.router.navigateByUrl('OtroFamiliar/'+familiar.tipoRelacion.descripcion);
   }
 
 
   borrarFamiliar(familiar:Contacto)
   {
-                let apellido= familiar.apellido+" "+familiar.nombre;
-                console.log("estoy en borrar Contacto "+familiar.id);
-                Swal.fire({
-                  title: '¿Borrar Familiar?',
-                  text: `Esta a punto de borrar a ${ apellido }`,
-                  icon: 'question',
-                  showCancelButton: true,
-                  confirmButtonText: 'Si, borrarlo'
-                }).then((result) => {
-                  if (result.value)
-                  {
-                    //localStorage.setItem("key_"+cont, JSON.stringify(this.nuevoContacto));
-                    localStorage.removeItem(familiar.tipoRelacion.descripcion);
-                    this.cargarTabla();
+    let apellido= familiar.apellido+" "+familiar.nombre;
+    console.log("estoy en borrar Contacto "+familiar.id);
+    Swal.fire({
+      title: '¿Borrar Familiar?',
+      text: `Esta a punto de borrar a ${ apellido }`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, borrarlo'
+    }).then((result) => {
+      if (result.value)
+      {
+        //localStorage.setItem("key_"+cont, JSON.stringify(this.nuevoContacto));
+        localStorage.removeItem(familiar.tipoRelacion.descripcion);
+        this.cargarTabla();
 
 
-                    Swal.fire(
-                      'Familiar borrado',
-                      `${ apellido } fue eliminado correctamente`,
-                      'success'
-                    );
-                  }
-                })
+        Swal.fire(
+          'Familiar borrado',
+          `${ apellido } fue eliminado correctamente`,
+          'success'
+        );
+      }
+    })
   }
 
 

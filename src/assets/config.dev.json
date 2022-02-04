@@ -1,0 +1,5 @@
+{
+  "env": "development",
+  "apiUrl": "http://localhost:8181"
+
+}

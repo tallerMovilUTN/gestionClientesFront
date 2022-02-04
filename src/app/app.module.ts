@@ -27,10 +27,13 @@ import {ClientesComponent} from "./pages/clientes/clientes.component";
 import {FamiliarComponent} from "./pages/familiar/familiar.component";
 import {APP_ROUTING} from "./app-routing.module";
 import { OtrofamiliarComponent } from './pages/otrofamiliar/otrofamiliar.component';
+import { APP_INITIALIZER } from '@angular/core';
+import {ConfigService} from "./service/config.service";
 
 
-
-
+function initializeApp(appConfig: ConfigService) {
+  return () => appConfig.loadConfig();
+}
 
 @NgModule({
   declarations: [
@@ -62,9 +65,8 @@ import { OtrofamiliarComponent } from './pages/otrofamiliar/otrofamiliar.compone
     CalendarModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
-    //{provide: LocationStrategy, useClass: HashLocationStrategy}
-
+    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [ConfigService],multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true}
 
   ],
   bootstrap: [AppComponent]
