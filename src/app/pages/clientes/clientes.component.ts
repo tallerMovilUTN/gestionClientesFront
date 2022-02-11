@@ -948,7 +948,48 @@ export class ClientesComponent  {
 
   nuevoFamiliar()
   {
-    this.router.navigateByUrl('OtroFamiliar/Nuevo');
+      this.cliente = new Persona();
+      this.cliente.apellido = this.firstFormGroup.controls.apellido.value
+      this.cliente.nombre = this.firstFormGroup.controls.nombre.value
+      this.cliente.tipoDoc = this.firstFormGroup.controls.tipoDoc.value
+      this.cliente.dni = this.firstFormGroup.controls.dni.value
+      this.cliente.lugarNac = this.firstFormGroup.controls.lugarNac.value
+      //this.cliente.fechaNac = this.obtenerFormatoFecha(this.clienteForm.controls.fechaNac.value);
+      this.cliente.fechaNac = this.firstFormGroup.controls.fechaNac.value;
+      this.cliente.email = this.firstFormGroup.controls.email.value
+      this.cliente.calleNombre = this.firstFormGroup.controls.calleNombre.value
+      this.cliente.calleNro = this.firstFormGroup.controls.calleNro.value
+      this.cliente.cp = this.firstFormGroup.controls.cp.value
+      this.cliente.localidad = this.firstFormGroup.controls.localidad.value
+      this.cliente.provincia = this.firstFormGroup.controls.provincia.value
+      this.cliente.telefonoParticular = this.firstFormGroup.controls.telefonoParticular.value
+      this.cliente.celularNro = this.firstFormGroup.controls.celularNro.value
+
+      this.cliente.idfotoFrente = this.firstFormGroup.controls.idfotoFrente.value
+      this.cliente.idfotoDorso = this.firstFormGroup.controls.idfotoDorso.value
+      this.cliente.estadocivil = this.firstFormGroup.controls.estadocivil.value
+      //this.cliente.fechaMatrimonio = this.obtenerFormatoFecha(this.clienteForm.controls.fechaMatrimonio.value);
+      this.cliente.fechaMatrimonio = this.firstFormGroup.controls.fechaMatrimonio.value;
+      this.cliente.lugarMatrimonio = this.firstFormGroup.controls.lugarMatrimonio.value
+
+      this.cliente.actaNac = this.firstFormGroup.controls.actaNac.value
+      this.cliente.nroFolioNac = this.firstFormGroup.controls.nroFolioNac.value
+      this.cliente.cmbFolioNac = this.firstFormGroup.controls.cmbFolioNac.value
+      this.cliente.nroTomoNac = this.firstFormGroup.controls.nroTomoNac.value
+      this.cliente.cmbTomoNac = this.firstFormGroup.controls.cmbTomoNac.value
+      this.cliente.ofRegCivilNac = this.firstFormGroup.controls.ofRegCivilNac.value
+      this.cliente.ciudadRegCivilNac = this.firstFormGroup.controls.ciudadRegCivilNac.value
+      this.cliente.provRegCivilNac = this.firstFormGroup.controls.ProvRegCivilNac.value
+      this.cliente.paisRegCivilNac = this.firstFormGroup.controls.PaisRegCivilNac.value
+      localStorage.setItem("cliente", JSON.stringify(this.cliente));
+
+
+      var dataImageFrente = this.fotoFrente;
+      localStorage.theImageFotoFrente = dataImageFrente;
+
+      var dataImagePerfil = this.fotoPerfil;
+      localStorage.theImageFotoPerfil = dataImagePerfil;
+      this.router.navigateByUrl('OtroFamiliar/Nuevo');
   }
 
   editarFamiliar(familiar:Contacto)

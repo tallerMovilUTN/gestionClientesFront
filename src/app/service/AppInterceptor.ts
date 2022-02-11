@@ -3,12 +3,13 @@ import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse}
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
 
-  constructor( ) {}
+  constructor( private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       let request = req;
@@ -16,9 +17,9 @@ export class AppInterceptor implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError((err: HttpErrorResponse) =>
         {
-              if (err.status === 400)
+              if ((err.status === 400) ||(err.status === 401) || (err.status === 403) || (err.status === 404))
               {
-                    console.log('INTERCEPTOR-OCURRIO ERROR 400');
+                this.router.navigateByUrl('Formulario');
               }
               return throwError( err );
         })

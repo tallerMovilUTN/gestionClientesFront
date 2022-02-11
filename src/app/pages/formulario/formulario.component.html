@@ -1,35 +1,36 @@
 
-<br/>
+
 <div class="card-body wizard-content">
     <h1 style="color: rgb(14,14,14);font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;font-size: 27px;">Completar Arbol Genealogico </h1>
 
-  <br/>
 
 
+  <div class="bg-light">
+    <div class="col">
+      <div class="row">
 
-  <div class="row">
-    <div class="tree">
-      <ul>
-        <li>
-          <a routerLink="/Cliente" style={{styleCli}} >
-            {{apellidoCli}}<br/> {{nombreCli}}
-          </a>
+        <div class="tree">
           <ul>
             <li>
-              <a routerLink="/Familiar/Padre" style={{stylePadre}} >
-                {{padreApellido}}<br/> {{padreNombre}}
+              <a routerLink="/Cliente" style={{styleCli}} >
+                {{apellidoCli}}<br/> {{nombreCli}}
               </a>
               <ul>
-
                 <li>
-                  <a routerLink="/Familiar/AbueloPaterno"  style={{styleabueloPat}} >
-                    {{abueloPatpellido}}<br/> {{abueloPatNombre}}
+                  <a routerLink="/Familiar/Padre" style={{stylePadre}} >
+                    {{padreApellido}}<br/> {{padreNombre}}
                   </a>
                   <ul>
+
                     <li>
-                      <a routerLink="/Familiar/BisabueloPat1" style={{stylebisabueloPat1}}>
-                        {{bisabueloPat1pellido}}<br/> {{bisabueloPat1Nombre}}
+                      <a routerLink="/Familiar/AbueloPaterno"  style={{styleabueloPat}} >
+                        {{abueloPatpellido}}<br/> {{abueloPatNombre}}
                       </a>
+                      <ul>
+                        <li>
+                          <a routerLink="/Familiar/BisabueloPat1" style={{stylebisabueloPat1}}>
+                            {{bisabueloPat1pellido}}<br/> {{bisabueloPat1Nombre}}
+                          </a>
                           <ul>
                             <li>
                               <a routerLink="/Familiar/TatarabueloPat1" style={{styleTatarabueloPat1}}>
@@ -42,11 +43,11 @@
                               </a>
                             </li>
                           </ul>
-                    </li>
-                    <li>
-                      <a routerLink="/Familiar/BisabueloPat2" style={{stylebisabueloPat2}}>
-                        {{bisabueloPat2pellido}}<br/> {{bisabueloPat2Nombre}}
-                      </a>
+                        </li>
+                        <li>
+                          <a routerLink="/Familiar/BisabueloPat2" style={{stylebisabueloPat2}}>
+                            {{bisabueloPat2pellido}}<br/> {{bisabueloPat2Nombre}}
+                          </a>
                           <ul>
                             <li>
                               <a routerLink="/Familiar/TatarabueloPat3" style={{styleTatarabueloPat3}}>
@@ -59,199 +60,206 @@
                               </a>
                             </li>
                           </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li>
-                  <a routerLink="/Familiar/AbuelaPaterna" style={{styleabuelaPat}}>
-                    {{abuelaPatpellido}}<br/> {{abuelaPatNombre}}
-                  </a>
-                  <ul>
-                    <li>
-                      <a routerLink="/Familiar/BisabueloPat3" style={{stylebisabueloPat3}}>
-                        {{bisabueloPat3pellido}}<br/> {{bisabueloPat3Nombre}}
-                      </a>
-                      <ul>
-                        <li>
-                          <a routerLink="/Familiar/TatarabueloPat5" style={{styleTatarabueloPat5}}>
-                            {{tatarabueloPat5pellido}}<br/> {{tatarabueloPat5Nombre}}
-                          </a>
-                        </li>
-                        <li>
-                          <a routerLink="/Familiar/TatarabueloPat6" style={{styleTatarabueloPat6}}>
-                            {{tatarabueloPat6pellido}}<br/> {{tatarabueloPat6Nombre}}
-                          </a>
                         </li>
                       </ul>
                     </li>
-                    <li>
-                      <a routerLink="/Familiar/BisabueloPat4" style={{stylebisabueloPat4}}>
-                        {{bisabueloPat4pellido}}<br/> {{bisabueloPat4Nombre}}
-                      </a>
-                      <ul>
-                        <li>
-                          <a routerLink="/Familiar/TatarabueloPat7" style={{styleTatarabueloPat7}}>
-                            {{tatarabueloPat7pellido}}<br/> {{tatarabueloPat7Nombre}}
-                          </a>
-                        </li>
-                        <li>
-                          <a routerLink="/Familiar/TatarabueloPat8" style={{styleTatarabueloPat8}}>
-                            {{tatarabueloPat8pellido}}<br/> {{tatarabueloPat8Nombre}}
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
 
-            </li>
-            <li>
-              <a routerLink="/Familiar/Madre" style={{styleMadre}}>
-                {{madreApellido}}<br/> {{madreNombre}}
-              </a>
-              <ul>
-
-                <li>
-                  <a routerLink="/Familiar/AbueloMaterna" style={{styleabueloMat}}>
-                    {{abueloMatpellido}}<br/> {{abueloMatNombre}}
-                  </a>
-                  <ul>
                     <li>
-                      <a routerLink="/Familiar/BisabueloMat1" style={{stylebisabueloMat1}}>
-                        {{bisabueloMat1pellido}}<br/> {{bisabueloMat1Nombre}}
+                      <a routerLink="/Familiar/AbuelaPaterna" style={{styleabuelaPat}}>
+                        {{abuelaPatpellido}}<br/> {{abuelaPatNombre}}
                       </a>
                       <ul>
                         <li>
-                          <a routerLink="/Familiar/TatarabueloMat1" style={{styleTatarabueloMat1}}>
-                            {{tatarabueloMat1pellido}}<br/> {{tatarabueloMat1Nombre}}
+                          <a routerLink="/Familiar/BisabueloPat3" style={{stylebisabueloPat3}}>
+                            {{bisabueloPat3pellido}}<br/> {{bisabueloPat3Nombre}}
                           </a>
+                          <ul>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloPat5" style={{styleTatarabueloPat5}}>
+                                {{tatarabueloPat5pellido}}<br/> {{tatarabueloPat5Nombre}}
+                              </a>
+                            </li>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloPat6" style={{styleTatarabueloPat6}}>
+                                {{tatarabueloPat6pellido}}<br/> {{tatarabueloPat6Nombre}}
+                              </a>
+                            </li>
+                          </ul>
                         </li>
                         <li>
-                          <a routerLink="/Familiar/TatarabueloMat2" style={{styleTatarabueloMat2}}>
-                            {{tatarabueloMat2pellido}}<br/> {{tatarabueloMat2Nombre}}
+                          <a routerLink="/Familiar/BisabueloPat4" style={{stylebisabueloPat4}}>
+                            {{bisabueloPat4pellido}}<br/> {{bisabueloPat4Nombre}}
                           </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a routerLink="/Familiar/BisabueloMat2" style={{stylebisabueloMat2}}>
-                        {{bisabueloMat2pellido}}<br/> {{bisabueloMat2Nombre}}
-                      </a>
-                      <ul>
-                        <li>
-                          <a routerLink="/Familiar/TatarabueloMat3" style={{styleTatarabueloMat3}}>
-                            {{tatarabueloMat3pellido}}<br/> {{tatarabueloMat3Nombre}}
-                          </a>
-                        </li>
-                        <li>
-                          <a routerLink="/Familiar/TatarabueloMat4" style={{styleTatarabueloMat4}}>
-                            {{tatarabueloMat4pellido}}<br/> {{tatarabueloMat4Nombre}}
-                          </a>
+                          <ul>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloPat7" style={{styleTatarabueloPat7}}>
+                                {{tatarabueloPat7pellido}}<br/> {{tatarabueloPat7Nombre}}
+                              </a>
+                            </li>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloPat8" style={{styleTatarabueloPat8}}>
+                                {{tatarabueloPat8pellido}}<br/> {{tatarabueloPat8Nombre}}
+                              </a>
+                            </li>
+                          </ul>
                         </li>
                       </ul>
                     </li>
                   </ul>
-                </li>
 
+                </li>
                 <li>
-                  <a routerLink="/Familiar/AbuelaMaterna" style={{styleabuelaMat}}>
-                    {{abuelaMatpellido}}<br/> {{abuelaMatNombre}}
+                  <a routerLink="/Familiar/Madre" style={{styleMadre}}>
+                    {{madreApellido}}<br/> {{madreNombre}}
                   </a>
                   <ul>
+
                     <li>
-                      <a routerLink="/Familiar/BisabueloMat3" style={{stylebisabueloMat3}}>
-                        {{bisabueloMat3pellido}}<br/> {{bisabueloMat3Nombre}}
+                      <a routerLink="/Familiar/AbueloMaterna" style={{styleabueloMat}}>
+                        {{abueloMatpellido}}<br/> {{abueloMatNombre}}
                       </a>
                       <ul>
                         <li>
-                          <a routerLink="/Familiar/TatarabueloMat5" style={{styleTatarabueloMat5}}>
-                            {{tatarabueloMat5pellido}}<br/> {{tatarabueloMat5Nombre}}
+                          <a routerLink="/Familiar/BisabueloMat1" style={{stylebisabueloMat1}}>
+                            {{bisabueloMat1pellido}}<br/> {{bisabueloMat1Nombre}}
                           </a>
+                          <ul>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloMat1" style={{styleTatarabueloMat1}}>
+                                {{tatarabueloMat1pellido}}<br/> {{tatarabueloMat1Nombre}}
+                              </a>
+                            </li>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloMat2" style={{styleTatarabueloMat2}}>
+                                {{tatarabueloMat2pellido}}<br/> {{tatarabueloMat2Nombre}}
+                              </a>
+                            </li>
+                          </ul>
                         </li>
                         <li>
-                          <a routerLink="/Familiar/TatarabueloMat6" style={{styleTatarabueloMat6}}>
-                            {{tatarabueloMat6pellido}}<br/> {{tatarabueloMat6Nombre}}
+                          <a routerLink="/Familiar/BisabueloMat2" style={{stylebisabueloMat2}}>
+                            {{bisabueloMat2pellido}}<br/> {{bisabueloMat2Nombre}}
                           </a>
+                          <ul>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloMat3" style={{styleTatarabueloMat3}}>
+                                {{tatarabueloMat3pellido}}<br/> {{tatarabueloMat3Nombre}}
+                              </a>
+                            </li>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloMat4" style={{styleTatarabueloMat4}}>
+                                {{tatarabueloMat4pellido}}<br/> {{tatarabueloMat4Nombre}}
+                              </a>
+                            </li>
+                          </ul>
                         </li>
                       </ul>
                     </li>
+
                     <li>
-                      <a routerLink="/Familiar/BisabueloMat4" style={{stylebisabueloMat4}}>
-                        {{bisabueloMat4pellido}}<br/> {{bisabueloMat4Nombre}}
+                      <a routerLink="/Familiar/AbuelaMaterna" style={{styleabuelaMat}}>
+                        {{abuelaMatpellido}}<br/> {{abuelaMatNombre}}
                       </a>
                       <ul>
                         <li>
-                          <a routerLink="/Familiar/TatarabueloMat7" style={{styleTatarabueloMat7}}>
-                            {{tatarabueloMat7pellido}}<br/> {{tatarabueloMat7Nombre}}
+                          <a routerLink="/Familiar/BisabueloMat3" style={{stylebisabueloMat3}}>
+                            {{bisabueloMat3pellido}}<br/> {{bisabueloMat3Nombre}}
                           </a>
+                          <ul>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloMat5" style={{styleTatarabueloMat5}}>
+                                {{tatarabueloMat5pellido}}<br/> {{tatarabueloMat5Nombre}}
+                              </a>
+                            </li>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloMat6" style={{styleTatarabueloMat6}}>
+                                {{tatarabueloMat6pellido}}<br/> {{tatarabueloMat6Nombre}}
+                              </a>
+                            </li>
+                          </ul>
                         </li>
                         <li>
-                          <a routerLink="/Familiar/TatarabueloMat8" style={{styleTatarabueloMat8}}>
-                            {{tatarabueloMat8pellido}}<br/> {{tatarabueloMat8Nombre}}
+                          <a routerLink="/Familiar/BisabueloMat4" style={{stylebisabueloMat4}}>
+                            {{bisabueloMat4pellido}}<br/> {{bisabueloMat4Nombre}}
                           </a>
+                          <ul>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloMat7" style={{styleTatarabueloMat7}}>
+                                {{tatarabueloMat7pellido}}<br/> {{tatarabueloMat7Nombre}}
+                              </a>
+                            </li>
+                            <li>
+                              <a routerLink="/Familiar/TatarabueloMat8" style={{styleTatarabueloMat8}}>
+                                {{tatarabueloMat8pellido}}<br/> {{tatarabueloMat8Nombre}}
+                              </a>
+                            </li>
+                          </ul>
+
                         </li>
                       </ul>
-
                     </li>
                   </ul>
                 </li>
               </ul>
             </li>
           </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <br>
-  <br>
-  <div class="row">
-
-     <div class="cuadrado" style="background-color:#99bef6"></div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Cliente</div>
-    <div class="cuadrado" style="background-color:#5AAF63"></div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Padres</div>
-    <div class="cuadrado" style="background-color:#E8B276FF"> </div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Abuelos</div>
-    <div class="cuadrado" style="background-color:#A8B276CC"></div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Bisabuelos</div>
-    <div class="cuadrado" style="background-color:#E2C9EFFF"></div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Tatarabuelos</div>
-  </div>
-
-
-  <br>
-  <br>
-  <br>
-
-
-
-    <div class="form-actions" >
-
-
+        </div>
+      </div>
+      <br>
+      <br>
       <div class="row">
-        <div class="col-8">
-          <button pButton pRipple label="Enviar Formulario"
-                  class="p-button-info p-mr-2"
-                  (click)="enviarFormulario()">
 
-          </button>
-        </div>
-
-
-        <div class="col">
-          <div class="text-right">
-
-
-            <button pButton pRipple label="Limpiar Arbol"
-                    icon="pi pi-trash"
-                    class="p-button-danger p-mr-2"
-                    (click)="limpiar()">
-
-            </button>
-
-          </div>
-        </div>
+        <div class="cuadrado" style="background-color:#99bef6"></div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Cliente</div>
+        <div class="cuadrado" style="background-color:#5AAF63"></div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Padres</div>
+        <div class="cuadrado" style="background-color:#E8B276FF"> </div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Abuelos</div>
+        <div class="cuadrado" style="background-color:#A8B276CC"></div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Bisabuelos</div>
+        <div class="cuadrado" style="background-color:#E2C9EFFF"></div><div style="color: #000;font-size: 18px;font-weight: bold;padding-right: 20px;">Tatarabuelos</div>
       </div>
 
 
+      <br>
+      <br>
+      <br>
+
+
+
+      <div class="form-actions" >
+
+
+        <div class="row">
+          <div class="col-8">
+            <button pButton pRipple label="Enviar Formulario"
+                    class="p-button-info p-mr-2"
+                    (click)="enviarFormulario()">
+
+            </button>
+          </div>
+
+
+          <div class="col">
+            <div class="text-right">
+
+
+              <button pButton pRipple label="Limpiar Arbol"
+                      icon="pi pi-trash"
+                      class="p-button-danger p-mr-2"
+                      (click)="limpiar()">
+
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </div>
+
+    <br>
+    <br>
+
+ </div>
+
 
 
 

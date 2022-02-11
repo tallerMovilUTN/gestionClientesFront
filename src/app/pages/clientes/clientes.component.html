@@ -1,7 +1,7 @@
 
 
 <div class="card">
-  <div class="card-body">
+  <div class="card-body bg-light">
 
               <div class="card-body wizard-content">
                 <!--<h1 style="color: rgb(10, 105, 66);font-family: Montserrat, sans-serif;font-size: 36px;">Completar Formulario de Solicitud </h1>-->
@@ -257,7 +257,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="calleNro" class="control-label">Nro Calle </label>
-                            <input type="number" class="form-control" formControlName="calleNro" required [ngClass]="{ 'is-invalid': submitted && f.calleNro.errors }">
+                            <input type="number" class="form-control" formControlName="calleNro"  onKeyPress="if(this.value.length==7) return false;"  required [ngClass]="{ 'is-invalid': submitted && f.calleNro.errors }">
 
                             <div *ngIf="submitted && f.calleNro.errors" class="invalid-feedback">
                               <div *ngIf="f.calleNro.errors.required">Debe ingresar el Numero de Calle</div>
@@ -272,7 +272,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="cp" class="control-label">Codigo Postal</label>
-                            <input type="number" class="form-control" formControlName="cp"  required [ngClass]="{ 'is-invalid': submitted && f.cp.errors }">
+                            <input type="number" class="form-control" formControlName="cp"  onKeyPress="if(this.value.length==5) return false;" required [ngClass]="{ 'is-invalid': submitted && f.cp.errors }">
 
                             <div *ngIf="submitted && f.cp.errors" class="invalid-feedback">
                               <div *ngIf="f.cp.errors.required">Debe ingresar el Codigo Postal</div>

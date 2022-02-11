@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-body">
+  <div class="card-body bg-light">
 
       <form [formGroup]="secondFormGroup" >
       <div class="card-body wizard-content">
@@ -566,7 +566,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="cpContacto" class="control-label">Codigo Postal</label>
-                  <input type="number" class="form-control" formControlName="cpContacto" >
+                  <input type="number" class="form-control"  onKeyPress="if(this.value.length==5) return false;"  formControlName="cpContacto" >
                 </div>
               </div>
 

@@ -1,4 +1,4 @@
 {
   "env": "production",
-  "apiUrl": "http://190.191.49.102:8080/gestionTramiteBack"
+  "apiUrl": "http://190.191.49.102:8080/gestionClientes"
 }
